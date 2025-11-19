@@ -10,6 +10,9 @@
       "videos": [
         "1.mp4"
       ],
+      "pdfs": [
+        "doc.pdf"
+      ],
       "installers": [
         "app-release.apk"
       ]
