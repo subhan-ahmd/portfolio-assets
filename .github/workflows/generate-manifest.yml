@@ -1,0 +1,55 @@
+name: Generate Asset Manifest
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'projects/**'
+      - 'education/**'
+      - 'experience/**'
+      - 'certifications/**'
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  generate-manifest:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write  # Required to commit back to the repo
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: 🔍 Generate manifest.json
+        run: python generate_manifest.py
+
+      - name: 📊 Check for changes
+        id: verify_diff
+        run: |
+          git diff --quiet manifest.json || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: 💾 Commit and push manifest
+        if: steps.verify_diff.outputs.changed == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add manifest.json
+          git commit -m "🤖 Auto-update manifest.json [skip ci]"
+          git push
+
+      - name: ✅ Done
+        run: |
+          if [ "${{ steps.verify_diff.outputs.changed }}" == "true" ]; then
+            echo "✨ Manifest updated successfully!"
+          else
+            echo "📝 Manifest is already up to date"
+          fi
