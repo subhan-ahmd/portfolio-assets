@@ -1,5 +1,10 @@
 {
   "projects": {
+    "jackjack": {
+      "installers": [
+        "app-release.apk"
+      ]
+    },
     "quick_care": {
       "screenshots": [
         "1.png",
