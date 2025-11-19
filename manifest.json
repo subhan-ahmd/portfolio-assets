@@ -25,6 +25,10 @@
     }
   },
   "education": {},
-  "experience": {},
+  "experience": {
+    "orbilon": {
+      "logo": "logo.png"
+    }
+  },
   "certifications": {}
 }
