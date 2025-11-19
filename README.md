@@ -25,6 +25,7 @@ No manual JSON editing. No typos. Just pure automation. ✨
 portfolio-assets/
 ├── projects/          # Project portfolio items
 │   └── {slug}/       # e.g., quick_care, expense_tracker
+│       ├── logo.png
 │       ├── screenshots/   # .png, .jpg, .jpeg, .gif, .webp
 │       ├── videos/        # .mp4, .mkv, .avi, .mov, .webm
 │       ├── pdfs/          # .pdf
@@ -32,18 +33,21 @@ portfolio-assets/
 │
 ├── education/         # Education credentials
 │   └── {slug}/       # e.g., kfueit
+│       ├── logo.png
 │       ├── screenshots/
 │       ├── videos/
 │       └── pdfs/
 │
 ├── experience/        # Work experience & achievements
 │   └── {slug}/       # e.g., orbilon
+│       ├── logo.png
 │       ├── screenshots/
 │       ├── videos/
 │       └── pdfs/
 │
 └── certifications/    # Professional certifications
     └── {slug}/       # e.g., udemy_flutter
+        ├── logo.png
         ├── screenshots/
         ├── videos/
         └── pdfs/
@@ -59,28 +63,33 @@ The GitHub Action automatically generates `manifest.json` in this format:
 {
   "projects": {
     "quick_care": {
+      "logo": "logo.png",
       "screenshots": ["1.png", "2.png", "3.jpg"],
       "videos": ["demo.mp4"],
       "pdfs": ["documentation.pdf"],
       "installers": ["app-release.apk"]
     },
     "expense_tracker": {
+      "logo": "logo.svg",
       "screenshots": ["1.png", "2.png"]
     }
   },
   "education": {
     "kfueit": {
+      "logo": "logo.png",
       "pdfs": ["certificate.pdf"],
       "screenshots": ["transcript.png"]
     }
   },
   "experience": {
     "orbilon": {
+      "logo": "logo.png",
       "screenshots": ["offer_letter.png"]
     }
   },
   "certifications": {
     "udemy_flutter": {
+      "logo": "logo.png",
       "pdfs": ["certificate.pdf"]
     }
   }
@@ -178,6 +187,7 @@ The workflow (`.github/workflows/generate-manifest.yml`) runs when:
 
 | Asset Type | Extensions |
 |-----------|-----------|
+| **logo** | `.png`, `.jpg`, `.jpeg`, `.svg`, `.webp` |
 | **screenshots** | `.png`, `.jpg`, `.jpeg`, `.gif`, `.webp` |
 | **videos** | `.mp4`, `.mkv`, `.avi`, `.mov`, `.webm` |
 | **pdfs** | `.pdf` |

@@ -17,6 +17,7 @@ ASSET_TYPES = {
     'pdfs': ['.pdf'],
     'installers': ['.apk', '.exe', '.dmg', '.msi', '.deb', '.rpm']
 }
+LOGO_EXTENSIONS = ['.png', '.jpg', '.jpeg', '.svg', '.webp']
 
 
 def get_files_in_directory(directory: Path, extensions: List[str]) -> List[str]:
@@ -39,12 +40,19 @@ def get_files_in_directory(directory: Path, extensions: List[str]) -> List[str]:
     ))
 
 
-def scan_slug_directory(slug_path: Path) -> Dict[str, List[str]]:
+def scan_slug_directory(slug_path: Path) -> Dict:
     """
     Scan a slug directory and return all assets organized by type.
     """
     assets = {}
 
+    # Check for logo file in the slug root directory
+    for file in slug_path.iterdir():
+        if file.is_file() and file.stem.lower() == 'logo' and file.suffix.lower() in LOGO_EXTENSIONS:
+            assets['logo'] = file.name
+            break
+
+    # Scan subdirectories for other asset types
     for asset_type, extensions in ASSET_TYPES.items():
         asset_dir = slug_path / asset_type
         files = get_files_in_directory(asset_dir, extensions)
@@ -92,7 +100,7 @@ def main():
 
     # Count total assets
     total_assets = sum(
-        len(files)
+        len(files) if isinstance(files, list) else 1
         for category in manifest.values()
         for slug in category.values()
         for files in slug.values()
