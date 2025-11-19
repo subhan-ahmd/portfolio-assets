@@ -1,6 +1,12 @@
 {
   "projects": {
+    "jackjack": {
+      "installers": [
+        "app-release.apk"
+      ]
+    },
     "quick_care": {
+      "logo": "logo.png",
       "screenshots": [
         "1.png",
         "2.png",
@@ -13,11 +19,6 @@
       "pdfs": [
         "doc.pdf"
       ],
-      "installers": [
-        "app-release.apk"
-      ]
-    },
-    "jackjack": {
       "installers": [
         "app-release.apk"
       ]
