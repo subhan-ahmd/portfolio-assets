@@ -9,10 +9,16 @@
     "startDate": "2024-04-01T00:00:00.000",
     "endDate": "2024-12-01T00:00:00.000",
     "url": null,
-    "description": [],
+    "description": [
+      "Contributed to existing production apps including AI Planner and Caregiver Management App.",
+      "Integrated ChatGPT (GPT-4.1) with structured outputs and parallel function calling to automate scheduling and task extraction from user conversations.:",
+      "Migrated from Claude 3.5/3.7 to OpenAI APIs with dynamic model switching, improving flexibility, maintainability, and response efficiency.",
+      "Refactored state management, resolved core logic issues, and delivered polished UI with improved performance and feature stability."
+    ],
     "shortDescription": [
-      "Developed Flutter apps (Side Hustle, AcademIQ, Diecarz) with secure authentication, tracking SDKs (Singular, AppsFlyer, Adjust), and scalable Firebase integrations.",
-      "Built AI-powered chat features using ChatGPT APIs with structured outputs, custom modes, and offline support via Isar DB while ensuring clean architecture across sprints."
+     "Contributed to AI Planner and Caregiver Management App using GPT-4.1 with structured outputs and parallel function calling.",
+      "Migrated Claude 3.5/3.7 to OpenAI APIs with dynamic model switching for improved flexibility and response efficiency.",
+      "Refactored state management, resolved core logic issues, and delivered polished UI with enhanced performance."
     ],
     "imageAssets": [],
     "videoAssets": [],
@@ -28,10 +34,16 @@
     "startDate": "2025-01-01T00:00:00.000",
     "endDate": null,
     "url": null,
-    "description": [],
+    "description": [
+      "Developed and maintained Flutter-based mobile apps including Side Hustle, AcademIQ, and Diecarz, spanning gamified rewards, AI-driven education, and social platforms.",
+      "Implemented secure, multi-platform authentication (Apple Sign-In, Google OAuth) and integrated tracking/analytics SDKs (Singular, AppsFlyer, Adjust).",
+      "Built AI-powered conversational features in AcademIQ using ChatGPT APIs, including structured outputs, custom chat modes, and offline support via Isar DB.",
+      "Delivered responsive UI, scalable Firebase integrations, and collaborated across sprints to ensure clean architecture and timely feature rollouts."
+    ],
     "shortDescription": [
-      "Contributed to AI Planner and Caregiver Management App, integrating ChatGPT (GPT-4.1) with structured outputs and parallel function calling for automated scheduling.",
-      "Migrated from Claude 3.5/3.7 to OpenAI APIs with dynamic model switching, refactored state management, and improved UI performance and feature stability."
+     "Developed Flutter mobile apps (Side Hustle, AcademIQ, Diecarz) with gamified rewards, AI-driven education, and social features.",
+      "Implemented multi-platform authentication (Apple Sign-In, Google OAuth) and integrated analytics (Singular, AppsFlyer, Adjust).",
+      "Built AI conversational features in AcademIQ using ChatGPT APIs with structured outputs, custom modes, and offline Isar DB support."
     ],
     "imageAssets": [],
     "videoAssets": [],

@@ -9,13 +9,13 @@
     "startDate": "2024-01-01T00:00:00.000",
     "endDate": "2024-05-01T00:00:00.000",
     "url": "https://apps.apple.com/app/academiq-homework-scan-helper/id6502458245",
-    "description": [],
-    "shortDescription": [
-      "Developed Firebase-based appointment booking system with real-time notifications, secure document storage, and integrated payment flows."
+    "description": [
+     "Created a real-time appointment booking and management system using Firebase, supporting scheduling and payment flows.",
+      "Built a notification system with Firebase Cloud Messaging and email alerts to keep patients and doctors informed.",
+      "Enabled secure document storage and retrieval via Firebase Storage, and added location features using Flutter Maps.",
+      "Focused on UX improvements to streamline booking processes and improve the reliability of appointment tracking."
     ],
-    "imageAssets": [],
-    "videoAssets": [],
-    "fileAssets": []
+    "shortDescription": "Real-time appointment booking system with Firebase, multi-role dashboards (patient/doctor/admin), payments, FCM notifications, secure document storage, and location features."
   },
   {
     "id": 1,
@@ -27,13 +27,13 @@
     "startDate": "2024-04-01T00:00:00.000",
     "endDate": "2024-07-01T00:00:00.000",
     "url": "https://apps.apple.com/app/academiq-homework-scan-helper/id6502458245",
-    "description": [],
-    "shortDescription": [
-      "Built AI educational chatbot with configurable modes, custom session management, and Isar DB for offline chat history access."
+    "description": [
+      "Developed an AI-powered educational chatbot with configurable modes (Essay, Poem, etc.) and support for various academic categories.",
+      "Built custom session management with prompt tuning to maintain context and improve user interaction quality.",
+      "Used Isar DB for efficient offline access to chat history and lightweight local storage.",
+      "Applied smart state handling and caching to streamline API usage and reduce latency."
     ],
-    "imageAssets": [],
-    "videoAssets": [],
-    "fileAssets": []
+    "shortDescription": "AI educational chatbot with configurable modes (Essay, Poem, etc.), custom session management, offline chat history via Isar DB, and optimized caching for reduced latency."
   },
   {
     "id": 2,
@@ -45,13 +45,13 @@
     "startDate": "2024-05-01T00:00:00.000",
     "endDate": "2024-09-01T00:00:00.000",
     "url": "https://apps.apple.com/app/side-hustle-test-earn-cash/id6504246233",
-    "description": [],
-    "shortDescription": [
-      "Created rewards platform with game install tracking via multiple SDKs (Singular, AppsFlyer, Adjust) and secure Google/Apple authentication."
+    "description": [
+      "Built a rewards platform enabling users to earn points by installing and engaging with promoted games, with support for automated payouts.",
+      "Integrated tracking SDKs (Singular, AppsFlyer, Adjust) to ensure accurate and real-time user acquisition attribution.",
+      "Implemented secure authentication using Google and Apple sign-in, improving user onboarding and account protection.",
+      "Designed a dynamic incentive system that encouraged consistent user participation and simplified reward distribution."
     ],
-    "imageAssets": [],
-    "videoAssets": [],
-    "fileAssets": []
+    "shortDescription": "Rewards platform for game installations with real-time attribution (Singular, AppsFlyer, Adjust), multi-platform auth (Google/Apple), dynamic incentive system, and automated payouts."
   },
   {
     "id": 3,
@@ -63,13 +63,13 @@
     "startDate": "2024-09-01T00:00:00.000",
     "endDate": "2024-12-01T00:00:00.000",
     "url": null,
-    "description": [],
-    "shortDescription": [
-      "Developed Firebase toy car collection app with CSV import, community features, and Mixpanel analytics, achieving 99.9% crash-free usage."
+    "description": [
+      "Developed a Firebase-backed toy car collection app with features like wishlist management, CSV import, and real-time feed from friends and the community.",
+      "Added filtering, sorting, search, and CSV import (with images) using a custom-built script to populate Firebase with data and assets.",
+      "Integrated Mixpanel analytics and implemented efficient Firestore rules and queries for scalable performance.",
+      "Achieved 99.9% crash-free usage and significantly optimized load times and data sync across devices."
     ],
-    "imageAssets": [],
-    "videoAssets": [],
-    "fileAssets": []
+    "shortDescription": "Toy car collection app with wishlist, CSV import (with images), real-time community feed, Mixpanel analytics, optimized Firestore queries, and 99.9% crash-free performance."
   },
   {
     "id": 4,
@@ -81,13 +81,13 @@
     "startDate": "2025-01-01T00:00:00.000",
     "endDate": "2025-03-01T00:00:00.000",
     "url": null,
-    "description": [],
-    "shortDescription": [
-      "Enhanced healthcare app with real-time multilingual chat translation and task assignment, achieving 30% improved user retention and 40% fewer bugs."
+    "description": [
+      "Maintained and improved a healthcare app connecting caregivers and family members via chat with real-time translation support for multilingual users.",
+      "Enabled task assignment to caregivers with auto-translation and tracking; allowed family collaboration by inviting multiple users.",
+      "Fixed major visual glitches, logic issues, and ensured pixel-perfect UI across different screen sizes.",
+      "Enhanced chat reliability and user interaction, resulting in 30% improvement in user retention and 40% drop in reported bugs."
     ],
-    "imageAssets": [],
-    "videoAssets": [],
-    "fileAssets": []
+    "shortDescription": "Healthcare app connecting caregivers and family with real-time multilingual chat, task assignment, auto-translation, pixel-perfect UI, and 30% improvement in user retention."
   },
   {
     "id": 5,
@@ -99,13 +99,12 @@
     "startDate": "2025-03-01T00:00:00.000",
     "endDate": "2025-04-01T00:00:00.000",
     "url": null,
-    "description": [],
-    "shortDescription": [
-      "Built BLE-based child monitoring app with real-time sound level tracking, live audio streaming, and threshold-based notifications for caregivers."
+    "description": [
+      "Developed a BLE-based child monitoring app designed to alert parents if a baby or child is awake, crying, or noise levels rise above a threshold.",
+      "Implemented full BLE scanning, pairing, and communication pipeline with support for reading/writing values and real-time sound level monitoring.",
+      "Added live sound streaming from BLE device to phone and notifications for threshold breaches, ensuring timely alerts for caregivers."
     ],
-    "imageAssets": [],
-    "videoAssets": [],
-    "fileAssets": []
+    "shortDescription": "BLE-based child monitoring app with real-time sound level detection, live streaming from device, automated alerts for crying/noise thresholds, and caregiver notifications."
   },
   {
     "id": 6,
@@ -116,12 +115,12 @@
     "field": "mobileAppDevelopment",
     "startDate": "2025-03-01T00:00:00.000",
     "endDate": null,
-    "description": [],
-    "shortDescription": [
-      "Upgraded AI scheduling app from Claude 3.5 to OpenAI APIs with structured outputs, reducing response time by 50% and optimizing state management for enhanced performance."
+    "description": [
+      "Worked on an existing AI-based scheduling and reminder app that extracts tasks, reminders, notes, and user features from chat conversations.",
+      "Upgraded Claude 3.5 to 3.7 with JSON mode, then transitioned to OpenAI’s ecosystem, starting with the Threads API, and later migrating to the Responses API with structured outputs and parallel function calling for greater flexibility and precision.",
+      "Reduced response time by over 50% through API adjustments and refined state management, significantly enhancing performance and UX.",
+      "Improved prompt design, fixed state handling bugs, and optimized memory usage for a more efficient and stable app."
     ],
-    "imageAssets": [],
-    "videoAssets": [],
-    "fileAssets": []
+    "shortDescription": "AI scheduling app extracting tasks/reminders from chat, migrated Claude 3.5→3.7→OpenAI APIs with structured outputs and parallel calling, 50% faster response time, optimized state management."
   }
 ]
