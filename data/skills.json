@@ -1,0 +1,44 @@
+[
+  {
+    "id": 0,
+    "title": "Technical",
+    "skills": [
+      "Dart",
+      "Flutter",
+      "Firebase",
+      "Firebase Cloud Messaging",
+      "OpenAI APIs",
+      "Claude API",
+      "Structured Outputs",
+      "Parallel",
+      "Function Calling",
+      "Mixpanel",
+      "Isar DB",
+      "Drift DB",
+      "BLE",
+      "Node.js",
+      "JavaScript",
+      "Python",
+      "C++",
+      "C#",
+      "Git",
+      "Linux"
+    ]
+  },
+  {
+    "id": 1,
+    "title": "Soft",
+    "skills": [
+      "Critical thinking",
+      "Problem-Solving",
+      "Strategic Planning",
+      "Time Management",
+      "Teamwork",
+      "Cross-Functional Collaboration",
+      "Effective Communication Skills",
+      "Adaptability",
+      "Attention to Detail",
+      "Self-Learning"
+    ]
+  }
+]

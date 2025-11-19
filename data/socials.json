@@ -1,0 +1,16 @@
+[
+  {
+    "id": 0,
+    "name": "LinkedIn",
+    "shortName": "Ln",
+    "url": "https://www.linkedin.com/in/subhan-ahmd/",
+    "assetIcon": ""
+  },
+  {
+    "id": 1,
+    "name": "Github",
+    "shortName": "Github",
+    "url": "https://github.com/subhan-ahmd",
+    "assetIcon": ""
+  }
+]

@@ -1,0 +1,40 @@
+[
+  {
+    "id": 0,
+    "title": "Mobile Application Developer",
+    "slug": "adsurge_ai",
+    "association": "AdSurge AI",
+    "location": "Remote",
+    "field": "mobileAppDevelopment",
+    "startDate": "2024-04-01T00:00:00.000",
+    "endDate": "2024-12-01T00:00:00.000",
+    "url": null,
+    "description": [],
+    "shortDescription": [
+      "Developed Flutter apps (Side Hustle, AcademIQ, Diecarz) with secure authentication, tracking SDKs (Singular, AppsFlyer, Adjust), and scalable Firebase integrations.",
+      "Built AI-powered chat features using ChatGPT APIs with structured outputs, custom modes, and offline support via Isar DB while ensuring clean architecture across sprints."
+    ],
+    "imageAssets": [],
+    "videoAssets": [],
+    "fileAssets": []
+  },
+  {
+    "id": 1,
+    "title": "Software Engineer",
+    "slug": "orbilon",
+    "association": "Orbilon Technologies",
+    "location": "Lahore, Pakistan",
+    "field": "mobileAppDevelopment",
+    "startDate": "2025-01-01T00:00:00.000",
+    "endDate": null,
+    "url": null,
+    "description": [],
+    "shortDescription": [
+      "Contributed to AI Planner and Caregiver Management App, integrating ChatGPT (GPT-4.1) with structured outputs and parallel function calling for automated scheduling.",
+      "Migrated from Claude 3.5/3.7 to OpenAI APIs with dynamic model switching, refactored state management, and improved UI performance and feature stability."
+    ],
+    "imageAssets": [],
+    "videoAssets": [],
+    "fileAssets": []
+  }
+]
