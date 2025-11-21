@@ -3,7 +3,7 @@
   "position": "Mobile Application Developer",
   "currentCity": "Lahore",
   "currentCountry": "Pakistan",
-  "description": "",
+  "intro": "I write code that makes AI behave and users happy.\nFlutter enthusiast. Problem solver. Professional bug whisperer.\nCurrently turning ambitious ideas into apps that actually work.",
   "shortDescription": "Flutter developer specializing in AI-powered mobile apps with Dart, Firebase, BLE, and OpenAI technologies. Delivered production-ready solutions with focus on performance, usability, and clean architecture.",
   "assetBaseUrl": "https://raw.githubusercontent.com/subhan-ahmd/portfolio-assets/main"
 }
