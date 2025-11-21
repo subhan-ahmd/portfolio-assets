@@ -115,15 +115,19 @@ def main():
 
     manifest = generate_manifest()
 
-    # Count total assets
+    # Count total assets (exclude 'profile' which is a string, not a dict)
     total_assets = sum(
         len(files) if isinstance(files, list) else 1
-        for category in manifest.values()
+        for key, category in manifest.items()
+        if isinstance(category, dict)
         for slug in category.values()
         for files in slug.values()
     )
+    if 'profile' in manifest:
+        total_assets += 1
 
-    print(f"✅ Found {total_assets} assets across {sum(len(cat) for cat in manifest.values())} projects")
+    project_count = sum(len(cat) for cat in manifest.values() if isinstance(cat, dict))
+    print(f"✅ Found {total_assets} assets across {project_count} projects")
 
     # Save manifest
     manifest_path = Path(__file__).parent / 'manifest.json'
@@ -132,8 +136,10 @@ def main():
 
     print(f"📝 Manifest saved to {manifest_path}")
     print("\n📊 Summary:")
+    if 'profile' in manifest:
+        print(f"  profile: {manifest['profile']}")
     for category, slugs in manifest.items():
-        if slugs:
+        if category != 'profile' and slugs:
             print(f"  {category}: {len(slugs)} item(s)")
 
 
