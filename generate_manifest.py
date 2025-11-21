@@ -62,12 +62,29 @@ def scan_slug_directory(slug_path: Path) -> Dict:
     return assets
 
 
+def get_profile_image(repo_root: Path) -> str | None:
+    """
+    Check for profile image in the root directory.
+    Returns the filename if found, None otherwise.
+    """
+    for ext in LOGO_EXTENSIONS:
+        profile_file = repo_root / f"profile{ext}"
+        if profile_file.exists():
+            return profile_file.name
+    return None
+
+
 def generate_manifest() -> Dict:
     """
     Generate the complete manifest by scanning all categories and slugs.
     """
     manifest = {}
     repo_root = Path(__file__).parent
+
+    # Check for profile image
+    profile_image = get_profile_image(repo_root)
+    if profile_image:
+        manifest['profile'] = profile_image
 
     for category in CATEGORIES:
         category_path = repo_root / category
