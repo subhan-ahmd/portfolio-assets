@@ -9,6 +9,7 @@ on:
       - 'education/**'
       - 'experience/**'
       - 'certifications/**'
+      - 'profile.*'
   workflow_dispatch:  # Allow manual triggering
 
 jobs:
