@@ -1,0 +1,22 @@
+[
+  {
+    "id": 0,
+    "title": "B.S. in Computer Science",
+    "slug": "kfueit",
+    "association": "Khwaja Fareed University of Engineering & Information Technology",
+    "location": "Rahim Yar Khan",
+    "startDate": "2020-08-01T00:00:00.000",
+    "endDate": "2024-06-01T00:00:00.000",
+    "markingScheme": "CGPA",
+    "maximumScore": "4.00",
+    "obtainedScore": "3.53",
+    "showScore": false,
+    "showDuration": false,
+    "url": null,
+    "description": [],
+    "shortDescription": [],
+    "imageAssets": [],
+    "videoAssets": [],
+    "fileAssets": []
+  }
+]

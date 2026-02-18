@@ -1,0 +1,35 @@
+{
+  "profile": "profile.jpeg",
+  "projects": {
+    "jackjack": {
+      "installers": [
+        "app-release.apk"
+      ]
+    },
+    "quick_care": {
+      "logo": "logo.png",
+      "screenshots": [
+        "1.png",
+        "2.png",
+        "3.png",
+        "4.png"
+      ],
+      "videos": [
+        "1.mp4"
+      ],
+      "pdfs": [
+        "doc.pdf"
+      ],
+      "installers": [
+        "app-release.apk"
+      ]
+    }
+  },
+  "education": {},
+  "experience": {
+    "orbilon": {
+      "logo": "logo.png"
+    }
+  },
+  "certifications": {}
+}
