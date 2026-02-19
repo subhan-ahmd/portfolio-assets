@@ -104,6 +104,17 @@ def generate_manifest() -> Dict:
 
         manifest[category] = category_data
 
+    # Skill icons (flat directory of icon files)
+    skills_dir = repo_root / "skills"
+    if skills_dir.exists():
+        skills_icons = {}
+        for file in sorted(skills_dir.iterdir()):
+            if file.is_file() and file.suffix.lower() in LOGO_EXTENSIONS and not file.name.startswith('.'):
+                skills_icons[file.stem] = file.name
+        manifest["skills"] = skills_icons
+    else:
+        manifest["skills"] = {}
+
     return manifest
 
 
@@ -115,18 +126,25 @@ def main():
 
     manifest = generate_manifest()
 
-    # Count total assets (exclude 'profile' which is a string, not a dict)
-    total_assets = sum(
-        len(files) if isinstance(files, list) else 1
-        for key, category in manifest.items()
-        if isinstance(category, dict)
-        for slug in category.values()
-        for files in slug.values()
-    )
+    # Count total assets
+    total_assets = 0
     if 'profile' in manifest:
         total_assets += 1
+    # Count skill icons (flat slug → filename dict)
+    if 'skills' in manifest:
+        total_assets += len(manifest['skills'])
+    # Count category assets (nested slug → asset_type → files dict)
+    for key, category in manifest.items():
+        if key in ('profile', 'skills') or not isinstance(category, dict):
+            continue
+        for slug in category.values():
+            for files in slug.values():
+                total_assets += len(files) if isinstance(files, list) else 1
 
-    project_count = sum(len(cat) for cat in manifest.values() if isinstance(cat, dict))
+    project_count = sum(
+        len(cat) for key, cat in manifest.items()
+        if isinstance(cat, dict) and key != 'skills'
+    )
     print(f"✅ Found {total_assets} assets across {project_count} projects")
 
     # Save manifest
@@ -138,8 +156,10 @@ def main():
     print("\n📊 Summary:")
     if 'profile' in manifest:
         print(f"  profile: {manifest['profile']}")
+    if 'skills' in manifest and manifest['skills']:
+        print(f"  skills: {len(manifest['skills'])} icon(s)")
     for category, slugs in manifest.items():
-        if category != 'profile' and slugs:
+        if category not in ('profile', 'skills') and slugs:
             print(f"  {category}: {len(slugs)} item(s)")
 
 
