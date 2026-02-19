@@ -9,7 +9,9 @@ on:
       - 'education/**'
       - 'experience/**'
       - 'certifications/**'
+      - 'skills/**'
       - 'profile.*'
+      - 'generate_manifest.py'
   workflow_dispatch:  # Allow manual triggering
 
 jobs:
