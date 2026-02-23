@@ -12,10 +12,16 @@ on:
       - 'skills/**'
       - 'profile.*'
       - 'generate_manifest.py'
-  workflow_dispatch:  # Allow manual triggering
+  workflow_run:
+    workflows: ["Generate CV PDF"]
+    types: [completed]
+  workflow_dispatch:
 
 jobs:
   generate-manifest:
+    if: >-
+      github.event_name != 'workflow_run' ||
+      github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
 
     permissions:
