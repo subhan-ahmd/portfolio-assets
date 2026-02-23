@@ -7,7 +7,8 @@ Generates a professional CV PDF from portfolio data files using reportlab.
 import json
 import re
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone
+import glob as glob_mod
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import inch
@@ -25,7 +26,8 @@ MARGIN = 0.6 * inch
 AVAILABLE_WIDTH = PAGE_WIDTH - 2 * MARGIN
 DATA_DIR = Path(__file__).parent / "data"
 FONTS_DIR = Path(__file__).parent / "fonts"
-OUTPUT_FILE = Path(__file__).parent / "cv.pdf"
+OUTPUT_DIR = Path(__file__).parent
+CV_GLOB = "*- CV - *.pdf"
 BULLET_CHAR = "\u25cf"  # ● filled circle matching reference PDF
 DIVIDER_COLOR = HexColor("#444444")
 
@@ -353,6 +355,11 @@ def build_languages_section(languages: list, styles: dict) -> list:
 
 # --- Main ---
 
+def delete_old_cvs():
+    for old in OUTPUT_DIR.glob(CV_GLOB):
+        old.unlink()
+
+
 def generate_cv():
     profile = load_json("profile.json")
     contacts = filter_for_cv(load_json("contacts.json"))
@@ -363,10 +370,19 @@ def generate_cv():
     skills = load_json("skills.json")
     languages = load_json("languages.json")
 
+    # Delete old CV files
+    delete_old_cvs()
+
+    # Generate timestamped filename
+    now = datetime.now(timezone.utc)
+    timestamp = now.strftime("%d%m%H%M")
+    filename = f"{profile['name']} - CV - {timestamp}.pdf"
+    output_file = OUTPUT_DIR / filename
+
     styles = create_styles()
 
     doc = SimpleDocTemplate(
-        str(OUTPUT_FILE),
+        str(output_file),
         pagesize=A4,
         leftMargin=MARGIN,
         rightMargin=MARGIN,
@@ -386,12 +402,13 @@ def generate_cv():
     story.extend(build_languages_section(languages, styles))
 
     doc.build(story)
+    return output_file
 
 
 def main():
     print("Generating CV PDF...")
-    generate_cv()
-    print(f"CV saved to {OUTPUT_FILE}")
+    output_file = generate_cv()
+    print(f"CV saved to {output_file}")
 
 
 if __name__ == "__main__":

@@ -86,10 +86,10 @@ def generate_manifest() -> Dict:
     if profile_image:
         manifest['profile'] = profile_image
 
-    # Check for generated CV
-    cv_file = repo_root / "cv.pdf"
-    if cv_file.exists():
-        manifest['cv'] = cv_file.name
+    # Check for generated CV (dynamically named: "Name - CV - DDMMHHMM.pdf")
+    cv_files = sorted(repo_root.glob("*- CV - *.pdf"))
+    if cv_files:
+        manifest['cv'] = cv_files[-1].name
 
     for category in CATEGORIES:
         category_path = repo_root / category
