@@ -12,5 +12,12 @@
     "shortName": "Github",
     "url": "https://github.com/subhan-ahmd",
     "assetIcon": ""
+  },
+  {
+    "id": 2,
+    "name": "Portfolio",
+    "shortName": "Portfolio",
+    "url": "https://subhan-ahmd.github.io",
+    "assetIcon": ""
   }
 ]

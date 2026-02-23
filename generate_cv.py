@@ -59,7 +59,10 @@ def format_date_range(start: str, end: str | None) -> str:
 def extract_handle(url: str) -> str:
     """Extract username/handle from a social URL."""
     match = re.search(r"(?:github\.com|linkedin\.com/in)/([^/]+)/?$", url)
-    return match.group(1) if match else url
+    if match:
+        return match.group(1)
+    host_match = re.search(r"https?://([^/]+)", url)
+    return host_match.group(1) if host_match else url
 
 
 def sort_by_date_desc(items: list) -> list:
