@@ -301,9 +301,10 @@ def build_projects_section(projects: list, styles: dict) -> list:
 def build_education_section(education: list, styles: dict) -> list:
     elements = section_heading("Education", styles)
     for edu in education:
+        date_text = format_date_range(edu["startDate"], edu.get("endDate")) if edu.get("showDurationInCv", True) else ""
         elements.append(left_right_row(
             edu["title"],
-            format_date_range(edu["startDate"], edu.get("endDate")),
+            date_text,
             styles,
         ))
 
@@ -313,7 +314,7 @@ def build_education_section(education: list, styles: dict) -> list:
             left_text += f', {edu["location"]}'
 
         right_text = ""
-        if edu.get("obtainedScore") and edu.get("maximumScore"):
+        if edu.get("showScoreInCv", True) and edu.get("obtainedScore") and edu.get("maximumScore"):
             right_text = f'{edu["markingScheme"]}: {edu["obtainedScore"]}/{edu["maximumScore"]}'
 
         if right_text:
