@@ -45,6 +45,10 @@ def load_json(filename: str):
         return json.load(f)
 
 
+def filter_for_cv(items: list) -> list:
+    return [item for item in items if item.get("showInCv", True)]
+
+
 def format_date(date_str: str | None) -> str:
     if date_str is None:
         return "Present"
@@ -350,11 +354,11 @@ def build_languages_section(languages: list, styles: dict) -> list:
 
 def generate_cv():
     profile = load_json("profile.json")
-    contacts = load_json("contacts.json")
-    socials = load_json("socials.json")
-    experiences = load_json("experiences.json")
-    projects = load_json("projects.json")
-    education = load_json("education.json")
+    contacts = filter_for_cv(load_json("contacts.json"))
+    socials = filter_for_cv(load_json("socials.json"))
+    experiences = filter_for_cv(load_json("experiences.json"))
+    projects = filter_for_cv(load_json("projects.json"))
+    education = filter_for_cv(load_json("education.json"))
     skills = load_json("skills.json")
     languages = load_json("languages.json")
 

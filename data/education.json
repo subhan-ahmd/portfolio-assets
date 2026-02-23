@@ -17,6 +17,8 @@
     "shortDescription": [],
     "imageAssets": [],
     "videoAssets": [],
-    "fileAssets": []
+    "fileAssets": [],
+    "showInCv": true,
+    "showInPortfolio": true
   }
 ]

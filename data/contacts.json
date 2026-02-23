@@ -4,15 +4,17 @@
     "name": "+923009717825",
     "shortName": "+923009717825",
     "url": "tel:+923009717825",
-    "hidden": true,
-    "assetIcon": ""
+    "assetIcon": "",
+    "showInCv": true,
+    "showInPortfolio": false
   },
   {
     "id": 1,
     "name": "subhan.ahmd@tuta.io",
     "shortName": "subhan.ahmd@tuta.io",
     "url": "subhan.ahmd@tuta.io",
-    "hidden": false,
-    "assetIcon": ""
+    "assetIcon": "",
+    "showInCv": true,
+    "showInPortfolio": true
   }
 ]

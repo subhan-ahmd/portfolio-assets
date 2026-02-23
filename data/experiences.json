@@ -20,6 +20,8 @@
       "Migrated Claude 3.5/3.7 to OpenAI APIs with dynamic model switching for improved flexibility and response efficiency.",
       "Refactored state management, resolved core logic issues, and delivered polished UI with enhanced performance."
     ],
+    "showInCv": true,
+    "showInPortfolio": true,
     "imageAssets": [],
     "videoAssets": [],
     "fileAssets": []
@@ -45,6 +47,8 @@
       "Implemented multi-platform authentication (Apple Sign-In, Google OAuth) and integrated analytics (Singular, AppsFlyer, Adjust).",
       "Built AI conversational features in AcademIQ using ChatGPT APIs with structured outputs, custom modes, and offline Isar DB support."
     ],
+    "showInCv": true,
+    "showInPortfolio": true,
     "imageAssets": [],
     "videoAssets": [],
     "fileAssets": []
