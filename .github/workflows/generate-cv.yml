@@ -1,0 +1,49 @@
+name: Generate CV PDF
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'data/**'
+      - 'generate_cv.py'
+      - 'requirements.txt'
+  workflow_dispatch:
+
+jobs:
+  generate-cv:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Generate CV PDF
+        run: python generate_cv.py
+
+      - name: Check for changes
+        id: verify_diff
+        run: |
+          git diff --quiet cv.pdf 2>/dev/null || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and push CV
+        if: steps.verify_diff.outputs.changed == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add cv.pdf
+          git commit -m "Auto-update cv.pdf [skip ci]"
+          git push

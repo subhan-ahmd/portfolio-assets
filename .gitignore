@@ -29,6 +29,9 @@ venv/
 **/*_secret.*
 **/*_private.*
 
+# Misc
+misc/
+
 # Build artifacts
 dist/
 build/

@@ -86,6 +86,11 @@ def generate_manifest() -> Dict:
     if profile_image:
         manifest['profile'] = profile_image
 
+    # Check for generated CV
+    cv_file = repo_root / "cv.pdf"
+    if cv_file.exists():
+        manifest['cv'] = cv_file.name
+
     for category in CATEGORIES:
         category_path = repo_root / category
 
