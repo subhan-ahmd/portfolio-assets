@@ -2,6 +2,22 @@
   "profile": "profile.jpeg",
   "cv": "cv.pdf",
   "projects": {
+    "jackjack": {
+      "screenshots": [
+        "jackjack_1.png",
+        "jackjack_2.png",
+        "jackjack_3.png",
+        "jackjack_4.png",
+        "jackjack_5.png",
+        "jackjack_6.png",
+        "jackjack_7.png",
+        "jackjack_8.png",
+        "jackjack_9.png"
+      ],
+      "installers": [
+        "app-release.apk"
+      ]
+    },
     "quick_care": {
       "logo": "logo.png",
       "screenshots": [
@@ -51,22 +67,6 @@
       ],
       "pdfs": [
         "doc.pdf"
-      ],
-      "installers": [
-        "app-release.apk"
-      ]
-    },
-    "jackjack": {
-      "screenshots": [
-        "jackjack_1.png",
-        "jackjack_2.png",
-        "jackjack_3.png",
-        "jackjack_4.png",
-        "jackjack_5.png",
-        "jackjack_6.png",
-        "jackjack_7.png",
-        "jackjack_8.png",
-        "jackjack_9.png"
       ],
       "installers": [
         "app-release.apk"
