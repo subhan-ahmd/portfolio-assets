@@ -6,9 +6,9 @@ Generates a professional CV PDF from portfolio data files using reportlab.
 
 import json
 import re
+import shutil
 from pathlib import Path
 from datetime import datetime, timezone
-import glob as glob_mod
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import inch
@@ -402,6 +402,11 @@ def generate_cv():
     story.extend(build_languages_section(languages, styles))
 
     doc.build(story)
+
+    # Create stable cv.pdf copy
+    stable_copy = OUTPUT_DIR / "cv.pdf"
+    shutil.copy2(output_file, stable_copy)
+
     return output_file
 
 
