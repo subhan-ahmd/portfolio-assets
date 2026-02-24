@@ -131,6 +131,9 @@
   },
   "education": {},
   "experience": {
+    "personal": {
+      "logo": "logo.png"
+    },
     "adsurge_ai": {
       "logo": "logo.svg"
     },
