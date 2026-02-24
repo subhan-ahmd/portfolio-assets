@@ -91,6 +91,11 @@ def generate_manifest() -> Dict:
     if cv_files:
         manifest['cv'] = cv_files[-1].name
 
+    # Stable CV copy (always up-to-date permanent link)
+    cv_stable = repo_root / "cv.pdf"
+    if cv_stable.exists():
+        manifest['cvLatest'] = cv_stable.name
+
     for category in CATEGORIES:
         category_path = repo_root / category
 
@@ -163,10 +168,12 @@ def main():
         print(f"  profile: {manifest['profile']}")
     if 'cv' in manifest:
         print(f"  cv: {manifest['cv']}")
+    if 'cvLatest' in manifest:
+        print(f"  cvLatest: {manifest['cvLatest']}")
     if 'skills' in manifest and manifest['skills']:
         print(f"  skills: {len(manifest['skills'])} icon(s)")
     for category, slugs in manifest.items():
-        if category not in ('profile', 'skills', 'cv') and slugs:
+        if category not in ('profile', 'skills', 'cv', 'cvLatest') and slugs:
             print(f"  {category}: {len(slugs)} item(s)")
 
 
