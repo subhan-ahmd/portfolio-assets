@@ -10,10 +10,9 @@
     "endDate": "2024-05-01T00:00:00.000",
     "url": "https://apps.apple.com/app/academiq-homework-scan-helper/id6502458245",
     "description": [
-      "Created a real-time appointment booking and management system using Firebase, supporting scheduling and payment flows.",
-      "Built a notification system with Firebase Cloud Messaging and email alerts to keep patients and doctors informed.",
-      "Enabled secure document storage and retrieval via Firebase Storage, and added location features using Flutter Maps.",
-      "Focused on UX improvements to streamline booking processes and improve the reliability of appointment tracking."
+      "Developed a multi role healthcare platform (Patient/Doctor/Admin) with Flutter and Firebase for appointment booking.",
+      "Integrated Paymob payment gateway, MailerSend SMTP for notifications, and location based doctor discovery.",
+      "Added AI chatbot using GPT-3.5-turbo API and secure document storage."
     ],
     "shortDescription": "Real-time appointment booking system with Firebase, multi-role dashboards (patient/doctor/admin), payments, FCM notifications, secure document storage, and location features.",
     "showInCv": true,
@@ -30,10 +29,9 @@
     "endDate": "2024-07-01T00:00:00.000",
     "url": "https://apps.apple.com/app/academiq-homework-scan-helper/id6502458245",
     "description": [
-      "Developed an AI-powered educational chatbot with configurable modes (Essay, Poem, etc.) and support for various academic categories.",
-      "Built custom session management with prompt tuning to maintain context and improve user interaction quality.",
-      "Used Isar DB for efficient offline access to chat history and lightweight local storage.",
-      "Applied smart state handling and caching to streamline API usage and reduce latency."
+      "Built a multi modal AI education app with 20+ learning modes and seamless LLM migration (ChatGPT → Gemini).",
+      "Built a multi input pipeline integrating OCR, speech-to-text, PDF extraction, and vision AI.",
+      "Developed offline first architecture using Isar DB with Riverpod for persistent sessions."
     ],
     "shortDescription": "AI educational chatbot with configurable modes (Essay, Poem, etc.), custom session management, offline chat history via Isar DB, and optimized caching for reduced latency.",
     "showInCv": true,
@@ -50,10 +48,9 @@
     "endDate": "2024-09-01T00:00:00.000",
     "url": "https://apps.apple.com/app/side-hustle-test-earn-cash/id6504246233",
     "description": [
-      "Built a rewards platform enabling users to earn points by installing and engaging with promoted games, with support for automated payouts.",
-      "Integrated tracking SDKs (Singular, AppsFlyer, Adjust) to ensure accurate and real-time user acquisition attribution.",
-      "Implemented secure authentication using Google and Apple sign-in, improving user onboarding and account protection.",
-      "Designed a dynamic incentive system that encouraged consistent user participation and simplified reward distribution."
+      "Developed cross platform rewards app with AppsFlyer SDK for install attribution tracking.",
+      "Engineered device fingerprinting with 15+ signals (IDFA, IP, VPN) for fraud prevention.",
+      "Designed tiered redemption system for 12+ countries with WebSocket real time updates."
     ],
     "shortDescription": "Rewards platform for game installations with real-time attribution (Singular, AppsFlyer, Adjust), multi-platform auth (Google/Apple), dynamic incentive system, and automated payouts.",
     "showInCv": true,
@@ -70,10 +67,9 @@
     "endDate": "2024-12-01T00:00:00.000",
     "url": null,
     "description": [
-      "Developed a Firebase-backed toy car collection app with features like wishlist management, CSV import, and real-time feed from friends and the community.",
-      "Added filtering, sorting, search, and CSV import (with images) using a custom-built script to populate Firebase with data and assets.",
-      "Integrated Mixpanel analytics and implemented efficient Firestore rules and queries for scalable performance.",
-      "Achieved 99.9% crash-free usage and significantly optimized load times and data sync across devices."
+      "Developed a social collection app for diecast enthusiasts with real time feed, follow/like system, and CSV bulk import.",
+      "Built Python ETL scripts processing 57K rows, normalizing data, uploading images to Firebase Storage, batch importing via Parquet.",
+      "Implemented advanced filtering across multiple metadata fields with optimized Firestore indexes and Mixpanel analytics."
     ],
     "shortDescription": "Toy car collection app with wishlist, CSV import (with images), real-time community feed, Mixpanel analytics, optimized Firestore queries, and 99.9% crash-free performance.",
     "showInCv": true,
@@ -90,10 +86,9 @@
     "endDate": "2025-03-01T00:00:00.000",
     "url": null,
     "description": [
-      "Maintained and improved a healthcare app connecting caregivers and family members via chat with real-time translation support for multilingual users.",
-      "Enabled task assignment to caregivers with auto-translation and tracking; allowed family collaboration by inviting multiple users.",
-      "Fixed major visual glitches, logic issues, and ensured pixel-perfect UI across different screen sizes.",
-      "Enhanced chat reliability and user interaction, resulting in 30% improvement in user retention and 40% drop in reported bugs."
+      "Added task management with recurring schedules, media attachments, and 9 language localization (including RTL).",
+      "Extended push notification system with deep linking and FCM token lifecycle fixes.",
+      "Resolved critical bugs in Firebase sync and authentication, improving user retention by 30%."
     ],
     "shortDescription": "Healthcare app connecting caregivers and family with real-time multilingual chat, task assignment, auto-translation, pixel-perfect UI, and 30% improvement in user retention.",
     "showInCv": true,
@@ -101,6 +96,24 @@
   },
   {
     "id": 5,
+    "title": "AI Planner",
+    "slug": "ai_planner",
+    "technology": "Flutter",
+    "associationSlug": "orbilon",
+    "field": "mobileAppDevelopment",
+    "startDate": "2025-03-01T00:00:00.000",
+    "endDate": "2025-08-01T00:00:00.000",
+    "description": [
+      "Led migration from Claude AI to OpenAI with structured outputs and parallel function calling (17 concurrent executions), reducing latency by 50%+.",
+      "Rebuilt cross platform notifications system supporting recurring reminders with complex scheduling patterns.",
+      "Fixed critical state handling bugs including data persistence and exception handling."
+    ],
+    "shortDescription": "AI scheduling app extracting tasks/reminders from chat, migrated Claude 3.5→3.7→OpenAI APIs with structured outputs and parallel calling, 50% faster response time, optimized state management.",
+    "showInCv": true,
+    "showInPortfolio": true
+  },
+  {
+    "id": 6,
     "title": "JackJack",
     "slug": "jackjack",
     "technology": "Flutter",
@@ -110,30 +123,49 @@
     "endDate": "2025-04-01T00:00:00.000",
     "url": null,
     "description": [
-      "Developed a BLE-based child monitoring app designed to alert parents if a baby or child is awake, crying, or noise levels rise above a threshold.",
-      "Implemented full BLE scanning, pairing, and communication pipeline with support for reading/writing values and real-time sound level monitoring.",
-      "Added live sound streaming from BLE device to phone and notifications for threshold breaches, ensuring timely alerts for caregivers."
+      "Developed cross platform BLE companion app for child monitoring with real time audio streaming, threshold based alerts, and notification history.",
+      "Architected dual mode system with seamless foreground/background state transfer and robust auto reconnection using flutter_reactive_ble.",
+      "Built background service isolate with lifecycle aware state management for 24/7 monitoring."
     ],
     "shortDescription": "BLE-based child monitoring app with real-time sound level detection, live streaming from device, automated alerts for crying/noise thresholds, and caregiver notifications.",
     "showInCv": true,
     "showInPortfolio": true
   },
   {
-    "id": 6,
-    "title": "AI Planner",
-    "slug": "ai_planner",
-    "technology": "Flutter",
-    "associationSlug": "orbilon",
-    "field": "mobileAppDevelopment",
-    "startDate": "2025-03-01T00:00:00.000",
+    "id": 7,
+    "title": "Portfolio & Assets Platform",
+    "slug": "portfolio",
+    "technology": "Flutter Web + Python",
+    "associationSlug": null,
+    "field": "webDevelopment",
+    "startDate": "2025-06-01T00:00:00.000",
     "endDate": null,
+    "url": "https://subhan-ahmd.github.io",
     "description": [
-      "Worked on an existing AI-based scheduling and reminder app that extracts tasks, reminders, notes, and user features from chat conversations.",
-      "Upgraded Claude 3.5 to 3.7 with JSON mode, then transitioned to OpenAI’s ecosystem, starting with the Threads API, and later migrating to the Responses API with structured outputs and parallel function calling for greater flexibility and precision.",
-      "Reduced response time by over 50% through API adjustments and refined state management, significantly enhancing performance and UX.",
-      "Improved prompt design, fixed state handling bugs, and optimized memory usage for a more efficient and stable app."
+      "Built a two repo headless CMS with GitHub raw URLs as CDN, manifest driven asset resolution, and parallel data loading, achieving zero hosting costs for 100+ MB of assets.",
+      "Developed an interactive Flutter Web SPA with Forge2D physics engine (draggable skill pills, throwable emojis), glassmorphism design system, command palette, and scroll reveal animations.",
+      "Automated CV PDF generation from JSON data with sequential CI/CD pipelines via GitHub Actions and visibility flag filtering for independent CV and portfolio content control."
     ],
-    "shortDescription": "AI scheduling app extracting tasks/reminders from chat, migrated Claude 3.5→3.7→OpenAI APIs with structured outputs and parallel calling, 50% faster response time, optimized state management.",
+    "shortDescription": "Interactive Flutter Web portfolio with Forge2D physics, glassmorphism design, command palette, terminal boot loader, headless CMS via GitHub raw URLs, automated CV generation, and easter eggs.",
+    "showInCv": true,
+    "showInPortfolio": true
+  },
+  {
+    "id": 8,
+    "title": "Sales Quotation Management System",
+    "slug": "sales_quotation_system",
+    "technology": "React + ASP.NET",
+    "associationSlug": "orbilon",
+    "field": "webDevelopment",
+    "startDate": "2026-01-01T00:00:00.000",
+    "endDate": null,
+    "url": null,
+    "description": [
+      "Building a full stack B2B quoting platform (React, TypeScript, ASP.NET Core 8, SQL Server) enabling 20+ concurrent users to generate quotes with automated pricing and PDF output.",
+      "Integrating three external systems (Enapps ERP, KREO AI, WooCommerce) with rule based pricing engine processing 20+ underfloor heating configurations.",
+      "Implemented JWT authentication, role based access control, and audit logging."
+    ],
+    "shortDescription": "Full stack B2B quoting platform with React, ASP.NET Core 8, SQL Server, integrating Enapps ERP, KREO AI, and WooCommerce with automated pricing, JWT auth, and audit logging.",
     "showInCv": true,
     "showInPortfolio": true
   }

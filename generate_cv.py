@@ -71,14 +71,9 @@ def extract_handle(url: str) -> str:
     return host_match.group(1) if host_match else url
 
 
-def sort_by_date_desc(items: list) -> list:
-    """Sort items by startDate descending (most recent first)."""
-    def parse_date(item):
-        try:
-            return datetime.fromisoformat(item["startDate"].replace("Z", "+00:00"))
-        except (KeyError, TypeError, ValueError):
-            return datetime.min
-    return sorted(items, key=parse_date, reverse=True)
+def sort_by_id(items: list) -> list:
+    """Sort items by id descending (highest/latest first)."""
+    return sorted(items, key=lambda item: item.get("id", 0), reverse=True)
 
 
 def to_list(value) -> list:
@@ -267,7 +262,7 @@ def build_summary(profile: dict, styles: dict) -> list:
 
 def build_experience_section(experiences: list, styles: dict) -> list:
     elements = section_heading("Work Experience", styles)
-    sorted_exps = sort_by_date_desc(experiences)
+    sorted_exps = sort_by_id(experiences)
     for i, exp in enumerate(sorted_exps):
         subtitle_parts = [exp["association"]]
         if exp.get("location"):
@@ -285,7 +280,7 @@ def build_experience_section(experiences: list, styles: dict) -> list:
 
 def build_projects_section(projects: list, styles: dict) -> list:
     elements = section_heading("Projects", styles)
-    sorted_projs = sort_by_date_desc(projects)
+    sorted_projs = sort_by_id(projects)
     for i, proj in enumerate(sorted_projs):
         title_text = proj["title"]
         if proj.get("technology"):
