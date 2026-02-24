@@ -129,7 +129,11 @@
       "logo": "logo.png"
     }
   },
-  "education": {},
+  "education": {
+    "kfueit": {
+      "logo": "logo.png"
+    }
+  },
   "experience": {
     "personal": {
       "logo": "logo.png"
