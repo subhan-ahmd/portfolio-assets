@@ -4,6 +4,7 @@
   "cvLatest": "cv.pdf",
   "projects": {
     "jackjack": {
+      "logo": "logo.png",
       "screenshots": [
         "jackjack_1.png",
         "jackjack_2.png",
@@ -73,7 +74,11 @@
         "app-release.apk"
       ]
     },
+    "side_hustle": {
+      "logo": "logo.png"
+    },
     "academiq": {
+      "logo": "logo.png",
       "screenshots": [
         "academiq_1.png",
         "academiq_2.png",
@@ -91,6 +96,7 @@
       ]
     },
     "diecarz": {
+      "logo": "logo.png",
       "screenshots": [
         "diecarz_1.png",
         "diecarz_2.png",
@@ -118,6 +124,9 @@
         "diecarz_24.png",
         "diecarz_25.png"
       ]
+    },
+    "portfolio": {
+      "logo": "logo.png"
     }
   },
   "education": {},
