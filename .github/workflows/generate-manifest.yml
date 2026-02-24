@@ -17,11 +17,12 @@ on:
     types: [completed]
   workflow_dispatch:
 
+concurrency:
+  group: generate-manifest
+  cancel-in-progress: true
+
 jobs:
   generate-manifest:
-    if: >-
-      github.event_name != 'workflow_run' ||
-      github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
 
     permissions:
@@ -33,21 +34,37 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: 🔀 Check if CV workflow will also run
+        if: github.event_name == 'push'
+        id: cv_check
+        run: |
+          # If this push also triggers the CV workflow, skip this run.
+          # The CV workflow will chain into manifest via workflow_run,
+          # ensuring the manifest includes the new CV filename.
+          CHANGED=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} -- data/ generate_cv.py requirements.txt 2>/dev/null || echo "")
+          if [ -n "$CHANGED" ]; then
+            echo "skip=true" >> $GITHUB_OUTPUT
+            echo "⏭️ CV workflow will also run — deferring to workflow_run trigger"
+          fi
+
       - name: 🐍 Set up Python
+        if: steps.cv_check.outputs.skip != 'true'
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
       - name: 🔍 Generate manifest.json
+        if: steps.cv_check.outputs.skip != 'true'
         run: python generate_manifest.py
 
       - name: 📊 Check for changes
+        if: steps.cv_check.outputs.skip != 'true'
         id: verify_diff
         run: |
           git diff --quiet manifest.json || echo "changed=true" >> $GITHUB_OUTPUT
 
       - name: 💾 Commit and push manifest
-        if: steps.verify_diff.outputs.changed == 'true'
+        if: steps.cv_check.outputs.skip != 'true' && steps.verify_diff.outputs.changed == 'true'
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
@@ -57,6 +74,7 @@ jobs:
           git push
 
       - name: ✅ Done
+        if: steps.cv_check.outputs.skip != 'true'
         run: |
           if [ "${{ steps.verify_diff.outputs.changed }}" == "true" ]; then
             echo "✨ Manifest updated successfully!"
