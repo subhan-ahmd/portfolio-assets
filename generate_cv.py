@@ -22,7 +22,7 @@ from reportlab.pdfbase.ttfonts import TTFont
 
 # --- Constants ---
 PAGE_WIDTH, PAGE_HEIGHT = A4
-MARGIN = 0.6 * inch
+MARGIN = 0.55 * inch
 AVAILABLE_WIDTH = PAGE_WIDTH - 2 * MARGIN
 DATA_DIR = Path(__file__).parent / "data"
 FONTS_DIR = Path(__file__).parent / "fonts"
