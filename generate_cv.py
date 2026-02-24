@@ -232,18 +232,14 @@ def build_header(profile: dict, contacts: list, socials: list, styles: dict) -> 
     elements.append(hr())
 
     # Contact line + HR
-    email = ""
-    phone = ""
-    for c in contacts:
-        if "@" in c.get("name", ""):
-            email = c["name"]
-        else:
-            phone = c["name"]
     contact_parts = [f'{profile["currentCity"]}, {profile["currentCountry"]}']
-    if email:
-        contact_parts.append(email)
-    if phone:
-        contact_parts.append(phone)
+    for c in contacts:
+        url = c.get("url", "")
+        name = c.get("name", "")
+        if url:
+            contact_parts.append(f'<a href="{url}" color="black">{name}</a>')
+        elif name:
+            contact_parts.append(name)
     elements.extend(info_line(" <b>|</b> ".join(contact_parts), styles))
 
     # Social line + HR
