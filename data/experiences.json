@@ -1,6 +1,24 @@
 [
   {
     "id": 0,
+    "title": "Personal Projects",
+    "slug": "personal",
+    "association": "Personal",
+    "location": null,
+    "field": null,
+    "startDate": null,
+    "endDate": null,
+    "url": null,
+    "description": [],
+    "shortDescription": [],
+    "imageAssets": [],
+    "videoAssets": [],
+    "fileAssets": [],
+    "showInCv": false,
+    "showInPortfolio": false
+  },
+  {
+    "id": 1,
     "title": "Mobile Application Developer",
     "slug": "adsurge_ai",
     "association": "AdSurge AI",
@@ -27,7 +45,7 @@
     "showInPortfolio": true
   },
   {
-    "id": 1,
+    "id": 2,
     "title": "Software Engineer",
     "slug": "orbilon",
     "association": "Orbilon Technologies",

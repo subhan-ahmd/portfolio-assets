@@ -136,7 +136,7 @@
     "title": "Portfolio & Assets Platform",
     "slug": "portfolio",
     "technology": "Flutter & Python",
-    "associationSlug": null,
+    "associationSlug": "personal",
     "field": "webDevelopment",
     "startDate": "2025-06-01T00:00:00.000",
     "endDate": null,
