@@ -22,7 +22,9 @@
     ],
     "imageAssets": [],
     "videoAssets": [],
-    "fileAssets": []
+    "fileAssets": [],
+    "showInCv": true,
+    "showInPortfolio": true
   },
   {
     "id": 1,
@@ -47,6 +49,8 @@
     ],
     "imageAssets": [],
     "videoAssets": [],
-    "fileAssets": []
+    "fileAssets": [],
+    "showInCv": true,
+    "showInPortfolio": true
   }
 ]
