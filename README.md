@@ -1,252 +1,191 @@
-# 🎨 Portfolio Assets
+# Portfolio Assets
 
-> **Dynamic asset management for your Flutter portfolio** - Drop files, push code, and let automation do the rest!
+> Headless CMS powering [subhan-ahmd.github.io](https://subhan-ahmd.github.io) — JSON data, media assets, skill icons, and automated CV generation, all served via GitHub raw URLs at zero hosting cost.
 
+[![Generate CV PDF](https://github.com/subhan-ahmd/portfolio-assets/actions/workflows/generate-cv.yml/badge.svg)](https://github.com/subhan-ahmd/portfolio-assets/actions/workflows/generate-cv.yml)
 [![Generate Asset Manifest](https://github.com/subhan-ahmd/portfolio-assets/actions/workflows/generate-manifest.yml/badge.svg)](https://github.com/subhan-ahmd/portfolio-assets/actions/workflows/generate-manifest.yml)
 
-## ✨ What is this?
+## How It Works
 
-This repository serves as a **centralized asset storage** for my Flutter portfolio app. Instead of bundling heavy assets (screenshots, videos, PDFs, installers) into the app, they're hosted here and loaded dynamically via a generated manifest.
+This repo is one half of a two-repo architecture:
 
-### 🚀 The Magic
+1. **This repo (portfolio-assets)** — Data, assets, and automation
+2. **[Portfolio app](https://github.com/subhan-ahmd/subhan-ahmd.github.io)** — Flutter Web SPA that consumes it
 
-1. **Drop assets** into organized folders
-2. **Push to GitHub**
-3. **GitHub Actions automatically generates** `manifest.json`
-4. **Flutter app fetches** the manifest and loads assets on-demand
+The app fetches `manifest.json` and all data files at runtime from `raw.githubusercontent.com`. No bundling, no backend, no hosting costs.
 
-No manual JSON editing. No typos. Just pure automation. ✨
+### The Pipeline
 
----
+```
+Edit JSON data or drop assets
+        |
+   git push to main
+        |
+   +----+----+
+   |         |
+   v         v
+Generate   Generate
+CV PDF     Manifest
+   |         |
+   +----+----+
+        |
+   Auto-commit back to repo
+        |
+   Portfolio app fetches latest on load
+```
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 portfolio-assets/
-├── projects/          # Project portfolio items
-│   └── {slug}/       # e.g., quick_care, expense_tracker
-│       ├── logo.png
-│       ├── screenshots/   # .png, .jpg, .jpeg, .gif, .webp
-│       ├── videos/        # .mp4, .mkv, .avi, .mov, .webm
-│       ├── pdfs/          # .pdf
-│       └── installers/    # .apk, .exe, .dmg, .msi
-│
-├── education/         # Education credentials
-│   └── {slug}/       # e.g., kfueit
-│       ├── logo.png
-│       ├── screenshots/
-│       ├── videos/
-│       └── pdfs/
-│
-├── experience/        # Work experience & achievements
-│   └── {slug}/       # e.g., orbilon
-│       ├── logo.png
-│       ├── screenshots/
-│       ├── videos/
-│       └── pdfs/
-│
-└── certifications/    # Professional certifications
-    └── {slug}/       # e.g., udemy_flutter
-        ├── logo.png
-        ├── screenshots/
-        ├── videos/
-        └── pdfs/
+|-- data/                    # JSON data (the "database")
+|   |-- profile.json         # Name, position, bio, availableForWork flag
+|   |-- experiences.json     # Work history with descriptions
+|   |-- projects.json        # Project entries with tech stacks
+|   |-- education.json       # Degrees, scores, duration
+|   |-- skills.json          # Categorized skill lists
+|   |-- languages.json       # Spoken languages
+|   |-- contacts.json        # Email, phone
+|   +-- socials.json         # LinkedIn, GitHub, portfolio links
+|
+|-- projects/{slug}/         # Project assets
+|   |-- logo.png
+|   |-- screenshots/         # .png, .jpg, .jpeg, .gif, .webp
+|   |-- videos/              # .mp4, .mkv, .avi, .mov, .webm
+|   |-- pdfs/                # .pdf
+|   +-- installers/          # .apk, .exe, .dmg, .msi
+|
+|-- experience/{slug}/       # Experience assets (logos, etc.)
+|-- education/{slug}/        # Education assets
+|-- certifications/{slug}/   # Certification assets
+|-- skills/                  # Skill icons (SVG/PNG, keyed by stem)
+|
+|-- profile.jpeg             # Profile photo
+|-- cv.pdf                   # Always-latest CV (stable permalink)
+|-- Subhan Ahmed - CV - *.pdf  # Timestamped CV snapshots
+|-- manifest.json            # Auto-generated asset index
+|
+|-- generate_cv.py           # CV PDF generator (ReportLab)
+|-- generate_manifest.py     # Asset manifest generator
+|-- fonts/                   # Montserrat font files for CV
+|-- requirements.txt         # Python dependencies
++-- .github/workflows/       # CI/CD pipelines
 ```
 
----
+## CV Generation
 
-## 📋 Generated Manifest Format
+The CV is generated programmatically from the JSON data files using Python + ReportLab.
 
-The GitHub Action automatically generates `manifest.json` in this format:
+**Features:**
+- Montserrat font, A4 layout, professional formatting
+- Sections: header, summary, work experience, projects, education, skills, languages
+- Sorted by `id` descending (latest first)
+- `showInCv` / `showInPortfolio` visibility flags on every data item for independent content control
+- Clickable footer with source repo link and "Get latest here" permanent download link
+- Outputs both a timestamped PDF and a stable `cv.pdf` copy
+
+**Permanent CV link:**
+```
+https://raw.githubusercontent.com/subhan-ahmd/portfolio-assets/main/cv.pdf
+```
+
+**Run locally:**
+```bash
+pip install -r requirements.txt
+python generate_cv.py
+```
+
+## Manifest Generation
+
+`generate_manifest.py` scans the repo and produces `manifest.json`:
 
 ```json
 {
+  "profile": "profile.jpeg",
+  "cv": "Subhan Ahmed - CV - 24021037.pdf",
+  "cvLatest": "cv.pdf",
   "projects": {
     "quick_care": {
       "logo": "logo.png",
-      "screenshots": ["1.png", "2.png", "3.jpg"],
-      "videos": ["demo.mp4"],
-      "pdfs": ["documentation.pdf"],
+      "screenshots": ["quick_care_1.png", "quick_care_2.png"],
+      "videos": ["1.mp4"],
       "installers": ["app-release.apk"]
-    },
-    "expense_tracker": {
-      "logo": "logo.svg",
-      "screenshots": ["1.png", "2.png"]
-    }
-  },
-  "education": {
-    "kfueit": {
-      "logo": "logo.png",
-      "pdfs": ["certificate.pdf"],
-      "screenshots": ["transcript.png"]
     }
   },
   "experience": {
-    "orbilon": {
-      "logo": "logo.png",
-      "screenshots": ["offer_letter.png"]
-    }
+    "orbilon": { "logo": "logo.png" }
   },
-  "certifications": {
-    "udemy_flutter": {
-      "logo": "logo.png",
-      "pdfs": ["certificate.pdf"]
-    }
+  "skills": {
+    "flutter": "flutter.svg",
+    "firebase": "firebase.svg"
   }
 }
 ```
 
----
-
-## 🔧 How It Works
-
-### Adding New Assets
-
-1. **Create a slug directory** under the appropriate category:
-   ```bash
-   mkdir -p projects/xyz/screenshots
-   ```
-
-2. **Add your files** (they'll be sorted naturally):
-   ```bash
-   cp ~/Downloads/screenshot_1.png projects/xyz/screenshots/1.png
-   cp ~/Downloads/screenshot_2.png projects/xyz/screenshots/2.png
-   ```
-
-3. **Commit and push**:
-   ```bash
-   git add .
-   git commit -m "feat: add xyz project"
-   git push
-   ```
-
-4. **Watch the magic happen!** 🎩✨
-   - GitHub Actions runs automatically
-   - `manifest.json` is generated
-   - Changes are committed back to the repo
-
-### Manual Generation (Local Testing)
-
-You can also generate the manifest locally:
-
+**Run locally:**
 ```bash
-python3 generate_manifest.py
+python generate_manifest.py
 ```
 
----
+## Visibility Flags
 
-## 🎯 Usage in Flutter
+Every item in `experiences.json`, `projects.json`, `education.json`, `contacts.json`, and `socials.json` has:
 
-In your Flutter app, fetch the manifest and use it to load assets dynamically:
-
-```dart
-import 'dart:convert';
-import 'package:http/http.dart' as http;
-
-class AssetService {
-  static const String manifestUrl =
-    'https://raw.githubusercontent.com/subhan-ahmd/portfolio-assets/main/manifest.json';
-
-  static const String baseAssetUrl =
-    'https://raw.githubusercontent.com/subhan-ahmd/portfolio-assets/main';
-
-  Future<Map<String, dynamic>> getManifest() async {
-    final response = await http.get(Uri.parse(manifestUrl));
-    return json.decode(response.body);
-  }
-
-  String getAssetUrl(String category, String slug, String type, String filename) {
-    return '$baseAssetUrl/$category/$slug/$type/$filename';
-  }
-}
-
-// Example usage:
-// final manifest = await AssetService().getManifest();
-// final screenshots = manifest['projects']['quick_care']['screenshots'];
-// final imageUrl = AssetService().getAssetUrl('projects', 'quick_care', 'screenshots', '1.png');
-```
-
----
-
-## 🤖 GitHub Actions Workflow
-
-The workflow (`.github/workflows/generate-manifest.yml`) runs when:
-
-- You push changes to `projects/**`, `education/**`, or `experience/**`
-- You manually trigger it from the Actions tab
-
-**Key features:**
-- ✅ Automatically detects new/changed assets
-- ✅ Generates manifest with proper JSON formatting
-- ✅ Commits changes back to the repo (with `[skip ci]` to prevent infinite loops)
-- ✅ Skips commit if manifest hasn't changed
-
----
-
-## 📦 Supported File Types
-
-| Asset Type | Extensions |
-|-----------|-----------|
-| **logo** | `.png`, `.jpg`, `.jpeg`, `.svg`, `.webp` |
-| **screenshots** | `.png`, `.jpg`, `.jpeg`, `.gif`, `.webp` |
-| **videos** | `.mp4`, `.mkv`, `.avi`, `.mov`, `.webm` |
-| **pdfs** | `.pdf` |
-| **installers** | `.apk`, `.exe`, `.dmg`, `.msi`, `.deb`, `.rpm` |
-
----
-
-## 🛠️ Customization
-
-### Adding New Categories
-
-Edit `generate_manifest.py` and add your category to the `CATEGORIES` list:
-
-```python
-CATEGORIES = ['projects', 'education', 'experience', 'certifications']
-```
-
-### Adding New Asset Types
-
-Add new types to the `ASSET_TYPES` dictionary:
-
-```python
-ASSET_TYPES = {
-    'screenshots': ['.png', '.jpg', '.jpeg', '.gif', '.webp'],
-    'videos': ['.mp4', '.mkv', '.avi', '.mov', '.webm'],
-    'pdfs': ['.pdf'],
-    'installers': ['.apk', '.exe', '.dmg', '.msi', '.deb', '.rpm']
+```json
+{
+  "showInCv": true,
+  "showInPortfolio": true
 }
 ```
 
----
+This allows independent control over what appears in the CV vs the portfolio website. The CV generator filters by `showInCv`, the portfolio app filters by `showInPortfolio`.
 
-## 🎓 Benefits
+Education has additional granular flags: `showScoreInCv`, `showScoreInPortfolio`, `showDurationInCv`, `showDurationInPortfolio`.
 
-✅ **No app bloat** - Assets aren't bundled with the app
-✅ **Easy updates** - Change assets without rebuilding the app
-✅ **Version control** - All assets are tracked in Git
-✅ **Automatic manifest** - No manual JSON editing
-✅ **Type safety** - Flutter knows exactly what assets exist
-✅ **Scalable** - Add unlimited projects without touching code
+## CI/CD Workflows
 
----
+### Generate CV PDF
+**Triggers:** Push to `data/**`, `generate_cv.py`, or `requirements.txt`
 
-## 📝 License
+Generates the CV, commits both the timestamped and stable `cv.pdf`, then triggers the manifest workflow.
 
-This is a personal portfolio asset repository. All assets are proprietary unless stated otherwise.
+### Generate Asset Manifest
+**Triggers:** Push to asset directories, `generate_manifest.py`, or on CV workflow completion
 
----
+Regenerates `manifest.json` and commits if changed.
 
-## 🙏 Acknowledgments
+Both workflows use `[skip ci]` to prevent infinite loops and `--rebase -X theirs` for conflict resolution.
 
-Built with:
-- 🐍 Python (manifest generation)
-- ⚙️ GitHub Actions (automation)
-- 🎨 Flutter (asset consumption)
-- ❤️ Love for clean architecture
+## Adding Content
 
----
+### New project assets
+```bash
+mkdir -p projects/my_app/screenshots
+cp ~/screenshots/*.png projects/my_app/screenshots/
+git add . && git commit -m "feat: add my_app assets" && git push
+```
 
-**Happy coding!** 🚀
+### New data entry
+Edit the relevant JSON file in `data/`, push, and the CV regenerates automatically.
 
-*Remember: Don't commit sensitive files. Add them to `.gitignore` if needed.*
+## Supported File Types
+
+| Asset Type      | Extensions                                |
+|-----------------|-------------------------------------------|
+| **Logo**        | `.png`, `.jpg`, `.jpeg`, `.svg`, `.webp`  |
+| **Screenshots** | `.png`, `.jpg`, `.jpeg`, `.gif`, `.webp`  |
+| **Videos**      | `.mp4`, `.mkv`, `.avi`, `.mov`, `.webm`   |
+| **PDFs**        | `.pdf`                                    |
+| **Installers**  | `.apk`, `.exe`, `.dmg`, `.msi`, `.deb`, `.rpm` |
+| **Skill Icons** | `.png`, `.jpg`, `.jpeg`, `.svg`, `.webp`  |
+
+## Tech Stack
+
+- **Python** + ReportLab for CV PDF generation
+- **GitHub Actions** for CI/CD automation
+- **GitHub raw URLs** as CDN (zero-cost asset delivery)
+- **Flutter Web** for the portfolio app (separate repo)
+
+## License
+
+Personal portfolio asset repository. All assets are proprietary unless stated otherwise.
