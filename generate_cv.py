@@ -373,7 +373,7 @@ def generate_cv():
 
     # Generate timestamped filename
     now = datetime.now(timezone.utc)
-    timestamp = now.strftime("%d%m%H%M")
+    timestamp = now.strftime("%d%m%y-%H%M")
     filename = f"{profile['name']} - CV - {timestamp}.pdf"
     output_file = OUTPUT_DIR / filename
 

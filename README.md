@@ -102,7 +102,7 @@ python generate_cv.py
 ```json
 {
   "profile": "profile.jpeg",
-  "cv": "Subhan Ahmed - CV - 24021037.pdf",
+  "cv": "Subhan Ahmed - CV - 240226-1332.pdf",
   "cvLatest": "cv.pdf",
   "projects": {
     "quick_care": {
