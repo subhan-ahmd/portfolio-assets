@@ -131,8 +131,11 @@
   },
   "education": {},
   "experience": {
+    "adsurge_ai": {
+      "logo": "logo.svg"
+    },
     "orbilon": {
-      "logo": "logo.png"
+      "logo": "logo.webp"
     }
   },
   "certifications": {},
