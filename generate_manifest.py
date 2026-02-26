@@ -15,7 +15,8 @@ ASSET_TYPES = {
     'screenshots': ['.png', '.jpg', '.jpeg', '.gif', '.webp'],
     'videos': ['.mp4', '.mkv', '.avi', '.mov', '.webm'],
     'pdfs': ['.pdf'],
-    'installers': ['.apk', '.exe', '.dmg', '.msi', '.deb', '.rpm']
+    'installers': ['.apk', '.exe', '.dmg', '.msi', '.deb', '.rpm'],
+    'docs': ['.md']
 }
 LOGO_EXTENSIONS = ['.png', '.jpg', '.jpeg', '.svg', '.webp']
 
