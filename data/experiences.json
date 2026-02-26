@@ -8,7 +8,7 @@
     "field": null,
     "startDate": null,
     "endDate": null,
-    "url": null,
+    "links": [],
     "description": [],
     "shortDescription": [],
     "imageAssets": [],
@@ -26,7 +26,7 @@
     "field": "mobileAppDevelopment",
     "startDate": "2024-04-01T00:00:00.000",
     "endDate": "2024-12-01T00:00:00.000",
-    "url": null,
+    "links": [],
     "description": [
       "Developed and maintained Flutter-based mobile apps including Side Hustle, AcademIQ, and Diecarz, spanning gamified rewards, AI-driven education, and social platforms.",
       "Implemented secure, multi-platform authentication (Apple Sign-In, Google OAuth) and integrated tracking/analytics SDKs (Singular, AppsFlyer, Adjust).",
@@ -53,7 +53,7 @@
     "field": "mobileAppDevelopment",
     "startDate": "2025-01-01T00:00:00.000",
     "endDate": null,
-    "url": null,
+    "links": [],
     "description": [
       "Contributed to existing production apps including AI Planner and Caregiver Management App.",
       "Integrated ChatGPT (GPT-4.1) with structured outputs and parallel function calling to automate scheduling and task extraction from user conversations.:",

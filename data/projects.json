@@ -8,7 +8,7 @@
     "field": "mobileAppDevelopment",
     "startDate": "2024-01-01T00:00:00.000",
     "endDate": "2024-05-01T00:00:00.000",
-    "url": "https://apps.apple.com/app/academiq-homework-scan-helper/id6502458245",
+    "links": [],
     "description": [
       "Developed a multi role healthcare platform (Patient/Doctor/Admin) with Flutter and Firebase for appointment booking.",
       "Integrated Paymob payment gateway, MailerSend SMTP for notifications, and location based doctor discovery.",
@@ -27,7 +27,9 @@
     "field": "mobileAppDevelopment",
     "startDate": "2024-04-01T00:00:00.000",
     "endDate": "2024-07-01T00:00:00.000",
-    "url": "https://apps.apple.com/app/academiq-homework-scan-helper/id6502458245",
+    "links": [
+      {"label": "App Store", "url": "https://apps.apple.com/app/academiq-homework-scan-helper/id6502458245", "type": "url", "showInCv": true, "showInPortfolio": true}
+    ],
     "description": [
       "Built a multi modal AI education app with 20+ learning modes and seamless LLM migration (ChatGPT → Gemini).",
       "Built a multi input pipeline integrating OCR, speech-to-text, PDF extraction, and vision AI.",
@@ -46,7 +48,9 @@
     "field": "mobileAppDevelopment",
     "startDate": "2024-05-01T00:00:00.000",
     "endDate": "2024-09-01T00:00:00.000",
-    "url": "https://apps.apple.com/app/side-hustle-test-earn-cash/id6504246233",
+    "links": [
+      {"label": "App Store", "url": "https://apps.apple.com/app/side-hustle-test-earn-cash/id6504246233", "type": "url", "showInCv": true, "showInPortfolio": true}
+    ],
     "description": [
       "Developed cross platform rewards app with AppsFlyer SDK for install attribution tracking.",
       "Engineered device fingerprinting with 15+ signals (IDFA, IP, VPN) for fraud prevention.",
@@ -65,7 +69,7 @@
     "field": "mobileAppDevelopment",
     "startDate": "2024-09-01T00:00:00.000",
     "endDate": "2024-12-01T00:00:00.000",
-    "url": null,
+    "links": [],
     "description": [
       "Developed a social collection app for diecast enthusiasts with real time feed, follow/like system, and CSV bulk import.",
       "Built Python ETL scripts processing 57K rows, normalizing data, uploading images to Firebase Storage, batch importing via Parquet.",
@@ -84,7 +88,7 @@
     "field": "mobileAppDevelopment",
     "startDate": "2025-01-01T00:00:00.000",
     "endDate": "2025-03-01T00:00:00.000",
-    "url": null,
+    "links": [],
     "description": [
       "Added task management with recurring schedules, media attachments, and 9 language localization (including RTL).",
       "Extended push notification system with deep linking and FCM token lifecycle fixes.",
@@ -103,6 +107,7 @@
     "field": "mobileAppDevelopment",
     "startDate": "2025-03-01T00:00:00.000",
     "endDate": "2025-08-01T00:00:00.000",
+    "links": [],
     "description": [
       "Led migration from Claude AI to OpenAI with structured outputs and parallel function calling (17 concurrent executions), reducing latency by 50%+.",
       "Rebuilt cross platform notifications system supporting recurring reminders with complex scheduling patterns.",
@@ -121,7 +126,7 @@
     "field": "mobileAppDevelopment",
     "startDate": "2025-03-01T00:00:00.000",
     "endDate": "2025-04-01T00:00:00.000",
-    "url": null,
+    "links": [],
     "description": [
       "Developed cross platform BLE companion app for child monitoring with real time audio streaming, threshold based alerts, and notification history.",
       "Architected dual mode system with seamless foreground/background state transfer and robust auto reconnection using flutter_reactive_ble.",
@@ -140,7 +145,12 @@
     "field": "webDevelopment",
     "startDate": "2025-12-01T00:00:00.000",
     "endDate": null,
-    "url": "https://subhan-ahmd.github.io",
+    "links": [
+      {"label": "Website", "url": "https://subhan-ahmd.github.io", "type": "url", "showInCv": true, "showInPortfolio": true},
+      {"label": "GitHub", "url": "https://github.com/subhan-ahmd/subhan-ahmd.github.io", "type": "url", "showInCv": false, "showInPortfolio": true},
+      {"label": "Assets Repo", "url": "https://github.com/subhan-ahmd/portfolio-assets", "type": "url", "showInCv": false, "showInPortfolio": true},
+      {"label": "README", "url": "https://raw.githubusercontent.com/subhan-ahmd/subhan-ahmd.github.io/main/README.md", "type": "md", "showInCv": false, "showInPortfolio": true}
+    ],
     "description": [
       "Built a two repo headless CMS with GitHub raw URLs as CDN, manifest driven asset resolution, and parallel data loading, achieving zero hosting costs for 100+ MB of assets.",
       "Developed an interactive Flutter Web SPA with Forge2D physics engine (draggable skill pills, throwable emojis), glassmorphism design system, command palette, and scroll reveal animations.",
@@ -159,7 +169,7 @@
     "field": "webDevelopment",
     "startDate": "2026-01-01T00:00:00.000",
     "endDate": null,
-    "url": null,
+    "links": [],
     "description": [
       "Building a full stack B2B quoting platform (React, TypeScript, ASP.NET Core 8, SQL Server) enabling 20+ concurrent users to generate quotes with automated pricing and PDF output.",
       "Integrating three external systems (Enapps ERP, KREO AI, WooCommerce) with rule based pricing engine processing 20+ underfloor heating configurations.",

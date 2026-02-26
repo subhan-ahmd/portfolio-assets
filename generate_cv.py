@@ -54,6 +54,14 @@ def filter_for_cv(items: list) -> list:
     return [item for item in items if item.get("showInCv", True)]
 
 
+def get_cv_link(item: dict) -> dict | None:
+    """Return the first link visible in CV, or None."""
+    for link in item.get("links", []):
+        if link.get("showInCv", True):
+            return link
+    return None
+
+
 def format_date(date_str: str | None) -> str:
     if date_str is None:
         return "Present"
@@ -209,11 +217,13 @@ def bullet_list(items: list, styles: dict) -> list:
 
 def entry(title: str, date_range: str, styles: dict,
           subtitle: str = None, descriptions: list = None,
-          is_first: bool = False) -> list:
+          is_first: bool = False, link: dict = None) -> list:
     """Build a complete entry: title+date row, optional subtitle, bullet list."""
     elements = []
     if not is_first:
         elements.append(Spacer(1, 6))
+    if link:
+        title = f'<a href="{link["url"]}" color="black">{title}</a>'
     elements.append(left_right_row(title, date_range, styles))
     if subtitle:
         elements.append(Paragraph(subtitle, styles["entry_subtitle"]))
@@ -273,6 +283,7 @@ def build_experience_section(experiences: list, styles: dict) -> list:
             subtitle=", ".join(subtitle_parts),
             descriptions=exp.get("shortDescription", exp.get("description", [])),
             is_first=(i == 0),
+            link=get_cv_link(exp),
         ))
     return elements
 
@@ -290,6 +301,7 @@ def build_projects_section(projects: list, styles: dict) -> list:
             date_range=format_date_range(proj["startDate"], proj.get("endDate")),
             styles=styles,
             descriptions=proj.get("description", []),
+            link=get_cv_link(proj),
         ))
     return elements
 
