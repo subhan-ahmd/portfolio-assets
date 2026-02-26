@@ -1,25 +1,8 @@
 {
   "profile": "profile.jpeg",
-  "cv": "Subhan Ahmed - CV - 24021332.pdf",
+  "cv": "Subhan Ahmed - CV - 260226-1711.pdf",
   "cvLatest": "cv.pdf",
   "projects": {
-    "jackjack": {
-      "logo": "logo.png",
-      "screenshots": [
-        "jackjack_1.png",
-        "jackjack_2.png",
-        "jackjack_3.png",
-        "jackjack_4.png",
-        "jackjack_5.png",
-        "jackjack_6.png",
-        "jackjack_7.png",
-        "jackjack_8.png",
-        "jackjack_9.png"
-      ],
-      "installers": [
-        "app-release.apk"
-      ]
-    },
     "quick_care": {
       "logo": "logo.png",
       "screenshots": [
@@ -63,19 +46,24 @@
         "quick_care_39.png",
         "quick_care_40.png",
         "quick_care_41.png"
-      ],
-      "videos": [
-        "1.mp4"
-      ],
-      "pdfs": [
-        "doc.pdf"
-      ],
-      "installers": [
-        "app-release.apk"
       ]
     },
     "side_hustle": {
       "logo": "logo.png"
+    },
+    "jackjack": {
+      "logo": "logo.png",
+      "screenshots": [
+        "jackjack_1.png",
+        "jackjack_2.png",
+        "jackjack_3.png",
+        "jackjack_4.png",
+        "jackjack_5.png",
+        "jackjack_6.png",
+        "jackjack_7.png",
+        "jackjack_8.png",
+        "jackjack_9.png"
+      ]
     },
     "academiq": {
       "logo": "logo.png",
