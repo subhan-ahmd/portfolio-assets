@@ -53,6 +53,7 @@ portfolio-assets/
 |   |-- screenshots/         # .png, .jpg, .jpeg, .gif, .webp
 |   |-- videos/              # .mp4, .mkv, .avi, .mov, .webm
 |   |-- pdfs/                # .pdf
+|   |-- docs/                # .md
 |   +-- installers/          # .apk, .exe, .dmg, .msi
 |
 |-- experience/{slug}/       # Experience assets (logos, etc.)
@@ -142,6 +143,28 @@ This allows independent control over what appears in the CV vs the portfolio web
 
 Education has additional granular flags: `showScoreInCv`, `showScoreInPortfolio`, `showDurationInCv`, `showDurationInPortfolio`.
 
+## Links
+
+Projects, experiences, and education entries use a `links` array instead of a single `url` field. Each link has per-consumer visibility flags and an optional `type`:
+
+```json
+{
+  "links": [
+    {"label": "App Store", "url": "https://...", "type": "url", "showInCv": true, "showInPortfolio": true},
+    {"label": "GitHub", "url": "https://...", "type": "url", "showInCv": false, "showInPortfolio": true},
+    {"label": "Case Study", "url": "https://.../.md", "type": "md", "showInCv": false, "showInPortfolio": true}
+  ]
+}
+```
+
+- **`type: "url"`** (default) — external link, opens in browser
+- **`type: "md"`** — portfolio fetches the markdown and renders it inline
+- The CV uses the **first link** where `showInCv: true` (rendered as a clickable hyperlink on the entry title)
+- The portfolio shows **all links** where `showInPortfolio: true`
+- Empty array `[]` means no links
+
+Asset-based markdown files can also be placed in `projects/{slug}/docs/` and will be picked up by the manifest generator automatically (see Supported File Types).
+
 ## CI/CD Workflows
 
 ### Generate CV PDF
@@ -177,6 +200,7 @@ Edit the relevant JSON file in `data/`, push, and the CV regenerates automatical
 | **Videos**      | `.mp4`, `.mkv`, `.avi`, `.mov`, `.webm`   |
 | **PDFs**        | `.pdf`                                    |
 | **Installers**  | `.apk`, `.exe`, `.dmg`, `.msi`, `.deb`, `.rpm` |
+| **Docs**        | `.md`                                     |
 | **Skill Icons** | `.png`, `.jpg`, `.jpeg`, `.svg`, `.webp`  |
 
 ## Tech Stack
