@@ -12,7 +12,7 @@
     "description": [
       "Developed a multi role healthcare platform (Patient/Doctor/Admin) with Flutter and Firebase for appointment booking.",
       "Integrated Paymob payment gateway, MailerSend SMTP for notifications, and location based doctor discovery.",
-      "Added AI chatbot using GPT-3.5-turbo API and secure document storage."
+      "Integrated AI chatbot using GPT-3.5-turbo API and secure document storage."
     ],
     "shortDescription": "Real-time appointment booking system with Firebase, multi-role dashboards (patient/doctor/admin), payments, FCM notifications, secure document storage, and location features.",
     "showInCv": true,
@@ -32,7 +32,7 @@
     ],
     "description": [
       "Built a multi modal AI education app with 20+ learning modes and seamless LLM migration (ChatGPT → Gemini).",
-      "Built a multi input pipeline integrating OCR, speech-to-text, PDF extraction, and vision AI.",
+      "Designed a multi input pipeline integrating OCR, speech-to-text, PDF extraction, and vision AI.",
       "Developed offline first architecture using Isar DB with Riverpod for persistent sessions."
     ],
     "shortDescription": "AI educational chatbot with configurable modes (Essay, Poem, etc.), custom session management, offline chat history via Isar DB, and optimized caching for reduced latency.",
@@ -75,7 +75,7 @@
       "Built Python ETL scripts processing 57K rows, normalizing data, uploading images to Firebase Storage, batch importing via Parquet.",
       "Implemented advanced filtering across multiple metadata fields with optimized Firestore indexes and Mixpanel analytics."
     ],
-    "shortDescription": "Toy car collection app with wishlist, CSV import (with images), real-time community feed, Mixpanel analytics, optimized Firestore queries, and 99.9% crash-free performance.",
+    "shortDescription": "Social collection platform for diecast enthusiasts with wishlist, CSV import, real-time community feed, Mixpanel analytics, optimized Firestore queries, and 99.9% crash-free performance.",
     "showInCv": true,
     "showInPortfolio": true
   },
@@ -113,7 +113,7 @@
       "Rebuilt cross platform notifications system supporting recurring reminders with complex scheduling patterns.",
       "Fixed critical state handling bugs including data persistence and exception handling."
     ],
-    "shortDescription": "AI scheduling app extracting tasks/reminders from chat, migrated Claude 3.5→3.7→OpenAI APIs with structured outputs and parallel calling, 50% faster response time, optimized state management.",
+    "shortDescription": "AI scheduling app extracting tasks and reminders from chat, migrated from Claude to OpenAI APIs with structured outputs and parallel calling, 50% faster response time, and optimized state management.",
     "showInCv": true,
     "showInPortfolio": true
   },
@@ -175,7 +175,7 @@
       "Integrating three external systems (Enapps ERP, KREO AI, WooCommerce) with rule based pricing engine processing 20+ underfloor heating configurations.",
       "Implemented JWT authentication, role based access control, and audit logging."
     ],
-    "shortDescription": "Full stack B2B quoting platform with React, ASP.NET Core 8, SQL Server, integrating Enapps ERP, KREO AI, and WooCommerce with automated pricing, JWT auth, and audit logging.",
+    "shortDescription": "Full stack B2B quoting platform enabling 20+ concurrent users to generate quotes with automated pricing, multi-system integration (ERP, AI, e-commerce), role based access, and PDF output.",
     "showInCv": true,
     "showInPortfolio": true
   }
