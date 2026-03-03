@@ -176,7 +176,7 @@
       "Implemented JWT authentication, role based access control, and audit logging."
     ],
     "shortDescription": "Full stack B2B quoting platform enabling 20+ concurrent users to generate quotes with automated pricing, multi-system integration (ERP, AI, e-commerce), role based access, and PDF output.",
-    "showInCv": true,
-    "showInPortfolio": true
+    "showInCv": false,
+    "showInPortfolio": false
   }
 ]
