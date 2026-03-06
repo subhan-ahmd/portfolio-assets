@@ -115,6 +115,8 @@ def generate_manifest() -> Dict:
 
     # Flavoured CVs
     for fl in flavours:
+        if fl.get("disabled"):
+            continue
         slug = fl["slug"]
         label = fl["label"]
         stable = cv_latest_dir / f"cv-{slug}.pdf"

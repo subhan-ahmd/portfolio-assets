@@ -540,6 +540,8 @@ def generate_all_cvs():
 
     # Flavoured CVs
     for flavour in flavours:
+        if flavour.get("disabled"):
+            continue
         f_profile, f_exp, f_proj, f_edu, f_skills = apply_flavour(
             flavour, profile, raw_experiences, raw_projects, raw_education, skills,
         )

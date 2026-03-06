@@ -1,5 +1,6 @@
 [
   {
+    "disabled": false,
     "slug": "flutter-mobile",
     "label": "Flutter Mobile",
     "position": "Flutter Developer",
@@ -15,6 +16,7 @@
     }
   },
   {
+    "disabled": false,
     "slug": "fullstack",
     "label": "Full Stack",
     "position": "Full Stack Developer",
@@ -30,6 +32,7 @@
     }
   },
   {
+    "disabled": false,
     "slug": "ai-engineer",
     "label": "AI Engineer",
     "position": "AI / ML Engineer",
@@ -45,6 +48,7 @@
     }
   },
   {
+    "disabled": false,
     "slug": "dotnet",
     "label": ".NET",
     "position": "Software Engineer (.NET)",
