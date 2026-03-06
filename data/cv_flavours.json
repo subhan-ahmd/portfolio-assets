@@ -62,5 +62,10 @@
         "hide": ["BLE", "Isar DB", "Firestore", "AppsFlyer", "Mixpanel", "Google AppScript", "n8n"]
       }
     }
+  },
+  {
+    "slug": "mobile-app-dev",
+    "label": "Mobile Application Developer",
+    "position": "Mobile Application Developer"
   }
 ]
