@@ -92,6 +92,14 @@ def generate_manifest() -> Dict:
     cv_dir = repo_root / "cv"
     cv_latest_dir = cv_dir / "latest"
     data_dir = repo_root / "data"
+
+    # Load profile name for stable CV filenames
+    profile_file = data_dir / "profile.json"
+    cv_name = "CV"
+    if profile_file.exists():
+        with open(profile_file, "r", encoding="utf-8") as f:
+            cv_name = json.load(f).get("name", "CV")
+
     flavours = []
     flavours_file = data_dir / "cv_flavours.json"
     if flavours_file.exists():
@@ -99,7 +107,7 @@ def generate_manifest() -> Dict:
             flavours = json.load(f)
 
     # Generic CV
-    generic_stable = cv_latest_dir / "cv.pdf"
+    generic_stable = cv_latest_dir / f"{cv_name} - CV.pdf"
     # Match timestamped generic: "Name - CV - DDMMYY-HHMM.pdf" (no label in between)
     generic_timestamped = sorted(
         p for p in cv_dir.glob("*- CV - *.pdf")
@@ -119,7 +127,7 @@ def generate_manifest() -> Dict:
             continue
         slug = fl["slug"]
         label = fl["label"]
-        stable = cv_latest_dir / f"cv-{slug}.pdf"
+        stable = cv_latest_dir / f"{cv_name} - CV - {label}.pdf"
         timestamped = sorted(cv_dir.glob(f"*- CV - {label} - *.pdf")) if cv_dir.exists() else []
         if stable.exists() or timestamped:
             entry = {}

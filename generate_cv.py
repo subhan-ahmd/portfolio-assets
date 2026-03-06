@@ -470,10 +470,10 @@ def generate_single_cv(profile, contacts, socials, experiences, projects,
     """Generate a single CV PDF. Returns (timestamped_path, stable_path)."""
     if label:
         filename = f"{profile['name']} - CV - {label} - {timestamp}.pdf"
-        stable_name = f"cv-{slug}.pdf"
+        stable_name = f"{profile['name']} - CV - {label}.pdf"
     else:
         filename = f"{profile['name']} - CV - {timestamp}.pdf"
-        stable_name = "cv.pdf"
+        stable_name = f"{profile['name']} - CV.pdf"
 
     CV_DIR.mkdir(exist_ok=True)
     CV_LATEST_DIR.mkdir(exist_ok=True)
