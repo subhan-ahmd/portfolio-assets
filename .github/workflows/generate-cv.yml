@@ -37,14 +37,14 @@ jobs:
       - name: Check for changes
         id: verify_diff
         run: |
-          git status --porcelain -- '*- CV - *.pdf' cv.pdf | grep -q '.' && echo "changed=true" >> $GITHUB_OUTPUT || true
+          git status --porcelain -- 'cv/' | grep -q '.' && echo "changed=true" >> $GITHUB_OUTPUT || true
 
       - name: Commit and push CV
         if: steps.verify_diff.outputs.changed == 'true'
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add -A -- '*- CV - *.pdf' cv.pdf
+          git add -A -- 'cv/'
           git commit -m "Auto-update CV [skip ci]"
           git pull --rebase -X theirs
           git push
