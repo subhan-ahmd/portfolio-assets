@@ -1,30 +1,18 @@
 {
-  "generatedAt": "2026-03-06T05:03:32Z",
+  "generatedAt": "2026-03-06T16:58:30Z",
   "profile": "profile.jpeg",
   "cv": {
     "generic": {
       "latest": "Subhan Ahmed - CV.pdf",
-      "timestamped": "Subhan Ahmed - CV - 060326-0445.pdf"
-    },
-    "flutter-mobile": {
-      "latest": "Subhan Ahmed - CV - Flutter Mobile.pdf",
-      "timestamped": "Subhan Ahmed - CV - Flutter Mobile - 060326-0445.pdf"
-    },
-    "fullstack": {
-      "latest": "Subhan Ahmed - CV - Full Stack.pdf",
-      "timestamped": "Subhan Ahmed - CV - Full Stack - 060326-0445.pdf"
-    },
-    "ai-engineer": {
-      "latest": "Subhan Ahmed - CV - AI Engineer.pdf",
-      "timestamped": "Subhan Ahmed - CV - AI Engineer - 060326-0445.pdf"
-    },
-    "dotnet": {
-      "latest": "Subhan Ahmed - CV - .NET.pdf",
-      "timestamped": "Subhan Ahmed - CV - .NET - 060326-0445.pdf"
+      "timestamped": "Subhan Ahmed - CV - 060326-1658.pdf"
     },
     "mobile-app-dev": {
       "latest": "Subhan Ahmed - CV - Mobile Application Developer.pdf",
-      "timestamped": "Subhan Ahmed - CV - Mobile Application Developer - 060326-0445.pdf"
+      "timestamped": "Subhan Ahmed - CV - Mobile Application Developer - 060326-1658.pdf"
+    },
+    "portfolio": {
+      "latest": "Subhan Ahmed - CV - Portfolio.pdf",
+      "timestamped": "Subhan Ahmed - CV - Portfolio - 060326-1658.pdf"
     }
   },
   "projects": {
