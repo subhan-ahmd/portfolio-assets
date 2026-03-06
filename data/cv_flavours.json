@@ -1,71 +1,13 @@
 [
   {
-    "disabled": false,
-    "slug": "flutter-mobile",
-    "label": "Flutter Mobile",
-    "position": "Flutter Developer",
-    "summary": "Mobile engineer with 3+ years shipping production Flutter apps across healthcare, education, and social platforms. Comfortable owning the full lifecycle including architecture, state management, CI/CD, and release, with a bias for clean, maintainable code.",
-    "showProjects": ["ai_planner", "jackjack", "diecarz", "side_hustle", "academiq", "quick_care"],
-    "showExperiences": ["orbilon", "adsurge_ai"],
-    "showEducation": ["kfueit"],
-    "skills": {
-      "technical": {
-        "highlight": ["Flutter", "Dart", "Firebase", "Firestore", "REST APIs", "BLE", "Git"],
-        "hide": ["ASP.NET Core", "C#", "React", "TypeScript", "Node.js", "PostgreSQL", "SQL Server", "SOAP APIs"]
-      }
-    }
-  },
-  {
-    "disabled": false,
-    "slug": "fullstack",
-    "label": "Full Stack",
-    "position": "Full Stack Developer",
-    "summary": "Full-stack engineer building across mobile, web, and backend. Deep roots in Flutter with a growing backend practice in Node.js, Python, and PostgreSQL. Shipped 7+ production apps end to end, covering database design, API architecture, and polished client experiences.",
-    "showProjects": ["sales_quotation_system", "portfolio", "ai_planner", "caregiver_management_app", "academiq", "quick_care"],
-    "showExperiences": ["orbilon", "adsurge_ai"],
-    "showEducation": ["kfueit"],
-    "skills": {
-      "technical": {
-        "highlight": ["Flutter", "Dart", "TypeScript", "Node.js", "PostgreSQL", "REST APIs", "Python"],
-        "hide": ["BLE", "SOAP APIs", "Isar DB", "AppsFlyer", "Mixpanel"]
-      }
-    }
-  },
-  {
-    "disabled": false,
-    "slug": "ai-engineer",
-    "label": "AI Engineer",
-    "position": "AI / ML Engineer",
-    "summary": "Engineer with hands-on experience integrating AI into production mobile and backend systems, including OpenAI and Claude-powered features and automation pipelines. Strong applied focus on prompt engineering, tool-use patterns, and shipping AI-augmented products users actually interact with.",
-    "showProjects": ["ai_planner", "quick_care", "academiq", "caregiver_management_app"],
-    "showExperiences": ["orbilon", "adsurge_ai"],
-    "showEducation": ["kfueit"],
-    "skills": {
-      "technical": {
-        "highlight": ["Python", "OpenAI APIs", "Claude APIs", "Flutter", "Dart", "Node.js", "REST APIs"],
-        "hide": ["C++", "C#", "ASP.NET Core", "SOAP APIs", "BLE", "SQL Server", "Isar DB", "AppsFlyer", "Mixpanel"]
-      }
-    }
-  },
-  {
-    "disabled": false,
-    "slug": "dotnet",
-    "label": ".NET",
-    "position": "Software Engineer (.NET)",
-    "summary": "Software engineer with production experience in C# and ASP.NET Core, building backend systems and enterprise tooling. Primary background in mobile (Flutter), bringing a product-minded approach to backend development with strong API design and database skills.",
-    "showProjects": ["sales_quotation_system", "caregiver_management_app", "academiq", "quick_care"],
-    "showExperiences": ["orbilon", "adsurge_ai"],
-    "showEducation": ["kfueit"],
-    "skills": {
-      "technical": {
-        "highlight": ["C#", "ASP.NET Core", "SQL Server", "PostgreSQL", "REST APIs", "SOAP APIs"],
-        "hide": ["BLE", "Isar DB", "Firestore", "AppsFlyer", "Mixpanel", "Google AppScript", "n8n"]
-      }
-    }
-  },
-  {
     "slug": "mobile-app-dev",
     "label": "Mobile Application Developer",
-    "position": "Mobile Application Developer"
+    "position": "Mobile Application Developer",
+    "hideProjects": ["sales_quotation_system"]
+  },
+  {
+    "slug": "portfolio",
+    "label": "Portfolio",
+    "hideProjects": ["sales_quotation_system"]
   }
 ]

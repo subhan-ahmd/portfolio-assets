@@ -380,20 +380,30 @@ def apply_flavour(flavour, profile, experiences, projects, education, skills):
         slug_map = {item["slug"]: item for item in items}
         return [slug_map[s] for s in slugs if s in slug_map]
 
+    def apply_hide(items, hide_slugs):
+        hide = set(hide_slugs)
+        return [i for i in items if i["slug"] not in hide]
+
     if "showExperiences" in flavour:
         experiences = reorder_by_slugs(experiences, flavour["showExperiences"])
     else:
         experiences = sort_by_id(filter_for_cv(experiences))
+    if "hideExperiences" in flavour:
+        experiences = apply_hide(experiences, flavour["hideExperiences"])
 
     if "showProjects" in flavour:
         projects = reorder_by_slugs(projects, flavour["showProjects"])
     else:
         projects = sort_by_id(filter_for_cv(projects))
+    if "hideProjects" in flavour:
+        projects = apply_hide(projects, flavour["hideProjects"])
 
     if "showEducation" in flavour:
         education = reorder_by_slugs(education, flavour["showEducation"])
     else:
         education = filter_for_cv(education)
+    if "hideEducation" in flavour:
+        education = apply_hide(education, flavour["hideEducation"])
 
     if "skills" in flavour:
         flavour_skills = flavour["skills"]
