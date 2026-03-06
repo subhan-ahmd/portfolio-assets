@@ -26,7 +26,9 @@ MARGIN = 0.55 * inch
 AVAILABLE_WIDTH = PAGE_WIDTH - 2 * MARGIN
 DATA_DIR = Path(__file__).parent / "data"
 FONTS_DIR = Path(__file__).parent / "fonts"
-OUTPUT_DIR = Path(__file__).parent
+REPO_ROOT = Path(__file__).parent
+CV_DIR = REPO_ROOT / "cv"
+CV_LATEST_DIR = CV_DIR / "latest"
 CV_GLOB = "*- CV - *.pdf"
 BULLET_CHAR = "\u25cf"  # ● filled circle matching reference PDF
 DIVIDER_COLOR = HexColor("#444444")
@@ -446,13 +448,20 @@ def draw_footer(canvas, doc):
 
 def delete_old_cvs():
     """Delete all previously generated CV files."""
-    for old in OUTPUT_DIR.glob(CV_GLOB):
+    if CV_DIR.exists():
+        for old in CV_DIR.glob(CV_GLOB):
+            old.unlink()
+        if CV_LATEST_DIR.exists():
+            for old in CV_LATEST_DIR.glob("*.pdf"):
+                old.unlink()
+    # Also clean legacy root-level CVs
+    for old in REPO_ROOT.glob(CV_GLOB):
         old.unlink()
-    for old in OUTPUT_DIR.glob("cv-*.pdf"):
+    for old in REPO_ROOT.glob("cv-*.pdf"):
         old.unlink()
-    stable = OUTPUT_DIR / "cv.pdf"
-    if stable.exists():
-        stable.unlink()
+    legacy = REPO_ROOT / "cv.pdf"
+    if legacy.exists():
+        legacy.unlink()
 
 
 def generate_single_cv(profile, contacts, socials, experiences, projects,
@@ -466,8 +475,10 @@ def generate_single_cv(profile, contacts, socials, experiences, projects,
         filename = f"{profile['name']} - CV - {timestamp}.pdf"
         stable_name = "cv.pdf"
 
-    output_file = OUTPUT_DIR / filename
-    stable_file = OUTPUT_DIR / stable_name
+    CV_DIR.mkdir(exist_ok=True)
+    CV_LATEST_DIR.mkdir(exist_ok=True)
+    output_file = CV_DIR / filename
+    stable_file = CV_LATEST_DIR / stable_name
 
     styles = create_styles()
 
