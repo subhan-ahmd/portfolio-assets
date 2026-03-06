@@ -6,6 +6,7 @@ Automatically scans the repository and generates a manifest.json file
 
 import os
 import json
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, List
 
@@ -81,6 +82,8 @@ def generate_manifest() -> Dict:
     """
     manifest = {}
     repo_root = Path(__file__).parent
+
+    manifest['generatedAt'] = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
 
     # Check for profile image
     profile_image = get_profile_image(repo_root)
@@ -217,7 +220,7 @@ def main():
     if 'skills' in manifest and manifest['skills']:
         print(f"  skills: {len(manifest['skills'])} icon(s)")
     for category, slugs in manifest.items():
-        if category not in ('profile', 'skills', 'cv') and slugs:
+        if category not in ('profile', 'skills', 'cv', 'generatedAt') and slugs:
             print(f"  {category}: {len(slugs)} item(s)")
 
 
