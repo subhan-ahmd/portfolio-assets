@@ -23,6 +23,74 @@
     }
   },
   "projects": {
+    "jackjack": {
+      "logo": "logo.png",
+      "screenshots": [
+        "jackjack_1.png",
+        "jackjack_2.png",
+        "jackjack_3.png",
+        "jackjack_4.png",
+        "jackjack_5.png",
+        "jackjack_6.png",
+        "jackjack_7.png",
+        "jackjack_8.png",
+        "jackjack_9.png"
+      ]
+    },
+    "portfolio": {
+      "logo": "logo.png"
+    },
+    "side_hustle": {
+      "logo": "logo.png"
+    },
+    "diecarz": {
+      "logo": "logo.png",
+      "screenshots": [
+        "diecarz_1.png",
+        "diecarz_2.png",
+        "diecarz_3.png",
+        "diecarz_4.png",
+        "diecarz_5.png",
+        "diecarz_6.png",
+        "diecarz_7.png",
+        "diecarz_8.png",
+        "diecarz_9.png",
+        "diecarz_10.png",
+        "diecarz_11.png",
+        "diecarz_12.png",
+        "diecarz_13.png",
+        "diecarz_14.png",
+        "diecarz_15.png",
+        "diecarz_16.png",
+        "diecarz_17.png",
+        "diecarz_18.png",
+        "diecarz_19.png",
+        "diecarz_20.png",
+        "diecarz_21.png",
+        "diecarz_22.png",
+        "diecarz_23.png",
+        "diecarz_24.png",
+        "diecarz_25.png"
+      ]
+    },
+    "academiq": {
+      "logo": "logo.png",
+      "screenshots": [
+        "academiq_1.png",
+        "academiq_2.png",
+        "academiq_3.png",
+        "academiq_4.png",
+        "academiq_5.png",
+        "academiq_6.png",
+        "academiq_7.png",
+        "academiq_8.png",
+        "academiq_9.png",
+        "academiq_10.png",
+        "academiq_11.png",
+        "academiq_12.png",
+        "academiq_13.png"
+      ]
+    },
     "quick_care": {
       "logo": "logo.png",
       "screenshots": [
@@ -67,74 +135,6 @@
         "quick_care_40.png",
         "quick_care_41.png"
       ]
-    },
-    "side_hustle": {
-      "logo": "logo.png"
-    },
-    "jackjack": {
-      "logo": "logo.png",
-      "screenshots": [
-        "jackjack_1.png",
-        "jackjack_2.png",
-        "jackjack_3.png",
-        "jackjack_4.png",
-        "jackjack_5.png",
-        "jackjack_6.png",
-        "jackjack_7.png",
-        "jackjack_8.png",
-        "jackjack_9.png"
-      ]
-    },
-    "academiq": {
-      "logo": "logo.png",
-      "screenshots": [
-        "academiq_1.png",
-        "academiq_2.png",
-        "academiq_3.png",
-        "academiq_4.png",
-        "academiq_5.png",
-        "academiq_6.png",
-        "academiq_7.png",
-        "academiq_8.png",
-        "academiq_9.png",
-        "academiq_10.png",
-        "academiq_11.png",
-        "academiq_12.png",
-        "academiq_13.png"
-      ]
-    },
-    "diecarz": {
-      "logo": "logo.png",
-      "screenshots": [
-        "diecarz_1.png",
-        "diecarz_2.png",
-        "diecarz_3.png",
-        "diecarz_4.png",
-        "diecarz_5.png",
-        "diecarz_6.png",
-        "diecarz_7.png",
-        "diecarz_8.png",
-        "diecarz_9.png",
-        "diecarz_10.png",
-        "diecarz_11.png",
-        "diecarz_12.png",
-        "diecarz_13.png",
-        "diecarz_14.png",
-        "diecarz_15.png",
-        "diecarz_16.png",
-        "diecarz_17.png",
-        "diecarz_18.png",
-        "diecarz_19.png",
-        "diecarz_20.png",
-        "diecarz_21.png",
-        "diecarz_22.png",
-        "diecarz_23.png",
-        "diecarz_24.png",
-        "diecarz_25.png"
-      ]
-    },
-    "portfolio": {
-      "logo": "logo.png"
     }
   },
   "education": {
@@ -143,14 +143,14 @@
     }
   },
   "experience": {
-    "personal": {
-      "logo": "logo.png"
-    },
     "adsurge_ai": {
       "logo": "logo.svg"
     },
     "orbilon": {
       "logo": "logo.webp"
+    },
+    "personal": {
+      "logo": "logo.png"
     }
   },
   "certifications": {},
