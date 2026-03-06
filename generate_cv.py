@@ -40,9 +40,11 @@ LATEST_CV_URL = "raw.githubusercontent.com/subhan-ahmd/portfolio-assets/main/cv.
 pdfmetrics.registerFont(TTFont("Montserrat", str(FONTS_DIR / "Montserrat-Regular.ttf")))
 pdfmetrics.registerFont(TTFont("Montserrat-Bold", str(FONTS_DIR / "Montserrat-Bold.ttf")))
 pdfmetrics.registerFontFamily("Montserrat", normal="Montserrat", bold="Montserrat-Bold")
+pdfmetrics.registerFont(TTFont("NotoEmoji", str(FONTS_DIR / "NotoEmoji-Link.ttf")))
 
 BASE_FONT = "Montserrat"
 BOLD_FONT = "Montserrat-Bold"
+LINK_ICON = '<font face="NotoEmoji" size="9">\U0001F517</font>'
 
 
 # --- Data Loading ---
@@ -219,13 +221,11 @@ def bullet_list(items: list, styles: dict) -> list:
 
 def entry(title: str, date_range: str, styles: dict,
           subtitle: str = None, descriptions: list = None,
-          is_first: bool = False, link: dict = None) -> list:
+          is_first: bool = False) -> list:
     """Build a complete entry: title+date row, optional subtitle, bullet list."""
     elements = []
     if not is_first:
         elements.append(Spacer(1, 6))
-    if link:
-        title = f'<a href="{link["url"]}" color="black">{title}</a>'
     elements.append(left_right_row(title, date_range, styles))
     if subtitle:
         elements.append(Paragraph(subtitle, styles["entry_subtitle"]))
@@ -274,17 +274,20 @@ def build_summary(profile: dict, styles: dict) -> list:
 def build_experience_section(experiences: list, styles: dict) -> list:
     elements = section_heading("Work Experience", styles)
     for i, exp in enumerate(experiences):
+        link = get_cv_link(exp)
+        title_text = exp["title"]
+        if link:
+            title_text = f'<a href="{link["url"]}" color="black">{title_text} {LINK_ICON}</a>'
         subtitle_parts = [exp["association"]]
         if exp.get("location"):
             subtitle_parts.append(exp["location"])
         elements.extend(entry(
-            title=exp["title"],
+            title=title_text,
             date_range=format_date_range(exp["startDate"], exp.get("endDate")),
             styles=styles,
             subtitle=", ".join(subtitle_parts),
             descriptions=exp.get("shortDescription", exp.get("description", [])),
             is_first=(i == 0),
-            link=get_cv_link(exp),
         ))
     return elements
 
@@ -292,16 +295,20 @@ def build_experience_section(experiences: list, styles: dict) -> list:
 def build_projects_section(projects: list, styles: dict) -> list:
     elements = section_heading("Projects", styles)
     for i, proj in enumerate(projects):
+        link = get_cv_link(proj)
         title_text = proj["title"]
+        if link:
+            title_text += f' {LINK_ICON}'
         if proj.get("technology"):
             title_text += f', {proj["technology"]}'
+        if link:
+            title_text = f'<a href="{link["url"]}" color="black">{title_text}</a>'
         elements.extend(entry(
             title=title_text,
             is_first=(i == 0),
             date_range=format_date_range(proj["startDate"], proj.get("endDate")),
             styles=styles,
             descriptions=proj.get("description", []),
-            link=get_cv_link(proj),
         ))
     return elements
 
