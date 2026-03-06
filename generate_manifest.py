@@ -87,15 +87,46 @@ def generate_manifest() -> Dict:
     if profile_image:
         manifest['profile'] = profile_image
 
-    # Check for generated CV (dynamically named: "Name - CV - DDMMHHMM.pdf")
-    cv_files = sorted(repo_root.glob("*- CV - *.pdf"))
-    if cv_files:
-        manifest['cv'] = cv_files[-1].name
+    # CV section: generic + flavoured variants
+    cv_data = {}
+    data_dir = repo_root / "data"
+    flavours = []
+    flavours_file = data_dir / "cv_flavours.json"
+    if flavours_file.exists():
+        with open(flavours_file, "r", encoding="utf-8") as f:
+            flavours = json.load(f)
 
-    # Stable CV copy (always up-to-date permanent link)
-    cv_stable = repo_root / "cv.pdf"
-    if cv_stable.exists():
-        manifest['cvLatest'] = cv_stable.name
+    # Generic CV
+    generic_stable = repo_root / "cv.pdf"
+    # Match timestamped generic: "Name - CV - DDMMYY-HHMM.pdf" (no label in between)
+    generic_timestamped = sorted(
+        p for p in repo_root.glob("*- CV - *.pdf")
+        if not any(p.name.count(" - CV - ") == 1 and f" - {fl['label']} - " in p.name for fl in flavours)
+    )
+    if generic_stable.exists() or generic_timestamped:
+        entry = {}
+        if generic_stable.exists():
+            entry["latest"] = generic_stable.name
+        if generic_timestamped:
+            entry["timestamped"] = generic_timestamped[-1].name
+        cv_data["generic"] = entry
+
+    # Flavoured CVs
+    for fl in flavours:
+        slug = fl["slug"]
+        label = fl["label"]
+        stable = repo_root / f"cv-{slug}.pdf"
+        timestamped = sorted(repo_root.glob(f"*- CV - {label} - *.pdf"))
+        if stable.exists() or timestamped:
+            entry = {}
+            if stable.exists():
+                entry["latest"] = stable.name
+            if timestamped:
+                entry["timestamped"] = timestamped[-1].name
+            cv_data[slug] = entry
+
+    if cv_data:
+        manifest['cv'] = cv_data
 
     for category in CATEGORIES:
         category_path = repo_root / category
@@ -154,7 +185,7 @@ def main():
 
     project_count = sum(
         len(cat) for key, cat in manifest.items()
-        if isinstance(cat, dict) and key != 'skills'
+        if isinstance(cat, dict) and key not in ('skills', 'cv')
     )
     print(f"✅ Found {total_assets} assets across {project_count} projects")
 
@@ -168,13 +199,13 @@ def main():
     if 'profile' in manifest:
         print(f"  profile: {manifest['profile']}")
     if 'cv' in manifest:
-        print(f"  cv: {manifest['cv']}")
-    if 'cvLatest' in manifest:
-        print(f"  cvLatest: {manifest['cvLatest']}")
+        for cv_slug, cv_entry in manifest['cv'].items():
+            latest = cv_entry.get('latest', '')
+            print(f"  cv/{cv_slug}: {latest}")
     if 'skills' in manifest and manifest['skills']:
         print(f"  skills: {len(manifest['skills'])} icon(s)")
     for category, slugs in manifest.items():
-        if category not in ('profile', 'skills', 'cv', 'cvLatest') and slugs:
+        if category not in ('profile', 'skills', 'cv') and slugs:
             print(f"  {category}: {len(slugs)} item(s)")
 
 
