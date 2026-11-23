@@ -22,5 +22,29 @@
     "fileAssets": [],
     "showInCv": true,
     "showInPortfolio": true
+  },
+  {
+    "id": 1,
+    "title": "M.Sc. in Computer Science International",
+    "slug": "uni_rostock",
+    "association": "Universität Rostock",
+    "location": "Rostock, Germany",
+    "startDate": "2026-10-01T00:00:00.000",
+    "endDate": null,
+    "markingScheme": null,
+    "maximumScore": null,
+    "obtainedScore": null,
+    "showScoreInCv": false,
+    "showScoreInPortfolio": false,
+    "showDurationInCv": true,
+    "showDurationInPortfolio": true,
+    "links": [],
+    "description": [],
+    "shortDescription": [],
+    "imageAssets": [],
+    "videoAssets": [],
+    "fileAssets": [],
+    "showInCv": true,
+    "showInPortfolio": true
   }
 ]
