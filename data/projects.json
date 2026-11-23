@@ -168,7 +168,7 @@
     "associationSlug": "orbilon",
     "field": "webDevelopment",
     "startDate": "2026-01-01T00:00:00.000",
-    "endDate": null,
+    "endDate": "2026-07-01T00:00:00.000",
     "links": [],
     "description": [
       "Building a full stack B2B quoting platform (React, TypeScript, ASP.NET Core 8, SQL Server) enabling 20+ concurrent users to generate quotes with automated pricing and PDF output.",
