@@ -1,52 +1,76 @@
 [
   {
     "id": 0,
-    "title": "Technical",
+    "i18n": {
+      "en": {"title": "Technical"}
+    },
     "slug": "technical",
     "hasIcons": true,
     "skills": [
-      "Dart",
-      "Flutter",
-      "C#",
-      "C++",
-      "ASP.NET Core",
-      "TypeScript",
-      "React",
-      "Python",
-      "JavaScript",
-      "Node.js",
-      "PostgreSQL",
-      "SQL Server",
-      "Firebase",
-      "Firestore",
-      "Isar DB",
-      "REST APIs",
-      "SOAP APIs",
-      "WebSockets",
-      "BLE",
-      "OpenAI APIs",
-      "Claude APIs",
-      "Git",
-      "GitHub Actions",
-      "CI/CD",
-      "Linux",
-      "FCM",
-      "Mixpanel",
-      "AppsFlyer",
-      "Google AppScript",
-      "n8n"
+      {"key": "dart", "name": "Dart"},
+      {"key": "flutter", "name": "Flutter"},
+      {"key": "csharp", "name": "C#"},
+      {"key": "cpp", "name": "C++"},
+      {"key": "aspnet_core", "name": "ASP.NET Core"},
+      {"key": "typescript", "name": "TypeScript"},
+      {"key": "react", "name": "React"},
+      {"key": "python", "name": "Python"},
+      {"key": "javascript", "name": "JavaScript"},
+      {"key": "nodejs", "name": "Node.js"},
+      {"key": "postgresql", "name": "PostgreSQL"},
+      {"key": "sql_server", "name": "SQL Server"},
+      {"key": "firebase", "name": "Firebase"},
+      {"key": "firestore", "name": "Firestore"},
+      {"key": "isar_db", "name": "Isar DB"},
+      {"key": "rest_apis", "name": "REST APIs"},
+      {"key": "soap_apis", "name": "SOAP APIs"},
+      {"key": "websockets", "name": "WebSockets"},
+      {"key": "ble", "name": "BLE"},
+      {"key": "openai_apis", "name": "OpenAI APIs"},
+      {"key": "claude_apis", "name": "Claude APIs"},
+      {"key": "git", "name": "Git"},
+      {"key": "github_actions", "name": "GitHub Actions"},
+      {"key": "ci_cd", "name": "CI/CD"},
+      {"key": "linux", "name": "Linux"},
+      {"key": "fcm", "name": "FCM"},
+      {"key": "mixpanel", "name": "Mixpanel"},
+      {"key": "appsflyer", "name": "AppsFlyer"},
+      {"key": "google_appscript", "name": "Google AppScript"},
+      {"key": "n8n", "name": "n8n"}
     ]
   },
   {
     "id": 1,
-    "title": "Soft",
+    "i18n": {
+      "en": {"title": "Soft"}
+    },
     "slug": "soft",
     "hasIcons": false,
     "skills": [
-      "Problem Solving",
-      "Automation Focused",
-      "Self Directed Learning",
-      "Technical Documentation"
+      {
+        "key": "problem_solving",
+        "i18n": {
+          "en": {"name": "Problem Solving"}
+        }
+      },
+      {
+        "key": "automation_focused",
+        "i18n": {
+          "en": {"name": "Automation Focused"}
+        }
+      },
+      {
+        "key": "self_directed_learning",
+        "i18n": {
+          "en": {"name": "Self Directed Learning"}
+        }
+      },
+      {
+        "key": "technical_documentation",
+        "i18n": {
+          "en": {"name": "Technical Documentation"}
+        }
+      }
     ]
   }
 ]

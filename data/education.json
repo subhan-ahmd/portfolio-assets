@@ -1,13 +1,19 @@
 [
   {
     "id": 0,
-    "title": "B.S. in Computer Science",
+    "i18n": {
+      "en": {
+        "title": "B.S. in Computer Science",
+        "location": "Rahim Yar Khan",
+        "markingScheme": "CGPA",
+        "description": [],
+        "shortDescription": []
+      }
+    },
     "slug": "kfueit",
     "association": "Khwaja Fareed University of Engineering & Information Technology",
-    "location": "Rahim Yar Khan",
     "startDate": "2020-08-01T00:00:00.000",
     "endDate": "2024-06-01T00:00:00.000",
-    "markingScheme": "CGPA",
     "maximumScore": "4.00",
     "obtainedScore": "3.53",
     "showScoreInCv": true,
@@ -15,8 +21,6 @@
     "showDurationInCv": true,
     "showDurationInPortfolio": false,
     "links": [],
-    "description": [],
-    "shortDescription": [],
     "imageAssets": [],
     "videoAssets": [],
     "fileAssets": [],
@@ -25,13 +29,19 @@
   },
   {
     "id": 1,
-    "title": "M.Sc. in Computer Science International",
+    "i18n": {
+      "en": {
+        "title": "M.Sc. in Computer Science International",
+        "location": "Rostock, Germany",
+        "markingScheme": null,
+        "description": [],
+        "shortDescription": []
+      }
+    },
     "slug": "uni_rostock",
     "association": "Universität Rostock",
-    "location": "Rostock, Germany",
     "startDate": "2026-10-01T00:00:00.000",
     "endDate": null,
-    "markingScheme": null,
     "maximumScore": null,
     "obtainedScore": null,
     "showScoreInCv": false,
@@ -39,8 +49,6 @@
     "showDurationInCv": true,
     "showDurationInPortfolio": true,
     "links": [],
-    "description": [],
-    "shortDescription": [],
     "imageAssets": [],
     "videoAssets": [],
     "fileAssets": [],

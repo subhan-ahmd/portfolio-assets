@@ -1,10 +1,14 @@
 {
   "name": "Subhan Ahmed",
-  "position": "Software Engineer",
+  "i18n": {
+    "en": {
+      "position": "Software Engineer",
+      "currentCountry": "Pakistan",
+      "intro": "Engineer. UI purist. Probably over-engineered this too.\nFrom backends to pixels, I care how all of it feels.",
+      "shortDescription": "Software engineer with a bias for craft, building across the stack with deep roots in Flutter and a growing focus on backend systems and AI integration. I've shipped 7+ production apps across healthcare, education, and social platforms, architecting complex systems end to end, from real-time BLE monitoring and fraud prevention to AI powered mobile experiences. My background is mobile first, my ambition is full stack, and my standards don't shift."
+    }
+  },
   "currentCity": "Lahore",
-  "currentCountry": "Pakistan",
-  "intro": "Engineer. UI purist. Probably over-engineered this too.\nFrom backends to pixels, I care how all of it feels.",
-  "shortDescription": "Software engineer with a bias for craft, building across the stack with deep roots in Flutter and a growing focus on backend systems and AI integration. I've shipped 7+ production apps across healthcare, education, and social platforms, architecting complex systems end to end, from real-time BLE monitoring and fraud prevention to AI powered mobile experiences. My background is mobile first, my ambition is full stack, and my standards don't shift.",
   "availableForWork": true,
   "assetBaseUrl": "https://raw.githubusercontent.com/subhan-ahmd/portfolio-assets/main"
 }
