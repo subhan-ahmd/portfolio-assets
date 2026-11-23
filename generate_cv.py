@@ -20,15 +20,14 @@ from reportlab.lib.colors import black, HexColor
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 
+from cv_i18n import cv_dirs, cv_filename, load_cv_strings, localize, skill_name
+
 # --- Constants ---
 PAGE_WIDTH, PAGE_HEIGHT = A4
 MARGIN = 0.55 * inch
 AVAILABLE_WIDTH = PAGE_WIDTH - 2 * MARGIN
-DATA_DIR = Path(__file__).parent / "data"
 FONTS_DIR = Path(__file__).parent / "fonts"
 REPO_ROOT = Path(__file__).parent
-CV_DIR = REPO_ROOT / "cv"
-CV_LATEST_DIR = CV_DIR / "latest"
 CV_GLOB = "*- CV - *.pdf"
 BULLET_CHAR = "\u25cf"  # ● filled circle matching reference PDF
 DIVIDER_COLOR = HexColor("#444444")
@@ -49,8 +48,8 @@ LINK_ICON = '<font face="NotoEmoji" size="9">\U0001F517</font>'
 
 # --- Data Loading ---
 
-def load_json(filename: str):
-    with open(DATA_DIR / filename, "r", encoding="utf-8") as f:
+def load_json(data_dir: Path, filename: str):
+    with open(data_dir / filename, "r", encoding="utf-8") as f:
         return json.load(f)
 
 
@@ -66,15 +65,15 @@ def get_cv_link(item: dict) -> dict | None:
     return None
 
 
-def format_date(date_str: str | None) -> str:
+def format_date(date_str: str | None, strings: dict) -> str:
     if date_str is None:
-        return "Present"
+        return strings["present"]
     dt = datetime.fromisoformat(date_str.replace("Z", "+00:00"))
-    return dt.strftime("%b %Y")
+    return f'{strings["months"][dt.month - 1]} {dt.year}'
 
 
-def format_date_range(start: str, end: str | None) -> str:
-    return f"{format_date(start)} - {format_date(end)}"
+def format_date_range(start: str, end: str | None, strings: dict) -> str:
+    return f"{format_date(start, strings)} - {format_date(end, strings)}"
 
 
 def extract_handle(url: str) -> str:
@@ -271,8 +270,8 @@ def build_summary(profile: dict, styles: dict) -> list:
     return [Paragraph(profile["shortDescription"], styles["summary"])]
 
 
-def build_experience_section(experiences: list, styles: dict) -> list:
-    elements = section_heading("Work Experience", styles)
+def build_experience_section(experiences: list, styles: dict, strings: dict) -> list:
+    elements = section_heading(strings["headings"]["experience"], styles)
     for i, exp in enumerate(experiences):
         link = get_cv_link(exp)
         title_text = exp["title"]
@@ -283,7 +282,7 @@ def build_experience_section(experiences: list, styles: dict) -> list:
             subtitle_parts.append(exp["location"])
         elements.extend(entry(
             title=title_text,
-            date_range=format_date_range(exp["startDate"], exp.get("endDate")),
+            date_range=format_date_range(exp["startDate"], exp.get("endDate"), strings),
             styles=styles,
             subtitle=", ".join(subtitle_parts),
             descriptions=exp.get("shortDescription", exp.get("description", [])),
@@ -292,8 +291,8 @@ def build_experience_section(experiences: list, styles: dict) -> list:
     return elements
 
 
-def build_projects_section(projects: list, styles: dict) -> list:
-    elements = section_heading("Projects", styles)
+def build_projects_section(projects: list, styles: dict, strings: dict) -> list:
+    elements = section_heading(strings["headings"]["projects"], styles)
     for i, proj in enumerate(projects):
         link = get_cv_link(proj)
         title_text = proj["title"]
@@ -306,17 +305,17 @@ def build_projects_section(projects: list, styles: dict) -> list:
         elements.extend(entry(
             title=title_text,
             is_first=(i == 0),
-            date_range=format_date_range(proj["startDate"], proj.get("endDate")),
+            date_range=format_date_range(proj["startDate"], proj.get("endDate"), strings),
             styles=styles,
             descriptions=proj.get("description", []),
         ))
     return elements
 
 
-def build_education_section(education: list, styles: dict) -> list:
-    elements = section_heading("Education", styles)
+def build_education_section(education: list, styles: dict, strings: dict) -> list:
+    elements = section_heading(strings["headings"]["education"], styles)
     for edu in education:
-        date_text = format_date_range(edu["startDate"], edu.get("endDate")) if edu.get("showDurationInCv", True) else ""
+        date_text = format_date_range(edu["startDate"], edu.get("endDate"), strings) if edu.get("showDurationInCv", True) else ""
         elements.append(left_right_row(
             edu["title"],
             date_text,
@@ -347,16 +346,17 @@ def build_education_section(education: list, styles: dict) -> list:
     return elements
 
 
-def build_skills_section(skills: list, styles: dict) -> list:
-    elements = section_heading("Skills", styles)
+def build_skills_section(skills: list, styles: dict, strings: dict) -> list:
+    elements = section_heading(strings["headings"]["skills"], styles)
     for group in skills:
         elements.append(Paragraph(f'<b>{group["title"]}</b>', styles["skills_label"]))
-        elements.append(Paragraph(" <b>|</b> ".join(group["skills"]), styles["skills_text"]))
+        names = [s["name"] for s in group["skills"]]
+        elements.append(Paragraph(" <b>|</b> ".join(names), styles["skills_text"]))
     return elements
 
 
-def build_languages_section(languages: list, styles: dict) -> list:
-    elements = section_heading("Languages", styles)
+def build_languages_section(languages: list, styles: dict, strings: dict) -> list:
+    elements = section_heading(strings["headings"]["languages"], styles)
     for lang in languages:
         elements.append(Paragraph(
             f'<b>{lang["name"]}</b> - {lang["fluency"]}',
@@ -414,11 +414,13 @@ def apply_flavour(flavour, profile, experiences, projects, education, skills):
                 config = flavour_skills[group_slug]
                 hide = set(config.get("hide", []))
                 highlight = config.get("highlight", [])
-                remaining = [s for s in group["skills"] if s not in hide]
+                remaining = [s for s in group["skills"] if s["key"] not in hide]
                 if not remaining:
                     continue
-                highlighted = [s for s in highlight if s in remaining]
-                non_highlighted = [s for s in remaining if s not in set(highlighted)]
+                by_key = {s["key"]: s for s in remaining}
+                highlighted = [by_key[k] for k in highlight if k in by_key]
+                highlighted_keys = {s["key"] for s in highlighted}
+                non_highlighted = [s for s in remaining if s["key"] not in highlighted_keys]
                 new_skills.append({**group, "skills": highlighted + non_highlighted})
             else:
                 new_skills.append(group)
@@ -429,73 +431,86 @@ def apply_flavour(flavour, profile, experiences, projects, education, skills):
 
 # --- Footer ---
 
-def draw_footer(canvas, doc):
-    canvas.saveState()
-    font_size = 7
-    canvas.setFont(BASE_FONT, font_size)
-    canvas.setFillColor(FOOTER_COLOR)
-    y = MARGIN * 0.4
+def make_footer(strings: dict):
+    """Canvas callback drawing the footer in the CV's language."""
+    def draw_footer(canvas, doc):
+        canvas.saveState()
+        font_size = 7
+        canvas.setFont(BASE_FONT, font_size)
+        canvas.setFillColor(FOOTER_COLOR)
+        y = MARGIN * 0.4
 
-    seg1 = "Autogenerated from "
-    seg2 = SOURCE_URL
-    # seg3 = "  |  "
-    # seg4 = "Get latest here"
+        seg1 = strings["footer"]
+        seg2 = SOURCE_URL
+        # seg3 = "  |  "
+        # seg4 = "Get latest here"
 
-    total_width = sum(canvas.stringWidth(s, BASE_FONT, font_size) for s in [seg1, seg2])
-    x = (PAGE_WIDTH - total_width) / 2
+        total_width = sum(canvas.stringWidth(s, BASE_FONT, font_size) for s in [seg1, seg2])
+        x = (PAGE_WIDTH - total_width) / 2
 
-    for seg in [seg1, seg2]:
-        canvas.drawString(x, y, seg)
-        x += canvas.stringWidth(seg, BASE_FONT, font_size)
+        for seg in [seg1, seg2]:
+            canvas.drawString(x, y, seg)
+            x += canvas.stringWidth(seg, BASE_FONT, font_size)
 
-    # Clickable link over SOURCE_URL
-    link1_x = (PAGE_WIDTH - total_width) / 2 + canvas.stringWidth(seg1, BASE_FONT, font_size)
-    link1_w = canvas.stringWidth(seg2, BASE_FONT, font_size)
-    canvas.linkURL(f"https://{SOURCE_URL}", (link1_x, y - 1, link1_x + link1_w, y + 7), relative=0)
+        # Clickable link over SOURCE_URL
+        link1_x = (PAGE_WIDTH - total_width) / 2 + canvas.stringWidth(seg1, BASE_FONT, font_size)
+        link1_w = canvas.stringWidth(seg2, BASE_FONT, font_size)
+        canvas.linkURL(f"https://{SOURCE_URL}", (link1_x, y - 1, link1_x + link1_w, y + 7), relative=0)
 
-    # # Clickable link over "Get latest here"
-    # link2_x = link1_x + link1_w + canvas.stringWidth(seg3, BASE_FONT, font_size)
-    # link2_w = canvas.stringWidth(seg4, BASE_FONT, font_size)
-    # canvas.linkURL(f"https://{LATEST_CV_URL}", (link2_x, y - 1, link2_x + link2_w, y + 7), relative=0)
+        # # Clickable link over "Get latest here"
+        # link2_x = link1_x + link1_w + canvas.stringWidth(seg3, BASE_FONT, font_size)
+        # link2_w = canvas.stringWidth(seg4, BASE_FONT, font_size)
+        # canvas.linkURL(f"https://{LATEST_CV_URL}", (link2_x, y - 1, link2_x + link2_w, y + 7), relative=0)
 
-    canvas.restoreState()
+        canvas.restoreState()
+    return draw_footer
 
 
 # --- Main ---
 
-def delete_old_cvs():
-    """Delete all previously generated CV files."""
-    if CV_DIR.exists():
-        for old in CV_DIR.glob(CV_GLOB):
+def delete_old_cvs(repo_root: Path):
+    """Delete every previously generated CV (all languages, any layout)."""
+    cv_root = repo_root / "cv"
+    if cv_root.exists():
+        for old in cv_root.rglob("*.pdf"):
             old.unlink()
-        if CV_LATEST_DIR.exists():
-            for old in CV_LATEST_DIR.glob("*.pdf"):
-                old.unlink()
     # Also clean legacy root-level CVs
-    for old in REPO_ROOT.glob(CV_GLOB):
+    for old in repo_root.glob(CV_GLOB):
         old.unlink()
-    for old in REPO_ROOT.glob("cv-*.pdf"):
+    for old in repo_root.glob("cv-*.pdf"):
         old.unlink()
-    legacy = REPO_ROOT / "cv.pdf"
+    legacy = repo_root / "cv.pdf"
     if legacy.exists():
         legacy.unlink()
 
 
-def generate_single_cv(profile, contacts, socials, experiences, projects,
-                       education, skills, languages, timestamp,
-                       label=None, slug=None):
-    """Generate a single CV PDF. Returns (timestamped_path, stable_path)."""
-    if label:
-        filename = f"{profile['name']} - CV - {label} - {timestamp}.pdf"
-        stable_name = f"{profile['name']} - CV - {label}.pdf"
-    else:
-        filename = f"{profile['name']} - CV - {timestamp}.pdf"
-        stable_name = f"{profile['name']} - CV.pdf"
+def load_localized(data_dir: Path, lang: str) -> dict:
+    """Load all data files with their text in ``lang``."""
+    skills = [
+        {**localize(group, lang),
+         "skills": [{"key": s["key"], "name": skill_name(s, lang)} for s in group["skills"]]}
+        for group in load_json(data_dir, "skills.json")
+    ]
+    return {
+        "profile": localize(load_json(data_dir, "profile.json"), lang),
+        "experiences": [localize(i, lang) for i in load_json(data_dir, "experiences.json")],
+        "projects": [localize(i, lang) for i in load_json(data_dir, "projects.json")],
+        "education": [localize(i, lang) for i in load_json(data_dir, "education.json")],
+        "languages": [localize(i, lang) for i in load_json(data_dir, "languages.json")],
+        "skills": skills,
+    }
 
-    CV_DIR.mkdir(exist_ok=True)
-    CV_LATEST_DIR.mkdir(exist_ok=True)
-    output_file = CV_DIR / filename
-    stable_file = CV_LATEST_DIR / stable_name
+
+def generate_single_cv(repo_root, lang, strings, profile, contacts, socials,
+                       experiences, projects, education, skills, languages,
+                       timestamp, label=None):
+    """Generate a single CV PDF. Returns (timestamped_path, stable_path)."""
+    word = strings["documentWord"]
+    ts_dir, latest_dir = cv_dirs(repo_root, lang)
+    ts_dir.mkdir(parents=True, exist_ok=True)
+    latest_dir.mkdir(parents=True, exist_ok=True)
+    output_file = ts_dir / cv_filename(profile["name"], word, label, timestamp)
+    stable_file = latest_dir / cv_filename(profile["name"], word, label)
 
     styles = create_styles()
 
@@ -504,7 +519,7 @@ def generate_single_cv(profile, contacts, socials, experiences, projects,
         pagesize=A4,
         leftMargin=MARGIN, rightMargin=MARGIN,
         topMargin=MARGIN, bottomMargin=MARGIN,
-        title=f"{profile['name']} - CV",
+        title=f"{profile['name']} - {word}",
         author=profile["name"],
     )
 
@@ -512,63 +527,77 @@ def generate_single_cv(profile, contacts, socials, experiences, projects,
     story.extend(build_header(profile, contacts, socials, styles))
     story.extend(build_summary(profile, styles))
     if experiences:
-        story.extend(build_experience_section(experiences, styles))
+        story.extend(build_experience_section(experiences, styles, strings))
     if projects:
-        story.extend(build_projects_section(projects, styles))
+        story.extend(build_projects_section(projects, styles, strings))
     if education:
-        story.extend(build_education_section(education, styles))
-    story.extend(build_skills_section(skills, styles))
-    story.extend(build_languages_section(languages, styles))
+        story.extend(build_education_section(education, styles, strings))
+    story.extend(build_skills_section(skills, styles, strings))
+    story.extend(build_languages_section(languages, styles, strings))
 
-    doc.build(story, onFirstPage=draw_footer, onLaterPages=draw_footer)
+    footer = make_footer(strings)
+    doc.build(story, onFirstPage=footer, onLaterPages=footer)
 
     shutil.copy2(output_file, stable_file)
 
     return output_file, stable_file
 
 
-def generate_all_cvs():
-    """Generate generic CV + all flavoured variants."""
-    profile = load_json("profile.json")
-    contacts = filter_for_cv(load_json("contacts.json"))
-    socials = filter_for_cv(load_json("socials.json"))
-    raw_experiences = load_json("experiences.json")
-    raw_projects = load_json("projects.json")
-    raw_education = load_json("education.json")
-    skills = load_json("skills.json")
-    languages = load_json("languages.json")
-    flavours = load_json("cv_flavours.json")
+def generate_all_cvs(repo_root: Path = REPO_ROOT):
+    """Generate the generic CV in every language + every enabled flavour.
 
-    delete_old_cvs()
+    Returns a list of (lang, slug, timestamped_path, stable_path).
+    """
+    data_dir = repo_root / "data"
+    cv_strings = load_cv_strings(data_dir)
+    contacts = filter_for_cv(load_json(data_dir, "contacts.json"))
+    socials = filter_for_cv(load_json(data_dir, "socials.json"))
+    flavours = load_json(data_dir, "cv_flavours.json")
+    content = {}
+
+    def data_for(lang):
+        content_lang = cv_strings[lang]["contentLanguage"]
+        if content_lang not in content:
+            content[content_lang] = load_localized(data_dir, content_lang)
+        return content[content_lang]
+
+    delete_old_cvs(repo_root)
 
     now = datetime.now(timezone.utc)
     timestamp = now.strftime("%d%m%y-%H%M")
     generated = []
 
-    # Generic CV (showInCv defaults, sorted by id desc)
-    ts_path, stable_path = generate_single_cv(
-        dict(profile), contacts, socials,
-        sort_by_id(filter_for_cv(raw_experiences)),
-        sort_by_id(filter_for_cv(raw_projects)),
-        filter_for_cv(raw_education),
-        skills, languages, timestamp,
-    )
-    generated.append(("generic", ts_path, stable_path))
+    # Generic CV per language (showInCv defaults, sorted by id desc)
+    for lang, strings in cv_strings.items():
+        d = data_for(lang)
+        ts_path, stable_path = generate_single_cv(
+            repo_root, lang, strings,
+            dict(d["profile"]), contacts, socials,
+            sort_by_id(filter_for_cv(d["experiences"])),
+            sort_by_id(filter_for_cv(d["projects"])),
+            filter_for_cv(d["education"]),
+            d["skills"], d["languages"], timestamp,
+        )
+        generated.append((lang, "generic", ts_path, stable_path))
 
-    # Flavoured CVs
+    # Flavoured CVs, each in its own language
     for flavour in flavours:
         if flavour.get("disabled"):
             continue
+        lang = flavour["language"]
+        strings = cv_strings[lang]
+        d = data_for(lang)
         f_profile, f_exp, f_proj, f_edu, f_skills = apply_flavour(
-            flavour, profile, raw_experiences, raw_projects, raw_education, skills,
+            flavour, d["profile"], d["experiences"], d["projects"], d["education"], d["skills"],
         )
         ts_path, stable_path = generate_single_cv(
+            repo_root, lang, strings,
             f_profile, contacts, socials,
             f_exp, f_proj, f_edu,
-            f_skills, languages, timestamp,
-            label=flavour["label"], slug=flavour["slug"],
+            f_skills, d["languages"], timestamp,
+            label=flavour["label"],
         )
-        generated.append((flavour["slug"], ts_path, stable_path))
+        generated.append((lang, flavour["slug"], ts_path, stable_path))
 
     return generated
 
@@ -576,8 +605,8 @@ def generate_all_cvs():
 def main():
     print("Generating CVs...")
     generated = generate_all_cvs()
-    for slug, ts_path, stable_path in generated:
-        print(f"  [{slug}] {ts_path.name} -> {stable_path.name}")
+    for lang, slug, ts_path, stable_path in generated:
+        print(f"  [{lang}/{slug}] {ts_path.name} -> {stable_path.name}")
     print(f"Generated {len(generated)} CV(s)")
 
 
