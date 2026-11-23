@@ -29,6 +29,7 @@ AVAILABLE_WIDTH = PAGE_WIDTH - 2 * MARGIN
 FONTS_DIR = Path(__file__).parent / "fonts"
 REPO_ROOT = Path(__file__).parent
 CV_GLOB = "*- CV - *.pdf"
+LEGACY_LINK_LANG = "en"  # generic CV in this language is also copied to cv/latest/
 BULLET_CHAR = "\u25cf"  # ● filled circle matching reference PDF
 DIVIDER_COLOR = HexColor("#444444")
 FOOTER_COLOR = HexColor("#999999")
@@ -579,6 +580,11 @@ def generate_all_cvs(repo_root: Path = REPO_ROOT):
             d["skills"], d["languages"], timestamp,
         )
         generated.append((lang, "generic", ts_path, stable_path))
+        if lang == LEGACY_LINK_LANG:
+            # Keep the pre-i18n permalink cv/latest/<name> - CV.pdf alive.
+            # The old flavour permalinks (cv/latest/<name> - CV - <label>.pdf)
+            # are not kept; copy a flavour's stable_path the same way to revive one.
+            shutil.copy2(stable_path, repo_root / "cv" / "latest" / stable_path.name)
 
     # Flavoured CVs, each in its own language
     for flavour in flavours:

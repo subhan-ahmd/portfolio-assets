@@ -94,3 +94,11 @@ def test_disabled_flavour_not_generated(generated):
     repo, _ = generated
     names = {p.name for p in (repo / "cv").rglob("*.pdf")}
     assert not any("Flutter Mobile" in n or "Full Stack" in n for n in names)
+
+
+def test_legacy_english_generic_link_kept(generated):
+    repo, _ = generated
+    legacy = repo / "cv" / "latest" / "Subhan Ahmed - CV.pdf"
+    current = repo / "cv" / "latest" / "en" / "Subhan Ahmed - CV.pdf"
+    assert legacy.exists()
+    assert legacy.read_bytes() == current.read_bytes()

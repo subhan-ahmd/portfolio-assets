@@ -177,6 +177,8 @@ Every run first deletes **all** PDFs under `cv/`, then writes:
 
 e.g. `cv/latest/de/Subhan Ahmed - Lebenslauf.pdf`. A `/` in a label is written as `∕` (a look-alike that is legal in filenames). Other characters not allowed in filenames (`\ : * ? " < > |`) stop the run with an error.
 
+The English generic CV is also copied to `cv/latest/{name} - CV.pdf`, so the pre-i18n permalink keeps working.
+
 Stable CV links have the form:
 ```
 https://raw.githubusercontent.com/subhan-ahmd/portfolio-assets/main/cv/latest/en/Subhan%20Ahmed%20-%20CV.pdf
