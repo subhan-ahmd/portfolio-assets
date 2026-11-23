@@ -10,6 +10,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, List
 
+from cv_i18n import cv_dirs, cv_filename, load_cv_strings, timestamped_regex
+
 # Define the main categories and their supported asset types
 CATEGORIES = ['projects', 'education', 'experience', 'certifications']
 ASSET_TYPES = {
@@ -76,12 +78,11 @@ def get_profile_image(repo_root: Path) -> str | None:
     return None
 
 
-def generate_manifest() -> Dict:
+def generate_manifest(repo_root: Path = Path(__file__).parent) -> Dict:
     """
     Generate the complete manifest by scanning all categories and slugs.
     """
     manifest = {}
-    repo_root = Path(__file__).parent
 
     manifest['generatedAt'] = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
 
@@ -90,13 +91,12 @@ def generate_manifest() -> Dict:
     if profile_image:
         manifest['profile'] = profile_image
 
-    # CV section: generic + flavoured variants
-    cv_data = {}
-    cv_dir = repo_root / "cv"
-    cv_latest_dir = cv_dir / "latest"
+    # CV section: language -> (generic | flavour slug) -> {latest, timestamped}
     data_dir = repo_root / "data"
+    cv_data = {}
+    strings_file = data_dir / "i18n" / "cv_strings.json"
+    cv_strings = load_cv_strings(data_dir) if strings_file.exists() else {}
 
-    # Load profile name for stable CV filenames
     profile_file = data_dir / "profile.json"
     cv_name = "CV"
     if profile_file.exists():
@@ -109,36 +109,27 @@ def generate_manifest() -> Dict:
         with open(flavours_file, "r", encoding="utf-8") as f:
             flavours = json.load(f)
 
-    # Generic CV
-    generic_stable = cv_latest_dir / f"{cv_name} - CV.pdf"
-    # Match timestamped generic: "Name - CV - DDMMYY-HHMM.pdf" (no label in between)
-    generic_timestamped = sorted(
-        p for p in cv_dir.glob("*- CV - *.pdf")
-        if not any(p.name.count(" - CV - ") == 1 and f" - {fl['label']} - " in p.name for fl in flavours)
-    ) if cv_dir.exists() else []
-    if generic_stable.exists() or generic_timestamped:
+    def cv_entry(lang: str, label: str | None) -> Dict:
+        word = cv_strings[lang]["documentWord"]
+        ts_dir, latest_dir = cv_dirs(repo_root, lang)
         entry = {}
-        if generic_stable.exists():
-            entry["latest"] = generic_stable.name
-        if generic_timestamped:
-            entry["timestamped"] = generic_timestamped[-1].name
-        cv_data["generic"] = entry
+        stable = latest_dir / cv_filename(cv_name, word, label)
+        if stable.exists():
+            entry["latest"] = stable.name
+        pattern = timestamped_regex(cv_name, word, label)
+        timestamped = sorted(p.name for p in ts_dir.glob("*.pdf") if pattern.fullmatch(p.name)) \
+            if ts_dir.exists() else []
+        if timestamped:
+            entry["timestamped"] = timestamped[-1]
+        return entry
 
-    # Flavoured CVs
-    for fl in flavours:
-        if fl.get("disabled"):
-            continue
-        slug = fl["slug"]
-        label = fl["label"]
-        stable = cv_latest_dir / f"{cv_name} - CV - {label}.pdf"
-        timestamped = sorted(cv_dir.glob(f"*- CV - {label} - *.pdf")) if cv_dir.exists() else []
-        if stable.exists() or timestamped:
-            entry = {}
-            if stable.exists():
-                entry["latest"] = stable.name
-            if timestamped:
-                entry["timestamped"] = timestamped[-1].name
-            cv_data[slug] = entry
+    targets = [(lang, "generic", None) for lang in cv_strings]
+    targets += [(fl["language"], fl["slug"], fl["label"]) for fl in flavours
+                if not fl.get("disabled") and fl.get("language") in cv_strings]
+    for lang, slug, label in targets:
+        entry = cv_entry(lang, label)
+        if entry:
+            cv_data.setdefault(lang, {})[slug] = entry
 
     if cv_data:
         manifest['cv'] = cv_data
@@ -214,9 +205,9 @@ def main():
     if 'profile' in manifest:
         print(f"  profile: {manifest['profile']}")
     if 'cv' in manifest:
-        for cv_slug, cv_entry in manifest['cv'].items():
-            latest = cv_entry.get('latest', '')
-            print(f"  cv/{cv_slug}: {latest}")
+        for cv_lang, cv_slugs in manifest['cv'].items():
+            for cv_slug, cv_entry in cv_slugs.items():
+                print(f"  cv/{cv_lang}/{cv_slug}: {cv_entry.get('latest', '')}")
     if 'skills' in manifest and manifest['skills']:
         print(f"  skills: {len(manifest['skills'])} icon(s)")
     for category, slugs in manifest.items():
