@@ -137,7 +137,7 @@ CVs are generated from the JSON data with Python + ReportLab.
 **Features:**
 - Montserrat font, A4 layout, professional formatting
 - Sections: header, summary, work experience, projects, education, skills, languages
-- Experience and projects sorted by `id` descending (latest first)
+- Experience, projects and education sorted by `id` descending (latest first)
 - `showInCv` / `showInPortfolio` visibility flags on every data item
 - Clickable footer linking to this repo
 - One generic CV per language, plus one CV per enabled flavour

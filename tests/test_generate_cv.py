@@ -102,3 +102,15 @@ def test_legacy_english_generic_link_kept(generated):
     current = repo / "cv" / "latest" / "en" / "Subhan Ahmed - CV.pdf"
     assert legacy.exists()
     assert legacy.read_bytes() == current.read_bytes()
+
+
+@pytest.mark.parametrize("path", [
+    ("en", "Subhan Ahmed - CV.pdf"),
+    ("en", "Subhan Ahmed - CV - Portfolio.pdf"),
+    ("en", "Subhan Ahmed - CV - Mobile Application Developer.pdf"),
+    ("de", "Subhan Ahmed - Lebenslauf.pdf"),
+])
+def test_education_latest_first(generated, path):
+    repo, _ = generated
+    text = pdf_text(repo / "cv" / "latest" / path[0] / path[1])
+    assert text.index("M.Sc. in Computer Science International") < text.index("B.S. in Computer Science")

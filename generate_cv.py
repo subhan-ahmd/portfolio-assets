@@ -402,7 +402,7 @@ def apply_flavour(flavour, profile, experiences, projects, education, skills):
     if "showEducation" in flavour:
         education = reorder_by_slugs(education, flavour["showEducation"])
     else:
-        education = filter_for_cv(education)
+        education = sort_by_id(filter_for_cv(education))
     if "hideEducation" in flavour:
         education = apply_hide(education, flavour["hideEducation"])
 
@@ -576,7 +576,7 @@ def generate_all_cvs(repo_root: Path = REPO_ROOT):
             dict(d["profile"]), contacts, socials,
             sort_by_id(filter_for_cv(d["experiences"])),
             sort_by_id(filter_for_cv(d["projects"])),
-            filter_for_cv(d["education"]),
+            sort_by_id(filter_for_cv(d["education"])),
             d["skills"], d["languages"], timestamp,
         )
         generated.append((lang, "generic", ts_path, stable_path))
