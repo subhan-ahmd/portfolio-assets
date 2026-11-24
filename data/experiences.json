@@ -55,7 +55,7 @@
         "location": "Lahore, Pakistan",
         "description": [
           "Contributed to existing production apps including AI Planner and Caregiver Management App.",
-          "Integrated ChatGPT (GPT-4.1) with structured outputs and parallel function calling to automate scheduling and task extraction from user conversations.:",
+          "Integrated ChatGPT (GPT-4.1) with structured outputs and parallel function calling to automate scheduling and task extraction from user conversations.",
           "Migrated from Claude 3.5/3.7 to OpenAI APIs with dynamic model switching, improving flexibility, maintainability, and response efficiency.",
           "Refactored state management, resolved core logic issues, and delivered polished UI with improved performance and feature stability."
         ],
