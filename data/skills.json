@@ -2,7 +2,8 @@
   {
     "id": 0,
     "i18n": {
-      "en": {"title": "Technical"}
+      "en": {"title": "Technical"},
+      "de": {"title": "Technische Kenntnisse"}
     },
     "slug": "technical",
     "hasIcons": true,
@@ -42,7 +43,8 @@
   {
     "id": 1,
     "i18n": {
-      "en": {"title": "Soft"}
+      "en": {"title": "Soft"},
+      "de": {"title": "Soft Skills"}
     },
     "slug": "soft",
     "hasIcons": false,
@@ -50,25 +52,29 @@
       {
         "key": "problem_solving",
         "i18n": {
-          "en": {"name": "Problem Solving"}
+          "en": {"name": "Problem Solving"},
+          "de": {"name": "Problemlösung"}
         }
       },
       {
         "key": "automation_focused",
         "i18n": {
-          "en": {"name": "Automation Focused"}
+          "en": {"name": "Automation Focused"},
+          "de": {"name": "Automatisierungsorientiert"}
         }
       },
       {
         "key": "self_directed_learning",
         "i18n": {
-          "en": {"name": "Self Directed Learning"}
+          "en": {"name": "Self Directed Learning"},
+          "de": {"name": "Selbstständiges Lernen"}
         }
       },
       {
         "key": "technical_documentation",
         "i18n": {
-          "en": {"name": "Technical Documentation"}
+          "en": {"name": "Technical Documentation"},
+          "de": {"name": "Technische Dokumentation"}
         }
       }
     ]

@@ -6,6 +6,12 @@
       "currentCountry": "Pakistan",
       "intro": "Engineer. UI purist. Probably over-engineered this too.\nFrom backends to pixels, I care how all of it feels.",
       "shortDescription": "Software engineer with a bias for craft, building across the stack with deep roots in Flutter and a growing focus on backend systems and AI integration. I've shipped 7+ production apps across healthcare, education, and social platforms, architecting complex systems end to end, from real-time BLE monitoring and fraud prevention to AI powered mobile experiences. My background is mobile first, my ambition is full stack, and my standards don't shift."
+    },
+    "de": {
+      "position": "Softwareentwickler",
+      "currentCountry": "Pakistan",
+      "intro": "Engineer. UI-Purist. Hab das hier wahrscheinlich auch over-engineered.\nVom Backend bis zum Pixel: Mir ist wichtig, wie sich alles anfühlt.",
+      "shortDescription": "Softwareentwickler mit einem Faible für Handwerk, der über den gesamten Stack hinweg entwickelt, mit tiefen Wurzeln in Flutter und einem wachsenden Fokus auf Backend-Systeme und KI-Integration. Ich habe über 7 Apps in Produktion gebracht, in den Bereichen Gesundheit, Bildung und Social Media, und komplexe Systeme von Anfang bis Ende konzipiert, von BLE-Echtzeitüberwachung und Betrugsprävention bis zu KI-gestützten mobilen Anwendungen. Mein Hintergrund ist Mobile First, mein Ziel ist Full Stack, und meine Ansprüche bleiben dieselben."
     }
   },
   "currentCity": "Lahore",

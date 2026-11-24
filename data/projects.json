@@ -17,6 +17,14 @@
           "Integrated AI chatbot using GPT-3.5-turbo API and secure document storage."
         ],
         "shortDescription": "Real-time appointment booking system with Firebase, multi-role dashboards (patient/doctor/admin), payments, FCM notifications, secure document storage, and location features."
+      },
+      "de": {
+        "description": [
+          "Entwicklung einer Gesundheitsplattform mit mehreren Rollen (Patient/Arzt/Admin) mit Flutter und Firebase für die Terminbuchung.",
+          "Integration des Payment-Gateways Paymob, MailerSend SMTP für Benachrichtigungen und standortbasierter Arztsuche.",
+          "Integration eines KI-Chatbots über die GPT-3.5-turbo-API und sicherer Dokumentenspeicherung."
+        ],
+        "shortDescription": "Echtzeit-Terminbuchungssystem mit Firebase, Dashboards für mehrere Rollen (Patient/Arzt/Admin), Zahlungen, FCM-Benachrichtigungen, sicherer Dokumentenspeicherung und Standortfunktionen."
       }
     },
     "showInCv": true,
@@ -34,7 +42,8 @@
     "links": [
       {
         "i18n": {
-          "en": {"label": "App Store"}
+          "en": {"label": "App Store"},
+          "de": {"label": "App Store"}
         },
         "url": "https://apps.apple.com/app/academiq-homework-scan-helper/id6502458245",
         "type": "url",
@@ -50,6 +59,14 @@
           "Developed offline first architecture using Isar DB with Riverpod for persistent sessions."
         ],
         "shortDescription": "AI educational chatbot with configurable modes (Essay, Poem, etc.), custom session management, offline chat history via Isar DB, and optimized caching for reduced latency."
+      },
+      "de": {
+        "description": [
+          "Entwicklung einer multimodalen KI-Lern-App mit über 20 Lernmodi und nahtloser LLM-Migration (ChatGPT → Gemini).",
+          "Konzeption einer Pipeline für mehrere Eingabearten mit OCR, Speech-to-Text, PDF-Extraktion und Vision-KI.",
+          "Entwicklung einer Offline-First-Architektur mit Isar DB und Riverpod für persistente Sitzungen."
+        ],
+        "shortDescription": "KI-Lern-Chatbot mit konfigurierbaren Modi (Aufsatz, Gedicht usw.), eigenem Sitzungsmanagement, Offline-Chatverlauf über Isar DB und optimiertem Caching für geringere Latenz."
       }
     },
     "showInCv": true,
@@ -67,7 +84,8 @@
     "links": [
       {
         "i18n": {
-          "en": {"label": "App Store"}
+          "en": {"label": "App Store"},
+          "de": {"label": "App Store"}
         },
         "url": "https://apps.apple.com/app/side-hustle-test-earn-cash/id6504246233",
         "type": "url",
@@ -83,6 +101,14 @@
           "Designed tiered redemption system for 12+ countries with WebSocket real time updates."
         ],
         "shortDescription": "Rewards platform for game installations with real-time attribution (Singular, AppsFlyer, Adjust), multi-platform auth (Google/Apple), dynamic incentive system, and automated payouts."
+      },
+      "de": {
+        "description": [
+          "Entwicklung einer plattformübergreifenden Belohnungs-App mit dem AppsFlyer SDK für Install-Attribution-Tracking.",
+          "Entwicklung von Device-Fingerprinting mit über 15 Signalen (IDFA, IP, VPN) zur Betrugsprävention.",
+          "Konzeption eines gestaffelten Einlösesystems für über 12 Länder mit Echtzeit-Updates per WebSocket."
+        ],
+        "shortDescription": "Belohnungsplattform für Spielinstallationen mit Echtzeit-Attribution (Singular, AppsFlyer, Adjust), plattformübergreifender Authentifizierung (Google/Apple), dynamischem Anreizsystem und automatisierten Auszahlungen."
       }
     },
     "showInCv": true,
@@ -106,6 +132,14 @@
           "Implemented advanced filtering across multiple metadata fields with optimized Firestore indexes and Mixpanel analytics."
         ],
         "shortDescription": "Social collection platform for diecast enthusiasts with wishlist, CSV import, real-time community feed, Mixpanel analytics, optimized Firestore queries, and 99.9% crash-free performance."
+      },
+      "de": {
+        "description": [
+          "Entwicklung einer Social-Collection-App für Modellauto-Sammler mit Echtzeit-Feed, Folgen/Gefällt-mir-System und CSV-Massenimport.",
+          "Entwicklung von Python-ETL-Skripten, die 57.000 Zeilen verarbeiten, Daten normalisieren, Bilder in Firebase Storage hochladen und per Parquet im Batch importieren.",
+          "Implementierung erweiterter Filter über mehrere Metadatenfelder mit optimierten Firestore-Indizes und Mixpanel-Analytics."
+        ],
+        "shortDescription": "Social-Collection-Plattform für Modellauto-Sammler mit Wunschliste, CSV-Import, Echtzeit-Community-Feed, Mixpanel-Analytics, optimierten Firestore-Abfragen und 99,9 % absturzfreier Performance."
       }
     },
     "showInCv": true,
@@ -129,6 +163,14 @@
           "Resolved critical bugs in Firebase sync and authentication, improving user retention by 30%."
         ],
         "shortDescription": "Healthcare app connecting caregivers and family with real-time multilingual chat, task assignment, auto-translation, pixel-perfect UI, and 30% improvement in user retention."
+      },
+      "de": {
+        "description": [
+          "Ergänzung eines Aufgabenmanagements mit wiederkehrenden Terminen, Medienanhängen und Lokalisierung in 9 Sprachen (einschließlich RTL).",
+          "Erweiterung des Push-Benachrichtigungssystems um Deep Linking und Korrekturen im FCM-Token-Lebenszyklus.",
+          "Behebung kritischer Fehler bei Firebase-Synchronisierung und Authentifizierung, was die Nutzerbindung um 30 % verbesserte."
+        ],
+        "shortDescription": "Gesundheits-App, die Pflegekräfte und Angehörige verbindet, mit mehrsprachigem Echtzeit-Chat, Aufgabenzuweisung, automatischer Übersetzung, pixelgenauer UI und 30 % höherer Nutzerbindung."
       }
     },
     "showInCv": true,
@@ -152,6 +194,14 @@
           "Fixed critical state handling bugs including data persistence and exception handling."
         ],
         "shortDescription": "AI scheduling app extracting tasks and reminders from chat, migrated from Claude to OpenAI APIs with structured outputs and parallel calling, 50% faster response time, and optimized state management."
+      },
+      "de": {
+        "description": [
+          "Leitung der Migration von Claude AI auf OpenAI mit Structured Outputs und Parallel Function Calling (17 gleichzeitige Ausführungen), wodurch die Latenz um über 50 % sank.",
+          "Neuentwicklung des plattformübergreifenden Benachrichtigungssystems mit wiederkehrenden Erinnerungen und komplexen Planungsmustern.",
+          "Behebung kritischer Fehler im State Handling, einschließlich Datenpersistenz und Fehlerbehandlung."
+        ],
+        "shortDescription": "KI-Planungs-App, die Aufgaben und Erinnerungen aus Chats extrahiert, migriert von Claude auf OpenAI-APIs mit Structured Outputs und paralleler Ausführung, 50 % schnellerer Antwortzeit und optimiertem State Management."
       }
     },
     "showInCv": true,
@@ -175,6 +225,14 @@
           "Built background service isolate with lifecycle aware state management for 24/7 monitoring."
         ],
         "shortDescription": "BLE-based child monitoring app with real-time sound level detection, live streaming from device, automated alerts for crying/noise thresholds, and caregiver notifications."
+      },
+      "de": {
+        "description": [
+          "Entwicklung einer plattformübergreifenden BLE-Companion-App zur Kinderüberwachung mit Echtzeit-Audiostreaming, schwellenwertbasierten Alarmen und Benachrichtigungsverlauf.",
+          "Konzeption eines Dual-Mode-Systems mit nahtloser Zustandsübergabe zwischen Vorder- und Hintergrund und robuster automatischer Wiederverbindung mit flutter_reactive_ble.",
+          "Entwicklung eines Background-Service-Isolates mit lebenszyklusbewusstem State Management für eine Überwachung rund um die Uhr."
+        ],
+        "shortDescription": "BLE-basierte App zur Kinderüberwachung mit Echtzeit-Erkennung des Geräuschpegels, Live-Streaming vom Gerät, automatischen Alarmen bei Weinen/Lärm über Schwellenwerten und Benachrichtigungen für Betreuungspersonen."
       }
     },
     "showInCv": true,
@@ -192,7 +250,8 @@
     "links": [
       {
         "i18n": {
-          "en": {"label": "Website"}
+          "en": {"label": "Website"},
+          "de": {"label": "Website"}
         },
         "url": "https://subhan-ahmd.github.io",
         "type": "url",
@@ -201,7 +260,8 @@
       },
       {
         "i18n": {
-          "en": {"label": "GitHub"}
+          "en": {"label": "GitHub"},
+          "de": {"label": "GitHub"}
         },
         "url": "https://github.com/subhan-ahmd/subhan-ahmd.github.io",
         "type": "url",
@@ -210,7 +270,8 @@
       },
       {
         "i18n": {
-          "en": {"label": "Assets Repo"}
+          "en": {"label": "Assets Repo"},
+          "de": {"label": "Assets-Repo"}
         },
         "url": "https://github.com/subhan-ahmd/portfolio-assets",
         "type": "url",
@@ -219,7 +280,8 @@
       },
       {
         "i18n": {
-          "en": {"label": "README"}
+          "en": {"label": "README"},
+          "de": {"label": "README"}
         },
         "url": "https://raw.githubusercontent.com/subhan-ahmd/subhan-ahmd.github.io/main/README.md",
         "type": "md",
@@ -235,6 +297,14 @@
           "Automated CV PDF generation from JSON data with sequential CI/CD pipelines via GitHub Actions and visibility flag filtering for independent CV and portfolio content control."
         ],
         "shortDescription": "Interactive Flutter Web portfolio with Forge2D physics, glassmorphism design, command palette, terminal boot loader, headless CMS via GitHub raw URLs, automated CV generation, and easter eggs."
+      },
+      "de": {
+        "description": [
+          "Aufbau eines Headless CMS aus zwei Repositories mit GitHub-Raw-URLs als CDN, manifestbasierter Asset-Auflösung und parallelem Laden der Daten, ohne Hosting-Kosten für über 100 MB an Assets.",
+          "Entwicklung einer interaktiven Flutter-Web-SPA mit Forge2D-Physik-Engine (verschiebbare Skill-Pills, werfbare Emojis), Glassmorphism-Designsystem, Command Palette und Scroll-Reveal-Animationen.",
+          "Automatisierte Erstellung des Lebenslaufs als PDF aus JSON-Daten mit aufeinanderfolgenden CI/CD-Pipelines über GitHub Actions und Sichtbarkeits-Flags zur unabhängigen Steuerung von Lebenslauf- und Portfolio-Inhalten."
+        ],
+        "shortDescription": "Interaktives Flutter-Web-Portfolio mit Forge2D-Physik, Glassmorphism-Design, Command Palette, Terminal-Bootloader, Headless CMS über GitHub-Raw-URLs, automatisierter Lebenslauf-Erstellung und Easter Eggs."
       }
     },
     "showInCv": true,
@@ -258,6 +328,14 @@
           "Implemented JWT authentication, role based access control, and audit logging."
         ],
         "shortDescription": "Full stack B2B quoting platform enabling 20+ concurrent users to generate quotes with automated pricing, multi-system integration (ERP, AI, e-commerce), role based access, and PDF output."
+      },
+      "de": {
+        "description": [
+          "Entwicklung einer Full-Stack-B2B-Angebotsplattform (React, TypeScript, ASP.NET Core 8, SQL Server), mit der über 20 Nutzer gleichzeitig Angebote mit automatischer Preisberechnung und PDF-Ausgabe erstellen.",
+          "Anbindung von drei externen Systemen (Enapps ERP, KREO AI, WooCommerce) mit einer regelbasierten Preis-Engine für über 20 Fußbodenheizungskonfigurationen.",
+          "Implementierung von JWT-Authentifizierung, rollenbasierter Zugriffskontrolle und Audit-Logging."
+        ],
+        "shortDescription": "Full-Stack-B2B-Angebotsplattform, mit der über 20 Nutzer gleichzeitig Angebote mit automatischer Preisberechnung, Integration mehrerer Systeme (ERP, KI, E-Commerce), rollenbasiertem Zugriff und PDF-Ausgabe erstellen."
       }
     },
     "showInCv": true,

@@ -2,13 +2,22 @@
   {
     "id": 0,
     "i18n": {
-      "en": {"name": "Urdu", "fluency": "Native"}
+      "en": {"name": "Urdu", "fluency": "Native"},
+      "de": {"name": "Urdu", "fluency": "Muttersprache"}
     }
   },
   {
     "id": 1,
     "i18n": {
-      "en": {"name": "English", "fluency": "Advanced/C1"}
+      "en": {"name": "English", "fluency": "Advanced/C1"},
+      "de": {"name": "Englisch", "fluency": "Fortgeschritten/C1"}
+    }
+  },
+  {
+    "id": 2,
+    "i18n": {
+      "en": {"name": "German", "fluency": "Elementary/A2"},
+      "de": {"name": "Deutsch", "fluency": "Grundkenntnisse/A2"}
     }
   }
 ]

@@ -65,3 +65,41 @@ def test_flavours_have_language_and_no_i18n():
     languages = set(load_cv_strings(DATA))
     for flavour in load(DATA / "cv_flavours.json"):
         assert flavour["language"] in languages and "i18n" not in flavour
+
+
+def _i18n_blocks(node):
+    if isinstance(node, dict):
+        if "i18n" in node:
+            yield node["i18n"]
+        for value in node.values():
+            yield from _i18n_blocks(value)
+    elif isinstance(node, list):
+        for value in node:
+            yield from _i18n_blocks(value)
+
+
+@pytest.mark.parametrize("filename", sorted(p.name for p in DATA.glob("*.json")))
+def test_every_text_block_has_german_with_same_fields(filename):
+    for block in _i18n_blocks(load(DATA / filename)):
+        assert set(block) == {"en", "de"}
+        assert set(block["de"]) == set(block["en"])
+
+
+def test_german_spoken_language_listed():
+    langs = {l["i18n"]["en"]["name"]: l["i18n"] for l in load(DATA / "languages.json")}
+    assert langs["German"]["en"]["fluency"] == "Elementary/A2"
+    assert langs["German"]["de"] == {"name": "Deutsch", "fluency": "Grundkenntnisse/A2"}
+
+
+def test_site_languages_file():
+    assert load(DATA / "i18n" / "languages.json") == [
+        {"code": "en", "name": "English", "default": True},
+        {"code": "de", "name": "Deutsch"},
+    ]
+
+
+def test_german_portfolio_flavour():
+    flavours = [f for f in load(DATA / "cv_flavours.json") if f["slug"] == "portfolio"]
+    assert {f["language"] for f in flavours} == {"en", "de"}
+    de = next(f for f in flavours if f["language"] == "de")
+    assert de["hideProjects"] == ["sales_quotation_system"] and not de.get("disabled")

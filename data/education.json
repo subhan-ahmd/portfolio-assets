@@ -8,6 +8,13 @@
         "markingScheme": "CGPA",
         "description": [],
         "shortDescription": []
+      },
+      "de": {
+        "title": "B.S. in Computer Science",
+        "location": "Rahim Yar Khan",
+        "markingScheme": "CGPA",
+        "description": [],
+        "shortDescription": []
       }
     },
     "slug": "kfueit",
@@ -33,6 +40,13 @@
       "en": {
         "title": "M.Sc. in Computer Science International",
         "location": "Rostock, Germany",
+        "markingScheme": null,
+        "description": [],
+        "shortDescription": []
+      },
+      "de": {
+        "title": "M.Sc. in Computer Science International",
+        "location": "Rostock, Deutschland",
         "markingScheme": null,
         "description": [],
         "shortDescription": []

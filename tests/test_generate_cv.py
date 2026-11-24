@@ -40,14 +40,17 @@ def generated(tmp_path_factory):
 def test_outputs_per_language(generated):
     repo, result = generated
     assert pdf_names(repo / "cv" / "latest" / "en") == set(EN_FILES.values())
-    assert pdf_names(repo / "cv" / "latest" / "de") == {"Subhan Ahmed - Lebenslauf.pdf"}
+    assert pdf_names(repo / "cv" / "latest" / "de") == {
+        "Subhan Ahmed - Lebenslauf.pdf", "Subhan Ahmed - Lebenslauf - Portfolio.pdf",
+    }
     en_ts = pdf_names(repo / "cv" / "en")
     assert len(en_ts) == 3 and all(n.startswith(f"{NAME} - CV") for n in en_ts)
     de_ts = pdf_names(repo / "cv" / "de")
-    assert len(de_ts) == 1 and next(iter(de_ts)).startswith(f"{NAME} - Lebenslauf - ")
+    assert len(de_ts) == 2 and all(n.startswith(f"{NAME} - Lebenslauf - ") for n in de_ts)
     assert not list((repo / "cv").glob("*.pdf"))
     assert {(lang, slug) for lang, slug, _, _ in result} == {
-        ("en", "generic"), ("en", "mobile-app-dev"), ("en", "portfolio"), ("de", "generic"),
+        ("en", "generic"), ("en", "mobile-app-dev"), ("en", "portfolio"),
+        ("de", "generic"), ("de", "portfolio"),
     }
 
 
@@ -59,6 +62,13 @@ def test_german_uses_german_strings(generated):
                      "Automatisch erstellt aus"]:
         assert expected in text, expected
     assert "Present" not in text and "WORK EXPERIENCE" not in text
+    assert "Deutsch - Grundkenntnisse/A2" in text and "Softwareentwickler" in text
+
+
+def test_english_lists_german_language(generated):
+    repo, _ = generated
+    text = pdf_text(repo / "cv" / "latest" / "en" / "Subhan Ahmed - CV.pdf")
+    assert "German - Elementary/A2" in text and "Deutsch" not in text
 
 
 def test_flavour_language_controls_structure(tmp_path):
@@ -109,6 +119,7 @@ def test_legacy_english_generic_link_kept(generated):
     ("en", "Subhan Ahmed - CV - Portfolio.pdf"),
     ("en", "Subhan Ahmed - CV - Mobile Application Developer.pdf"),
     ("de", "Subhan Ahmed - Lebenslauf.pdf"),
+    ("de", "Subhan Ahmed - Lebenslauf - Portfolio.pdf"),
 ])
 def test_education_latest_first(generated, path):
     repo, _ = generated

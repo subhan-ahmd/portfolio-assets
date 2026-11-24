@@ -82,7 +82,7 @@ def test_cv_strings_languages_and_shape():
     strings = load_cv_strings(REPO_ROOT / "data")
     assert set(strings) == {"en", "de"}
     assert strings["en"]["contentLanguage"] == "en"
-    assert strings["de"]["contentLanguage"] == "en"
+    assert strings["de"]["contentLanguage"] == "de"
     assert strings["de"]["documentWord"] == "Lebenslauf"
     assert strings["de"]["present"] == "heute"
     for lang in strings.values():

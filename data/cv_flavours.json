@@ -96,5 +96,11 @@
     "language": "en",
     "label": "Portfolio",
     "hideProjects": ["sales_quotation_system"]
+  },
+  {
+    "slug": "portfolio",
+    "language": "de",
+    "label": "Portfolio",
+    "hideProjects": ["sales_quotation_system"]
   }
 ]

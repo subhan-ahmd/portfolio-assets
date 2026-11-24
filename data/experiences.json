@@ -2,7 +2,8 @@
   {
     "id": 0,
     "i18n": {
-      "en": {"title": "Personal Projects", "location": null, "description": [], "shortDescription": []}
+      "en": {"title": "Personal Projects", "location": null, "description": [], "shortDescription": []},
+      "de": {"title": "Persönliche Projekte", "location": null, "description": [], "shortDescription": []}
     },
     "slug": "personal",
     "association": "Personal",
@@ -32,6 +33,21 @@
           "Developed and launched three cross platform Flutter apps (Side Hustle, AcademIQ, Diecarz) from concept to production, spanning gamified rewards, AI education, and social collection platforms.",
           "Architected secure authentication systems (Apple/Google Sign-In), AI conversational features with ChatGPT/Gemini APIs, and analytics integrations (Mixpanel, AppsFlyer, Adjust) across all products.",
           "Delivered scalable Firebase architectures with offline first support (Isar DB), responsive UI, and clean state management (Riverpod) while collaborating in remote agile sprints."
+        ]
+      },
+      "de": {
+        "title": "Mobile-App-Entwickler",
+        "location": "Remote",
+        "description": [
+          "Entwicklung und Wartung Flutter-basierter Mobile-Apps, darunter Side Hustle, AcademIQ und Diecarz, von gamifizierten Belohnungen über KI-gestützte Bildung bis zu sozialen Plattformen.",
+          "Implementierung sicherer, plattformübergreifender Authentifizierung (Apple Sign-In, Google OAuth) und Integration von Tracking- und Analytics-SDKs (Singular, AppsFlyer, Adjust).",
+          "Entwicklung KI-gestützter Konversationsfunktionen in AcademIQ mit ChatGPT-APIs, einschließlich Structured Outputs, eigener Chat-Modi und Offline-Unterstützung über Isar DB.",
+          "Umsetzung responsiver UIs und skalierbarer Firebase-Integrationen sowie Zusammenarbeit über Sprints hinweg für eine saubere Architektur und termingerechte Feature-Releases."
+        ],
+        "shortDescription": [
+          "Entwicklung und Launch von drei plattformübergreifenden Flutter-Apps (Side Hustle, AcademIQ, Diecarz) vom Konzept bis zur Produktion, von gamifizierten Belohnungen über KI-Bildung bis zu sozialen Sammlerplattformen.",
+          "Konzeption sicherer Authentifizierungssysteme (Apple/Google Sign-In), KI-Konversationsfunktionen mit ChatGPT/Gemini-APIs und Analytics-Integrationen (Mixpanel, AppsFlyer, Adjust) für alle Produkte.",
+          "Umsetzung skalierbarer Firebase-Architekturen mit Offline-First-Unterstützung (Isar DB), responsiver UI und sauberem State Management (Riverpod) in Remote-Teams mit agilen Sprints."
         ]
       }
     },
@@ -63,6 +79,21 @@
           "Maintained and enhanced multiple production systems including mobile apps, full stack platforms, and business automation integrations across Monday.com, Sitelink, and Aircall.",
           "Led technical migration of AI Planner from Claude to OpenAI APIs with GPT-4 structured outputs and parallel function calling, achieving 50%+ latency reduction through optimized state management.",
           "Building full stack Sales Quotation System (React, ASP.NET Core, SQL Server) integrating three external APIs (Enapps ERP, KREO AI, WooCommerce) with rule based pricing engine and audit logging."
+        ]
+      },
+      "de": {
+        "title": "Softwareentwickler",
+        "location": "Lahore, Pakistan",
+        "description": [
+          "Mitarbeit an bestehenden Produktions-Apps, darunter AI Planner und Caregiver Management App.",
+          "Integration von ChatGPT (GPT-4.1) mit Structured Outputs und Parallel Function Calling zur Automatisierung von Terminplanung und Aufgabenextraktion aus Nutzerkonversationen.",
+          "Migration von Claude 3.5/3.7 auf OpenAI-APIs mit dynamischem Modellwechsel für mehr Flexibilität, Wartbarkeit und Antworteffizienz.",
+          "Refactoring des State Managements, Behebung zentraler Logikfehler und Umsetzung einer ausgefeilten UI mit verbesserter Performance und Stabilität."
+        ],
+        "shortDescription": [
+          "Wartung und Weiterentwicklung mehrerer Produktivsysteme, darunter Mobile-Apps, Full-Stack-Plattformen und Integrationen zur Geschäftsautomatisierung mit Monday.com, Sitelink und Aircall.",
+          "Leitung der technischen Migration von AI Planner von Claude auf OpenAI-APIs mit GPT-4 Structured Outputs und Parallel Function Calling; über 50 % geringere Latenz durch optimiertes State Management.",
+          "Entwicklung eines Full-Stack-Angebotssystems (React, ASP.NET Core, SQL Server) mit Anbindung von drei externen APIs (Enapps ERP, KREO AI, WooCommerce), regelbasierter Preis-Engine und Audit-Logging."
         ]
       }
     },
