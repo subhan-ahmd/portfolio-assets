@@ -17,6 +17,7 @@ from reportlab.platypus import (
     SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, HRFlowable, Flowable,
 )
 from reportlab.lib.utils import ImageReader
+from reportlab.graphics.barcode import qrencoder
 from PIL import Image
 from reportlab.lib.colors import black, HexColor
 from reportlab.pdfbase import pdfmetrics
@@ -42,6 +43,14 @@ PHOTO_CROP = (0.1458, 0.0, 0.8542, 0.5874)  # head-and-shoulders square, as frac
 PHOTO_PIXELS = 384
 PHOTO_DISC = HexColor("#EEEEEE")
 PHOTO_RING = HexColor("#999999")
+# Portfolio QR code: generic CVs always, flavours with "showQr": true.
+# Classic square modules, error correction M and a plain URL keep the code at
+# 29x29 modules, so each dot prints ~0.65 mm and survives poor print quality.
+QR_URL = "https://subhan-ahmd.github.io"
+QR_MODULE = 1.84  # pt per module (~0.65 mm)
+QR_QUIET = 4      # quiet-zone modules on each side (required by scanners)
+QR_CAPTION_SIZE = 7
+QR_CAPTION_COLOR = HexColor("#555555")
 LATEST_CV_URL = "raw.githubusercontent.com/subhan-ahmd/portfolio-assets/main/cv.pdf"
 
 # --- Font Registration ---
@@ -268,6 +277,54 @@ class PhotoFlowable(Flowable):
         c.circle(r, r, r - 0.375, stroke=1, fill=0)
 
 
+class QrFlowable(Flowable):
+    """Clickable QR code (with its quiet zone) and a short caption + drawn ↗."""
+
+    def __init__(self, url: str, caption: str):
+        super().__init__()
+        qr = qrencoder.QRCode(None, qrencoder.QRErrorCorrectLevel.M)
+        qr.addData(url)
+        qr.make()
+        n = qr.getModuleCount()
+        self.modules = [[qr.isDark(r, c) for c in range(n)] for r in range(n)]
+        self.url = url
+        self.caption = caption
+        self.size = (n + 2 * QR_QUIET) * QR_MODULE
+        self.caption_h = QR_CAPTION_SIZE + 2
+
+    @property
+    def diameter(self) -> float:  # header column width, like PhotoFlowable
+        return self.size
+
+    def wrap(self, avail_width, avail_height):
+        return self.size, self.size + self.caption_h
+
+    def draw(self):
+        c, m, n = self.canv, QR_MODULE, len(self.modules)
+        top = self.caption_h + self.size - QR_QUIET * m
+        c.saveState()
+        c.setFillColor(black)
+        for r, row in enumerate(self.modules):
+            for col, dark in enumerate(row):
+                if dark:
+                    c.rect((QR_QUIET + col) * m, top - (r + 1) * m, m, m, stroke=0, fill=1)
+        c.linkURL(self.url, (0, self.caption_h, self.size, self.caption_h + self.size), relative=1)
+        # Caption, with a drawn north-east arrow (Montserrat has no arrow glyphs).
+        c.setFillColor(QR_CAPTION_COLOR)
+        c.setStrokeColor(QR_CAPTION_COLOR)
+        c.setFont(BASE_FONT, QR_CAPTION_SIZE)
+        arrow = QR_CAPTION_SIZE * 0.6
+        text_w = c.stringWidth(self.caption, BASE_FONT, QR_CAPTION_SIZE)
+        x = (self.size - text_w - 2 - arrow) / 2
+        c.drawString(x, 2, self.caption)
+        ax, ay = x + text_w + 2, 2.6
+        c.setLineWidth(0.7)
+        c.line(ax, ay, ax + arrow, ay + arrow)
+        c.line(ax + arrow * 0.35, ay + arrow, ax + arrow, ay + arrow)
+        c.line(ax + arrow, ay + arrow * 0.35, ax + arrow, ay + arrow)
+        c.restoreState()
+
+
 def make_photo_flowable(photo_path: Path, diameter: float) -> Flowable | None:
     """Head-and-shoulders circle from the cut-out, or None when the file is missing."""
     if not photo_path.exists():
@@ -284,17 +341,20 @@ def make_photo_flowable(photo_path: Path, diameter: float) -> Flowable | None:
 # --- Section Builders ---
 
 def build_header(profile: dict, contacts: list, socials: list, styles: dict,
-                 photo: Flowable | None = None) -> list:
+                 photo: Flowable | None = None, qr: Flowable | None = None) -> list:
     elements = []
 
-    # Name + Position (with a photo: [spacer | text | photo] keeps the text centred)
+    # Name + Position. With a photo and/or QR code: [left | text | right] keeps
+    # the text centred — photo on the right, QR on the left (or right alone).
     name = Paragraph(profile["name"].upper(), styles["name"])
     position = Paragraph(profile["position"], styles["position"])
-    if photo is None:
+    if photo is None and qr is None:
         elements.extend([name, position])
     else:
-        d = photo.diameter
-        table = Table([[Spacer(d, d), [name, position], photo]],
+        d = max(f.diameter for f in (photo, qr) if f is not None)
+        left = qr if photo is not None and qr is not None else Spacer(d, d)
+        right = photo if photo is not None else qr
+        table = Table([[left, [name, position], right]],
                       colWidths=[d, AVAILABLE_WIDTH - 2 * d, d])
         table.setStyle(TableStyle([
             ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
@@ -567,7 +627,7 @@ def load_localized(data_dir: Path, lang: str) -> dict:
 
 def generate_single_cv(repo_root, lang, strings, profile, contacts, socials,
                        experiences, projects, education, skills, languages,
-                       timestamp, label=None, show_photo=False):
+                       timestamp, label=None, show_photo=False, show_qr=True):
     """Generate a single CV PDF. Returns (timestamped_path, stable_path)."""
     word = strings["documentWord"]
     ts_dir, latest_dir = cv_dirs(repo_root, lang)
@@ -589,7 +649,8 @@ def generate_single_cv(repo_root, lang, strings, profile, contacts, socials,
 
     story = []
     photo = make_photo_flowable(repo_root / PHOTO_FILE, PHOTO_DIAMETER) if show_photo else None
-    story.extend(build_header(profile, contacts, socials, styles, photo))
+    qr = QrFlowable(QR_URL, strings["qrCaption"]) if show_qr else None
+    story.extend(build_header(profile, contacts, socials, styles, photo, qr))
     story.extend(build_summary(profile, styles))
     if experiences:
         story.extend(build_experience_section(experiences, styles, strings))
@@ -667,6 +728,7 @@ def generate_all_cvs(repo_root: Path = REPO_ROOT):
             f_skills, d["languages"], timestamp,
             label=flavour["label"],
             show_photo=bool(flavour.get("showPhoto")),
+            show_qr=bool(flavour.get("showQr")),
         )
         generated.append((lang, flavour["slug"], ts_path, stable_path))
 

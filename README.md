@@ -160,6 +160,7 @@ A flavour is a tailored CV. Its `label`, `position` and `summary` are plain text
   "language": "en",
   "label": "Portfolio",
   "showPhoto": false,
+  "showQr": true,
   "position": "Software Engineer",
   "summary": "Optional summary override",
   "hideProjects": ["sales_quotation_system"],
@@ -167,7 +168,7 @@ A flavour is a tailored CV. Its `label`, `position` and `summary` are plain text
 }
 ```
 
-Options: `disabled`, `showPhoto` (photo circle top right of the header, cut from `profile.png`; missing = `false`, generic CVs never show one), `position`, `summary`, `showProjects` / `showExperiences` / `showEducation` (pick and order by slug), `hideProjects` / `hideExperiences` / `hideEducation`, and `skills.<group>.highlight/hide` (skill keys).
+Options: `disabled`, `showPhoto` (photo circle top right of the header, cut from `profile.png`; missing = `false`, generic CVs never show one), `showQr` (QR code linking to the portfolio site, captioned "Scan me ↗": top left next to a photo, otherwise top right; missing = `false`, generic CVs always show one), `position`, `summary`, `showProjects` / `showExperiences` / `showEducation` (pick and order by slug), `hideProjects` / `hideExperiences` / `hideEducation`, and `skills.<group>.highlight/hide` (skill keys).
 
 ### Output
 

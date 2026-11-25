@@ -195,3 +195,52 @@ def test_education_comes_before_projects(generated, path, headings):
     text = pdf_text(repo / "cv" / "latest" / path[0] / path[1])
     experience, education, projects = (text.index(h) for h in headings)
     assert experience < education < projects
+
+
+# --- Portfolio QR code (generic always, flavours via "showQr") ---
+
+PORTFOLIO_URL = "https://subhan-ahmd.github.io"
+
+
+def qr_links(path: Path) -> list[str]:
+    """URLs of square link areas >= 50 pt on page 1 — only the QR code makes one
+    (the portfolio URL is also linked from the social line and the project)."""
+    urls = []
+    for annot in _Reader(path).pages[0].get("/Annots", []):
+        a = annot.get_object()
+        if a.get("/Subtype") != "/Link" or "/A" not in a:
+            continue
+        x0, y0, x1, y1 = (float(v) for v in a["/Rect"])
+        w, h = abs(x1 - x0), abs(y1 - y0)
+        if w >= 50 and abs(w - h) < 1:
+            urls.append(a["/A"]["/URI"])
+    return urls
+
+
+@pytest.mark.parametrize("path,caption", [
+    (("en", "Subhan Ahmed - CV.pdf"), "Scan me"),
+    (("de", "Subhan Ahmed - Lebenslauf.pdf"), "Scann mich"),
+])
+def test_generic_cv_has_portfolio_qr(generated, path, caption):
+    repo, _ = generated
+    cv = repo / "cv" / "latest" / path[0] / path[1]
+    assert caption in _Reader(cv).pages[0].extract_text()
+    assert qr_links(cv) == [PORTFOLIO_URL]
+
+
+def test_flavour_without_show_qr_has_no_qr(tmp_path):
+    repo = make_repo(tmp_path)
+    flavours_file = repo / "data" / "cv_flavours.json"
+    flavours = json.loads(flavours_file.read_text(encoding="utf-8"))
+    for f in flavours:
+        f["showQr"] = False
+    flavours_file.write_text(json.dumps(flavours, ensure_ascii=False), encoding="utf-8")
+    generate_cv.generate_all_cvs(repo)
+    cv = repo / "cv" / "latest" / "en" / EN_FILES["portfolio"]
+    assert "Scan me" not in pdf_text(cv)
+    assert qr_links(cv) == []
+
+
+def test_every_flavour_sets_show_qr():
+    flavours = json.loads((REPO_ROOT / "data" / "cv_flavours.json").read_text(encoding="utf-8"))
+    assert all(f.get("showQr") is True for f in flavours)
