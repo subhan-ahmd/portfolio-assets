@@ -1,29 +1,29 @@
 {
-  "generatedAt": "2026-11-25T10:32:31Z",
+  "generatedAt": "2026-11-25T10:49:03Z",
   "profile": "profile.png",
   "cv": {
     "en": {
       "generic": {
         "latest": "Subhan Ahmed - CV.pdf",
-        "timestamped": "Subhan Ahmed - CV - 251126-1032.pdf"
+        "timestamped": "Subhan Ahmed - CV - 251126-1048.pdf"
       },
       "mobile-app-dev": {
         "latest": "Subhan Ahmed - CV - Mobile Application Developer.pdf",
-        "timestamped": "Subhan Ahmed - CV - Mobile Application Developer - 251126-1032.pdf"
+        "timestamped": "Subhan Ahmed - CV - Mobile Application Developer - 251126-1048.pdf"
       },
       "portfolio": {
         "latest": "Subhan Ahmed - CV - Portfolio.pdf",
-        "timestamped": "Subhan Ahmed - CV - Portfolio - 251126-1032.pdf"
+        "timestamped": "Subhan Ahmed - CV - Portfolio - 251126-1048.pdf"
       }
     },
     "de": {
       "generic": {
         "latest": "Subhan Ahmed - Lebenslauf.pdf",
-        "timestamped": "Subhan Ahmed - Lebenslauf - 251126-1032.pdf"
+        "timestamped": "Subhan Ahmed - Lebenslauf - 251126-1048.pdf"
       },
       "portfolio": {
         "latest": "Subhan Ahmed - Lebenslauf - Portfolio.pdf",
-        "timestamped": "Subhan Ahmed - Lebenslauf - Portfolio - 251126-1032.pdf"
+        "timestamped": "Subhan Ahmed - Lebenslauf - Portfolio - 251126-1048.pdf"
       }
     }
   },
