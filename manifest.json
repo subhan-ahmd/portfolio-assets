@@ -1,43 +1,84 @@
 {
-  "generatedAt": "2026-11-25T11:46:51Z",
+  "generatedAt": "2026-11-25T11:51:59Z",
   "profile": "profile.png",
   "cv": {
     "en": {
       "generic": {
         "latest": "Subhan Ahmed - CV.pdf",
-        "timestamped": "Subhan Ahmed - CV - 251126-1143.pdf"
+        "timestamped": "Subhan Ahmed - CV - 251126-1151.pdf"
       },
       "mobile-app-dev": {
         "latest": "Subhan Ahmed - CV - Mobile Application Developer.pdf",
-        "timestamped": "Subhan Ahmed - CV - Mobile Application Developer - 251126-1143.pdf"
+        "timestamped": "Subhan Ahmed - CV - Mobile Application Developer - 251126-1151.pdf"
       },
       "portfolio": {
         "latest": "Subhan Ahmed - CV - Portfolio.pdf",
-        "timestamped": "Subhan Ahmed - CV - Portfolio - 251126-1143.pdf"
+        "timestamped": "Subhan Ahmed - CV - Portfolio - 251126-1151.pdf"
       },
       "career-night": {
         "latest": "Subhan Ahmed - CV - Career Night.pdf",
-        "timestamped": "Subhan Ahmed - CV - Career Night - 251126-1143.pdf"
+        "timestamped": "Subhan Ahmed - CV - Career Night - 251126-1151.pdf"
       }
     },
     "de": {
       "generic": {
         "latest": "Subhan Ahmed - Lebenslauf.pdf",
-        "timestamped": "Subhan Ahmed - Lebenslauf - 251126-1143.pdf"
+        "timestamped": "Subhan Ahmed - Lebenslauf - 251126-1151.pdf"
       },
       "portfolio": {
         "latest": "Subhan Ahmed - Lebenslauf - Portfolio.pdf",
-        "timestamped": "Subhan Ahmed - Lebenslauf - Portfolio - 251126-1143.pdf"
+        "timestamped": "Subhan Ahmed - Lebenslauf - Portfolio - 251126-1151.pdf"
       },
       "career-night": {
         "latest": "Subhan Ahmed - Lebenslauf - Karrierenacht.pdf",
-        "timestamped": "Subhan Ahmed - Lebenslauf - Karrierenacht - 251126-1143.pdf"
+        "timestamped": "Subhan Ahmed - Lebenslauf - Karrierenacht - 251126-1151.pdf"
       }
     }
   },
   "projects": {
-    "askwillow": {
-      "logo": "logo.png"
+    "diecarz": {
+      "logo": "logo.png",
+      "screenshots": [
+        "diecarz_1.png",
+        "diecarz_2.png",
+        "diecarz_3.png",
+        "diecarz_4.png",
+        "diecarz_5.png",
+        "diecarz_6.png",
+        "diecarz_7.png",
+        "diecarz_8.png",
+        "diecarz_9.png",
+        "diecarz_10.png",
+        "diecarz_11.png",
+        "diecarz_12.png",
+        "diecarz_13.png",
+        "diecarz_14.png",
+        "diecarz_15.png",
+        "diecarz_16.png",
+        "diecarz_17.png",
+        "diecarz_18.png",
+        "diecarz_19.png",
+        "diecarz_20.png",
+        "diecarz_21.png",
+        "diecarz_22.png",
+        "diecarz_23.png",
+        "diecarz_24.png",
+        "diecarz_25.png"
+      ]
+    },
+    "jackjack": {
+      "logo": "logo.png",
+      "screenshots": [
+        "jackjack_1.png",
+        "jackjack_2.png",
+        "jackjack_3.png",
+        "jackjack_4.png",
+        "jackjack_5.png",
+        "jackjack_6.png",
+        "jackjack_7.png",
+        "jackjack_8.png",
+        "jackjack_9.png"
+      ]
     },
     "portfolio": {
       "logo": "logo.png"
@@ -87,49 +128,8 @@
         "quick_care_41.png"
       ]
     },
-    "diecarz": {
-      "logo": "logo.png",
-      "screenshots": [
-        "diecarz_1.png",
-        "diecarz_2.png",
-        "diecarz_3.png",
-        "diecarz_4.png",
-        "diecarz_5.png",
-        "diecarz_6.png",
-        "diecarz_7.png",
-        "diecarz_8.png",
-        "diecarz_9.png",
-        "diecarz_10.png",
-        "diecarz_11.png",
-        "diecarz_12.png",
-        "diecarz_13.png",
-        "diecarz_14.png",
-        "diecarz_15.png",
-        "diecarz_16.png",
-        "diecarz_17.png",
-        "diecarz_18.png",
-        "diecarz_19.png",
-        "diecarz_20.png",
-        "diecarz_21.png",
-        "diecarz_22.png",
-        "diecarz_23.png",
-        "diecarz_24.png",
-        "diecarz_25.png"
-      ]
-    },
-    "jackjack": {
-      "logo": "logo.png",
-      "screenshots": [
-        "jackjack_1.png",
-        "jackjack_2.png",
-        "jackjack_3.png",
-        "jackjack_4.png",
-        "jackjack_5.png",
-        "jackjack_6.png",
-        "jackjack_7.png",
-        "jackjack_8.png",
-        "jackjack_9.png"
-      ]
+    "side_hustle": {
+      "logo": "logo.png"
     },
     "academiq": {
       "logo": "logo.png",
@@ -149,15 +149,15 @@
         "academiq_13.png"
       ]
     },
-    "side_hustle": {
+    "askwillow": {
       "logo": "logo.png"
     }
   },
   "education": {
-    "kfueit": {
+    "uni_rostock": {
       "logo": "logo.png"
     },
-    "uni_rostock": {
+    "kfueit": {
       "logo": "logo.png"
     }
   },
