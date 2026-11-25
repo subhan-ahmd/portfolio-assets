@@ -13,6 +13,7 @@ EN_FILES = {
     "generic": "Subhan Ahmed - CV.pdf",
     "mobile-app-dev": "Subhan Ahmed - CV - Mobile Application Developer.pdf",
     "portfolio": "Subhan Ahmed - CV - Portfolio.pdf",
+    "career-night": "Subhan Ahmed - CV - Career Night.pdf",
 }
 
 
@@ -42,15 +43,17 @@ def test_outputs_per_language(generated):
     assert pdf_names(repo / "cv" / "latest" / "en") == set(EN_FILES.values())
     assert pdf_names(repo / "cv" / "latest" / "de") == {
         "Subhan Ahmed - Lebenslauf.pdf", "Subhan Ahmed - Lebenslauf - Portfolio.pdf",
+        "Subhan Ahmed - Lebenslauf - Karrierenacht.pdf",
     }
     en_ts = pdf_names(repo / "cv" / "en")
-    assert len(en_ts) == 3 and all(n.startswith(f"{NAME} - CV") for n in en_ts)
+    assert len(en_ts) == 4 and all(n.startswith(f"{NAME} - CV") for n in en_ts)
     de_ts = pdf_names(repo / "cv" / "de")
-    assert len(de_ts) == 2 and all(n.startswith(f"{NAME} - Lebenslauf - ") for n in de_ts)
+    assert len(de_ts) == 3 and all(n.startswith(f"{NAME} - Lebenslauf - ") for n in de_ts)
     assert not list((repo / "cv").glob("*.pdf"))
     assert {(lang, slug) for lang, slug, _, _ in result} == {
         ("en", "generic"), ("en", "mobile-app-dev"), ("en", "portfolio"),
         ("de", "generic"), ("de", "portfolio"),
+        ("en", "career-night"), ("de", "career-night"),
     }
 
 
@@ -179,8 +182,10 @@ def test_missing_photo_file_skips_photo(generated):
 
 def test_every_flavour_sets_show_photo():
     flavours = json.loads((REPO_ROOT / "data" / "cv_flavours.json").read_text(encoding="utf-8"))
+    # German flavours and the career-night prints show the photo; other English ones don't.
     assert {f["slug"] + "/" + f["language"]: f.get("showPhoto") for f in flavours} == {
-        f["slug"] + "/" + f["language"]: f["language"] == "de" for f in flavours
+        f["slug"] + "/" + f["language"]: f["language"] == "de" or f["slug"] == "career-night"
+        for f in flavours
     }
 
 

@@ -116,5 +116,23 @@
     "showQr": true,
     "label": "Portfolio",
     "hideProjects": ["sales_quotation_system"]
+  },
+  {
+    "slug": "career-night",
+    "language": "en",
+    "showPhoto": true,
+    "showQr": true,
+    "label": "Career Night",
+    "position": "Software Engineer · M.Sc. Computer Science Student",
+    "showProjects": ["askwillow", "sales_quotation_system", "portfolio", "jackjack", "diecarz"]
+  },
+  {
+    "slug": "career-night",
+    "language": "de",
+    "showPhoto": true,
+    "showQr": true,
+    "label": "Karrierenacht",
+    "position": "Softwareentwickler · M.Sc.-Student Informatik",
+    "showProjects": ["askwillow", "sales_quotation_system", "portfolio", "jackjack", "diecarz"]
   }
 ]

@@ -28,8 +28,8 @@ def repo(tmp_path):
 def test_manifest_cv_shape(repo):
     cv = generate_manifest.generate_manifest(repo)["cv"]
     assert set(cv) == {"en", "de"}
-    assert set(cv["en"]) == {"generic", "mobile-app-dev", "portfolio"}
-    assert set(cv["de"]) == {"generic", "portfolio"}
+    assert set(cv["en"]) == {"generic", "mobile-app-dev", "portfolio", "career-night"}
+    assert set(cv["de"]) == {"generic", "portfolio", "career-night"}
     assert cv["en"]["portfolio"]["latest"] == "Subhan Ahmed - CV - Portfolio.pdf"
     assert cv["de"]["generic"]["latest"] == "Subhan Ahmed - Lebenslauf.pdf"
     ts = cv["en"]["portfolio"]["timestamped"]
