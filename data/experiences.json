@@ -70,30 +70,32 @@
         "title": "Software Engineer",
         "location": "Lahore, Pakistan",
         "description": [
-          "Contributed to existing production apps including AI Planner and Caregiver Management App.",
-          "Integrated ChatGPT (GPT-4.1) with structured outputs and parallel function calling to automate scheduling and task extraction from user conversations.",
-          "Migrated from Claude 3.5/3.7 to OpenAI APIs with dynamic model switching, improving flexibility, maintainability, and response efficiency.",
-          "Refactored state management, resolved core logic issues, and delivered polished UI with improved performance and feature stability."
+          "Built AskWillow end to end as the sole developer: an AI quoting assistant for landscapers in Flutter (Android, iOS and web with desktop and mobile layouts) on Supabase, with tool-calling AI chat (Gemini/OpenAI), voice mode via Google Cloud Text-to-Speech and configurable proposal PDFs.",
+          "Built a full stack B2B Sales Quotation System (React, TypeScript, ASP.NET Core 8, SQL Server) integrating Enapps ERP, KREO AI and WooCommerce, with a rule based pricing engine, JWT authentication, role based access and audit logging.",
+          "Migrated AI Planner from Claude 3.5/3.7 to OpenAI (GPT-4.1) with structured outputs, parallel function calling and dynamic model switching, cutting response latency by 50%+.",
+          "Extended the Caregiver Management App with recurring task scheduling, media attachments, 9 language localization (including RTL) and push notification fixes.",
+          "Maintained production apps and business automation integrations with Monday.com, Sitelink and Aircall, refactoring state management and resolving core logic issues."
         ],
         "shortDescription": [
-          "Maintained and enhanced multiple production systems including mobile apps, full stack platforms, and business automation integrations across Monday.com, Sitelink, and Aircall.",
-          "Led technical migration of AI Planner from Claude to OpenAI APIs with GPT-4 structured outputs and parallel function calling, achieving 50%+ latency reduction through optimized state management.",
-          "Building full stack Sales Quotation System (React, ASP.NET Core, SQL Server) integrating three external APIs (Enapps ERP, KREO AI, WooCommerce) with rule based pricing engine and audit logging."
+          "Built AskWillow solo, an AI quoting assistant for landscapers on Android, iOS and web (Flutter, Supabase) with tool-calling AI chat, voice mode and configurable proposal PDFs.",
+          "Built a full stack B2B Sales Quotation System (React, ASP.NET Core, SQL Server) integrating Enapps ERP, KREO AI and WooCommerce.",
+          "Led the AI Planner migration from Claude to OpenAI with structured outputs and parallel function calling, cutting latency by 50%+, and maintained production apps and integrations (Monday.com, Sitelink, Aircall)."
         ]
       },
       "de": {
         "title": "Softwareentwickler",
         "location": "Lahore, Pakistan",
         "description": [
-          "Mitarbeit an bestehenden Produktions-Apps, darunter AI Planner und Caregiver Management App.",
-          "Integration von ChatGPT (GPT-4.1) mit Structured Outputs und Parallel Function Calling zur Automatisierung von Terminplanung und Aufgabenextraktion aus Nutzerkonversationen.",
-          "Migration von Claude 3.5/3.7 auf OpenAI-APIs mit dynamischem Modellwechsel für mehr Flexibilität, Wartbarkeit und Antworteffizienz.",
-          "Refactoring des State Managements, Behebung zentraler Logikfehler und Umsetzung einer ausgefeilten UI mit verbesserter Performance und Stabilität."
+          "Eigenständige End-to-End-Entwicklung von AskWillow, einem KI-Angebotsassistenten für Garten- und Landschaftsbauer in Flutter (Android, iOS und Web mit Desktop- und Mobil-Layout) auf Supabase, mit Tool-Calling-KI-Chat (Gemini/OpenAI), Sprachmodus über Google Cloud Text-to-Speech und konfigurierbaren Angebots-PDFs.",
+          "Entwicklung eines Full-Stack-B2B-Angebotssystems (React, TypeScript, ASP.NET Core 8, SQL Server) mit Anbindung von Enapps ERP, KREO AI und WooCommerce, regelbasierter Preis-Engine, JWT-Authentifizierung, rollenbasierter Zugriffskontrolle und Audit-Logging.",
+          "Migration von AI Planner von Claude 3.5/3.7 auf OpenAI (GPT-4.1) mit Structured Outputs, Parallel Function Calling und dynamischem Modellwechsel; über 50 % geringere Antwortlatenz.",
+          "Erweiterung der Caregiver Management App um wiederkehrende Aufgabenplanung, Medienanhänge, Lokalisierung in 9 Sprachen (inklusive RTL) und Korrekturen am Push-Benachrichtigungssystem.",
+          "Wartung von Produktiv-Apps und Integrationen zur Geschäftsautomatisierung mit Monday.com, Sitelink und Aircall, inklusive Refactoring des State Managements und Behebung zentraler Logikfehler."
         ],
         "shortDescription": [
-          "Wartung und Weiterentwicklung mehrerer Produktivsysteme, darunter Mobile-Apps, Full-Stack-Plattformen und Integrationen zur Geschäftsautomatisierung mit Monday.com, Sitelink und Aircall.",
-          "Leitung der technischen Migration von AI Planner von Claude auf OpenAI-APIs mit GPT-4 Structured Outputs und Parallel Function Calling; über 50 % geringere Latenz durch optimiertes State Management.",
-          "Entwicklung eines Full-Stack-Angebotssystems (React, ASP.NET Core, SQL Server) mit Anbindung von drei externen APIs (Enapps ERP, KREO AI, WooCommerce), regelbasierter Preis-Engine und Audit-Logging."
+          "Eigenständige Entwicklung von AskWillow, einem KI-Angebotsassistenten für Garten- und Landschaftsbauer auf Android, iOS und Web (Flutter, Supabase), mit Tool-Calling-KI-Chat, Sprachmodus und konfigurierbaren Angebots-PDFs.",
+          "Entwicklung eines Full-Stack-B2B-Angebotssystems (React, ASP.NET Core, SQL Server) mit Anbindung von Enapps ERP, KREO AI und WooCommerce.",
+          "Leitung der Migration von AI Planner von Claude auf OpenAI mit Structured Outputs und Parallel Function Calling (über 50 % geringere Latenz) sowie Wartung von Produktiv-Apps und Integrationen (Monday.com, Sitelink, Aircall)."
         ]
       }
     },

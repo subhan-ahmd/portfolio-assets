@@ -593,10 +593,10 @@ def generate_single_cv(repo_root, lang, strings, profile, contacts, socials,
     story.extend(build_summary(profile, styles))
     if experiences:
         story.extend(build_experience_section(experiences, styles, strings))
-    if projects:
-        story.extend(build_projects_section(projects, styles, strings))
     if education:
         story.extend(build_education_section(education, styles, strings))
+    if projects:
+        story.extend(build_projects_section(projects, styles, strings))
     story.extend(build_skills_section(skills, styles, strings))
     story.extend(build_languages_section(languages, styles, strings))
 

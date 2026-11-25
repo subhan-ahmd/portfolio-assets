@@ -129,12 +129,8 @@ def test_education_latest_first(generated, path):
 
 # --- Profile photo (showPhoto per flavour) ---
 
-import importlib.util
-import subprocess
-
 from pypdf import PdfReader as _Reader
 
-PRE_PHOTO_COMMIT = "9cf1aa5^"  # last generate_cv.py without photo support
 DE_PORTFOLIO = ("de", "Subhan Ahmed - Lebenslauf - Portfolio.pdf")
 NO_PHOTO = [
     ("en", "Subhan Ahmed - CV.pdf"),
@@ -156,36 +152,13 @@ def with_photo(tmp_path_factory):
     return repo
 
 
-@pytest.fixture(scope="module")
-def golden(tmp_path_factory):
-    """CVs built by generate_cv.py as it was before photo support (PRE_PHOTO_COMMIT).
-
-    Pinned to that commit, not HEAD: once photo support is committed, HEAD would
-    compare the script against itself. Skips when the commit is unavailable
-    (no git, or a shallow clone).
-    """
-    tmp = tmp_path_factory.mktemp("golden")
-    try:
-        src = subprocess.run(["git", "show", f"{PRE_PHOTO_COMMIT}:generate_cv.py"], cwd=REPO_ROOT,
-                             capture_output=True, text=True, check=True).stdout
-    except (OSError, subprocess.CalledProcessError):
-        pytest.skip(f"pre-photo commit {PRE_PHOTO_COMMIT} not available")
-    script = tmp / "generate_cv_head.py"
-    script.write_text(src, encoding="utf-8")
-    (tmp / "fonts").symlink_to(REPO_ROOT / "fonts")
-    spec = importlib.util.spec_from_file_location("generate_cv_head", script)
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    repo = make_repo(tmp / "repo")
-    shutil.copy2(REPO_ROOT / "profile.png", repo / "profile.png")
-    module.generate_all_cvs(repo)
-    return repo
-
-
 @pytest.mark.parametrize("path", NO_PHOTO)
-def test_cv_without_photo_unchanged(with_photo, golden, path):
+def test_cv_without_photo_unchanged(with_photo, generated, path):
+    # A CV that doesn't show the photo must come out identical whether or not
+    # profile.png exists (independent of other layout changes over time).
+    repo, _ = generated
     new = with_photo / "cv" / "latest" / path[0] / path[1]
-    old = golden / "cv" / "latest" / path[0] / path[1]
+    old = repo / "cv" / "latest" / path[0] / path[1]
     assert len(_Reader(new).pages) == len(_Reader(old).pages)
     assert [p.extract_text() for p in _Reader(new).pages] == [p.extract_text() for p in _Reader(old).pages]
     assert image_count(new) == 0
@@ -209,3 +182,16 @@ def test_every_flavour_sets_show_photo():
     assert {f["slug"] + "/" + f["language"]: f.get("showPhoto") for f in flavours} == {
         f["slug"] + "/" + f["language"]: f["language"] == "de" for f in flavours
     }
+
+
+@pytest.mark.parametrize("path,headings", [
+    (("en", "Subhan Ahmed - CV.pdf"), ("WORK EXPERIENCE", "EDUCATION", "PROJECTS")),
+    (("en", "Subhan Ahmed - CV - Portfolio.pdf"), ("WORK EXPERIENCE", "EDUCATION", "PROJECTS")),
+    (("de", "Subhan Ahmed - Lebenslauf.pdf"), ("BERUFSERFAHRUNG", "AUSBILDUNG", "PROJEKTE")),
+    (("de", "Subhan Ahmed - Lebenslauf - Portfolio.pdf"), ("BERUFSERFAHRUNG", "AUSBILDUNG", "PROJEKTE")),
+])
+def test_education_comes_before_projects(generated, path, headings):
+    repo, _ = generated
+    text = pdf_text(repo / "cv" / "latest" / path[0] / path[1])
+    experience, education, projects = (text.index(h) for h in headings)
+    assert experience < education < projects

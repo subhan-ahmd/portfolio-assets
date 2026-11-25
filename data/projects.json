@@ -323,8 +323,8 @@
     "i18n": {
       "en": {
         "description": [
-          "Building a full stack B2B quoting platform (React, TypeScript, ASP.NET Core 8, SQL Server) enabling 20+ concurrent users to generate quotes with automated pricing and PDF output.",
-          "Integrating three external systems (Enapps ERP, KREO AI, WooCommerce) with rule based pricing engine processing 20+ underfloor heating configurations.",
+          "Built a full stack B2B quoting platform (React, TypeScript, ASP.NET Core 8, SQL Server) enabling 20+ concurrent users to generate quotes with automated pricing and PDF output.",
+          "Integrated three external systems (Enapps ERP, KREO AI, WooCommerce) with rule based pricing engine processing 20+ underfloor heating configurations.",
           "Implemented JWT authentication, role based access control, and audit logging."
         ],
         "shortDescription": "Full stack B2B quoting platform enabling 20+ concurrent users to generate quotes with automated pricing, multi-system integration (ERP, AI, e-commerce), role based access, and PDF output."
