@@ -125,3 +125,78 @@ def test_education_latest_first(generated, path):
     repo, _ = generated
     text = pdf_text(repo / "cv" / "latest" / path[0] / path[1])
     assert text.index("M.Sc. in Computer Science International") < text.index("B.S. in Computer Science")
+
+
+# --- Profile photo (showPhoto per flavour) ---
+
+import importlib.util
+import subprocess
+
+from pypdf import PdfReader as _Reader
+
+DE_PORTFOLIO = ("de", "Subhan Ahmed - Lebenslauf - Portfolio.pdf")
+NO_PHOTO = [
+    ("en", "Subhan Ahmed - CV.pdf"),
+    ("en", "Subhan Ahmed - CV - Portfolio.pdf"),
+    ("en", "Subhan Ahmed - CV - Mobile Application Developer.pdf"),
+    ("de", "Subhan Ahmed - Lebenslauf.pdf"),
+]
+
+
+def image_count(path: Path) -> int:
+    return sum(len(page.images) for page in _Reader(path).pages)
+
+
+@pytest.fixture(scope="module")
+def with_photo(tmp_path_factory):
+    repo = make_repo(tmp_path_factory.mktemp("photo"))
+    shutil.copy2(REPO_ROOT / "profile.png", repo / "profile.png")
+    generate_cv.generate_all_cvs(repo)
+    return repo
+
+
+@pytest.fixture(scope="module")
+def golden(tmp_path_factory):
+    """CVs built by the committed (HEAD) generate_cv.py, before photo support."""
+    tmp = tmp_path_factory.mktemp("golden")
+    src = subprocess.run(["git", "show", "HEAD:generate_cv.py"], cwd=REPO_ROOT,
+                         capture_output=True, text=True, check=True).stdout
+    script = tmp / "generate_cv_head.py"
+    script.write_text(src, encoding="utf-8")
+    (tmp / "fonts").symlink_to(REPO_ROOT / "fonts")
+    spec = importlib.util.spec_from_file_location("generate_cv_head", script)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    repo = make_repo(tmp / "repo")
+    shutil.copy2(REPO_ROOT / "profile.png", repo / "profile.png")
+    module.generate_all_cvs(repo)
+    return repo
+
+
+@pytest.mark.parametrize("path", NO_PHOTO)
+def test_cv_without_photo_unchanged(with_photo, golden, path):
+    new = with_photo / "cv" / "latest" / path[0] / path[1]
+    old = golden / "cv" / "latest" / path[0] / path[1]
+    assert len(_Reader(new).pages) == len(_Reader(old).pages)
+    assert [p.extract_text() for p in _Reader(new).pages] == [p.extract_text() for p in _Reader(old).pages]
+    assert image_count(new) == 0
+
+
+def test_photo_flavour_has_image(with_photo):
+    path = with_photo / "cv" / "latest" / DE_PORTFOLIO[0] / DE_PORTFOLIO[1]
+    assert len(_Reader(path).pages[0].images) == 1
+
+
+def test_missing_photo_file_skips_photo(generated):
+    repo, _ = generated
+    assert not (repo / "profile.png").exists()
+    path = repo / "cv" / "latest" / DE_PORTFOLIO[0] / DE_PORTFOLIO[1]
+    assert image_count(path) == 0
+    assert "Softwareentwickler" in pdf_text(path)
+
+
+def test_every_flavour_sets_show_photo():
+    flavours = json.loads((REPO_ROOT / "data" / "cv_flavours.json").read_text(encoding="utf-8"))
+    assert {f["slug"] + "/" + f["language"]: f.get("showPhoto") for f in flavours} == {
+        f["slug"] + "/" + f["language"]: f["language"] == "de" for f in flavours
+    }

@@ -8,6 +8,7 @@ on:
       - 'data/**'
       - 'generate_cv.py'
       - 'requirements.txt'
+      - 'profile.*'
   workflow_dispatch:
 
 jobs:

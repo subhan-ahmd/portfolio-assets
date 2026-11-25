@@ -3,6 +3,7 @@
     "disabled": true,
     "slug": "flutter-mobile",
     "language": "en",
+    "showPhoto": false,
     "label": "Flutter Mobile",
     "position": "Flutter Developer",
     "summary": "Mobile engineer with 3+ years shipping production Flutter apps across healthcare, education, and social platforms. Comfortable owning the full lifecycle including architecture, state management, CI/CD, and release, with a bias for clean, maintainable code.",
@@ -20,6 +21,7 @@
     "disabled": true,
     "slug": "fullstack",
     "language": "en",
+    "showPhoto": false,
     "label": "Full Stack",
     "position": "Full Stack Developer",
     "summary": "Full-stack engineer building across mobile, web, and backend. Deep roots in Flutter with a growing backend practice in Node.js, Python, and PostgreSQL. Shipped 7+ production apps end to end, covering database design, API architecture, and polished client experiences.",
@@ -44,6 +46,7 @@
     "disabled": true,
     "slug": "ai-engineer",
     "language": "en",
+    "showPhoto": false,
     "label": "AI Engineer",
     "position": "AI / ML Engineer",
     "summary": "Engineer with hands-on experience integrating AI into production mobile and backend systems, including OpenAI and Claude-powered features and automation pipelines. Strong applied focus on prompt engineering, tool-use patterns, and shipping AI-augmented products users actually interact with.",
@@ -71,6 +74,7 @@
     "disabled": true,
     "slug": "dotnet",
     "language": "en",
+    "showPhoto": false,
     "label": ".NET",
     "position": "Software Engineer (.NET)",
     "summary": "Software engineer with production experience in C# and ASP.NET Core, building backend systems and enterprise tooling. Primary background in mobile (Flutter), bringing a product-minded approach to backend development with strong API design and database skills.",
@@ -87,6 +91,7 @@
   {
     "slug": "mobile-app-dev",
     "language": "en",
+    "showPhoto": false,
     "label": "Mobile Application Developer",
     "position": "Mobile Application Developer",
     "hideProjects": ["sales_quotation_system"]
@@ -94,12 +99,14 @@
   {
     "slug": "portfolio",
     "language": "en",
+    "showPhoto": false,
     "label": "Portfolio",
     "hideProjects": ["sales_quotation_system"]
   },
   {
     "slug": "portfolio",
     "language": "de",
+    "showPhoto": true,
     "label": "Portfolio",
     "hideProjects": ["sales_quotation_system"]
   }

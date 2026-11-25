@@ -68,7 +68,9 @@ portfolio-assets/
 |   |-- {lang}/              # Timestamped CVs per language
 |   +-- latest/{lang}/       # Stable-name copies per language
 |
-|-- profile.jpeg             # Profile photo
+|-- profile.png              # Transparent cut-out (site hero + CV photo)
+|-- profile.jpeg             # Full portrait (source of the cut-out)
+|-- profile-linkedin.jpg     # 1024x1024 head-and-shoulders crop for LinkedIn
 |-- manifest.json            # Auto-generated asset index
 |
 |-- cv_i18n.py               # Shared helpers: localization, CV filenames/folders
@@ -157,6 +159,7 @@ A flavour is a tailored CV. Its `label`, `position` and `summary` are plain text
   "slug": "portfolio",
   "language": "en",
   "label": "Portfolio",
+  "showPhoto": false,
   "position": "Software Engineer",
   "summary": "Optional summary override",
   "hideProjects": ["sales_quotation_system"],
@@ -164,7 +167,7 @@ A flavour is a tailored CV. Its `label`, `position` and `summary` are plain text
 }
 ```
 
-Options: `disabled`, `position`, `summary`, `showProjects` / `showExperiences` / `showEducation` (pick and order by slug), `hideProjects` / `hideExperiences` / `hideEducation`, and `skills.<group>.highlight/hide` (skill keys).
+Options: `disabled`, `showPhoto` (photo circle top right of the header, cut from `profile.png`; missing = `false`, generic CVs never show one), `position`, `summary`, `showProjects` / `showExperiences` / `showEducation` (pick and order by slug), `hideProjects` / `hideExperiences` / `hideEducation`, and `skills.<group>.highlight/hide` (skill keys).
 
 ### Output
 
@@ -191,7 +194,7 @@ https://raw.githubusercontent.com/subhan-ahmd/portfolio-assets/main/cv/latest/en
 ```json
 {
   "generatedAt": "2026-11-23T20:00:00Z",
-  "profile": "profile.jpeg",
+  "profile": "profile.png",
   "cv": {
     "en": {
       "generic": {"latest": "Subhan Ahmed - CV.pdf", "timestamped": "Subhan Ahmed - CV - 231126-2000.pdf"},

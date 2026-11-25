@@ -14,8 +14,10 @@ from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import inch
 from reportlab.lib.enums import TA_CENTER, TA_LEFT, TA_RIGHT, TA_JUSTIFY
 from reportlab.platypus import (
-    SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, HRFlowable,
+    SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, HRFlowable, Flowable,
 )
+from reportlab.lib.utils import ImageReader
+from PIL import Image
 from reportlab.lib.colors import black, HexColor
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
@@ -34,6 +36,12 @@ BULLET_CHAR = "\u25cf"  # ● filled circle matching reference PDF
 DIVIDER_COLOR = HexColor("#444444")
 FOOTER_COLOR = HexColor("#999999")
 SOURCE_URL = "github.com/subhan-ahmd/portfolio-assets"
+PHOTO_FILE = "profile.png"  # transparent cut-out; only flavours with "showPhoto": true use it
+PHOTO_DIAMETER = 64
+PHOTO_CROP = (0.16, 0.0, 0.84, 0.5636)  # head-and-shoulders square, as fractions of the cut-out
+PHOTO_PIXELS = 384
+PHOTO_DISC = HexColor("#EEEEEE")
+PHOTO_RING = HexColor("#999999")
 LATEST_CV_URL = "raw.githubusercontent.com/subhan-ahmd/portfolio-assets/main/cv.pdf"
 
 # --- Font Registration ---
@@ -233,14 +241,69 @@ def entry(title: str, date_range: str, styles: dict,
     return elements
 
 
+class PhotoFlowable(Flowable):
+    """Circular photo: light disc, image clipped to the circle, thin ring."""
+
+    def __init__(self, image: Image.Image, diameter: float):
+        super().__init__()
+        self.image = image
+        self.diameter = diameter
+
+    def wrap(self, avail_width, avail_height):
+        return self.diameter, self.diameter
+
+    def draw(self):
+        c, d = self.canv, self.diameter
+        r = d / 2
+        c.saveState()
+        c.setFillColor(PHOTO_DISC)
+        c.circle(r, r, r, stroke=0, fill=1)
+        clip = c.beginPath()
+        clip.circle(r, r, r)
+        c.clipPath(clip, stroke=0, fill=0)
+        c.drawImage(ImageReader(self.image), 0, 0, d, d, mask="auto")
+        c.restoreState()
+        c.setStrokeColor(PHOTO_RING)
+        c.setLineWidth(0.75)
+        c.circle(r, r, r - 0.375, stroke=1, fill=0)
+
+
+def make_photo_flowable(photo_path: Path, diameter: float) -> Flowable | None:
+    """Head-and-shoulders circle from the cut-out, or None when the file is missing."""
+    if not photo_path.exists():
+        return None
+    with Image.open(photo_path) as img:
+        img = img.convert("RGBA")
+        w, h = img.size
+        x0, y0, x1, y1 = PHOTO_CROP
+        crop = img.crop((round(x0 * w), round(y0 * h), round(x1 * w), round(y1 * h)))
+        crop = crop.resize((PHOTO_PIXELS, PHOTO_PIXELS), Image.LANCZOS)
+    return PhotoFlowable(crop, diameter)
+
+
 # --- Section Builders ---
 
-def build_header(profile: dict, contacts: list, socials: list, styles: dict) -> list:
+def build_header(profile: dict, contacts: list, socials: list, styles: dict,
+                 photo: Flowable | None = None) -> list:
     elements = []
 
-    # Name + Position
-    elements.append(Paragraph(profile["name"].upper(), styles["name"]))
-    elements.append(Paragraph(profile["position"], styles["position"]))
+    # Name + Position (with a photo: [spacer | text | photo] keeps the text centred)
+    name = Paragraph(profile["name"].upper(), styles["name"])
+    position = Paragraph(profile["position"], styles["position"])
+    if photo is None:
+        elements.extend([name, position])
+    else:
+        d = photo.diameter
+        table = Table([[Spacer(d, d), [name, position], photo]],
+                      colWidths=[d, AVAILABLE_WIDTH - 2 * d, d])
+        table.setStyle(TableStyle([
+            ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+            ("LEFTPADDING", (0, 0), (-1, -1), 0),
+            ("RIGHTPADDING", (0, 0), (-1, -1), 0),
+            ("TOPPADDING", (0, 0), (-1, -1), 0),
+            ("BOTTOMPADDING", (0, 0), (-1, -1), 4),
+        ]))
+        elements.append(table)
     elements.append(hr())
 
     # Contact line + HR
@@ -504,7 +567,7 @@ def load_localized(data_dir: Path, lang: str) -> dict:
 
 def generate_single_cv(repo_root, lang, strings, profile, contacts, socials,
                        experiences, projects, education, skills, languages,
-                       timestamp, label=None):
+                       timestamp, label=None, show_photo=False):
     """Generate a single CV PDF. Returns (timestamped_path, stable_path)."""
     word = strings["documentWord"]
     ts_dir, latest_dir = cv_dirs(repo_root, lang)
@@ -525,7 +588,8 @@ def generate_single_cv(repo_root, lang, strings, profile, contacts, socials,
     )
 
     story = []
-    story.extend(build_header(profile, contacts, socials, styles))
+    photo = make_photo_flowable(repo_root / PHOTO_FILE, PHOTO_DIAMETER) if show_photo else None
+    story.extend(build_header(profile, contacts, socials, styles, photo))
     story.extend(build_summary(profile, styles))
     if experiences:
         story.extend(build_experience_section(experiences, styles, strings))
@@ -602,6 +666,7 @@ def generate_all_cvs(repo_root: Path = REPO_ROOT):
             f_exp, f_proj, f_edu,
             f_skills, d["languages"], timestamp,
             label=flavour["label"],
+            show_photo=bool(flavour.get("showPhoto")),
         )
         generated.append((lang, flavour["slug"], ts_path, stable_path))
 
