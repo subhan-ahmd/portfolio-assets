@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-25T01:43:23Z",
+  "generatedAt": "2026-11-25T09:46:59Z",
   "profile": "profile.png",
   "cv": {
     "en": {
@@ -28,6 +28,9 @@
     }
   },
   "projects": {
+    "askwillow": {
+      "logo": "logo.png"
+    },
     "portfolio": {
       "logo": "logo.png"
     },
@@ -170,6 +173,7 @@
     "dart": "dart.svg",
     "firebase": "firebase.svg",
     "flutter": "flutter.svg",
+    "gemini_apis": "gemini_apis.svg",
     "git": "git.svg",
     "github_actions": "github_actions.svg",
     "javascript": "javascript.svg",
@@ -181,7 +185,9 @@
     "postgresql": "postgresql.svg",
     "python": "python.svg",
     "react": "react.svg",
+    "riverpod": "riverpod.svg",
     "sql_server": "sql_server.svg",
+    "supabase": "supabase.svg",
     "typescript": "typescript.svg"
   }
 }
