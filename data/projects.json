@@ -340,5 +340,47 @@
     },
     "showInCv": true,
     "showInPortfolio": false
+  },
+  {
+    "id": 9,
+    "title": "AskWillow",
+    "slug": "askwillow",
+    "technology": "Flutter & Supabase",
+    "associationSlug": "orbilon",
+    "field": "mobileAppDevelopment",
+    "startDate": "2026-03-01T00:00:00.000",
+    "endDate": "2026-07-01T00:00:00.000",
+    "links": [
+      {
+        "i18n": {
+          "en": {"label": "Web App"},
+          "de": {"label": "Web-App"}
+        },
+        "url": "https://app.askwillow.ai",
+        "type": "url",
+        "showInCv": true,
+        "showInPortfolio": true
+      }
+    ],
+    "i18n": {
+      "en": {
+        "description": [
+          "Built solo an AI quoting assistant for landscapers in Flutter, running on Android, iOS and web with full desktop and mobile layouts and identical features, backed by Supabase (Postgres, 13 TypeScript edge functions).",
+          "AI chat creates and updates quotes and variations from text, photos, video and voice, using Gemini/OpenAI structured outputs and 10 tool-calling functions to search and aggregate quotes, line items and goals.",
+          "Voice mode with Google Cloud Text-to-Speech replies, configurable branded proposal PDFs editable on mobile and desktop, and a local Drift/SQLite database on every platform including web."
+        ],
+        "shortDescription": "AI quoting assistant for landscapers on Android, iOS and web: chat and voice build quotes through tool calling, AI search across all quotes, and configurable proposal PDFs."
+      },
+      "de": {
+        "description": [
+          "Eigenständige Entwicklung eines KI-Angebotsassistenten für Garten- und Landschaftsbauer in Flutter, lauffähig auf Android, iOS und im Web mit vollständigem Desktop- und Mobil-Layout und identischem Funktionsumfang, mit Supabase-Backend (Postgres, 13 TypeScript-Edge-Functions).",
+          "Der KI-Chat erstellt und aktualisiert Angebote und Nachträge aus Text, Fotos, Videos und Sprache, mit strukturierten Ausgaben von Gemini/OpenAI und 10 Tool-Calling-Funktionen zum Suchen und Auswerten von Angeboten, Positionen und Zielen.",
+          "Sprachmodus mit Antworten über Google Cloud Text-to-Speech, konfigurierbare Angebots-PDFs im eigenen Branding, auf Mobilgeräten und Desktop bearbeitbar, und eine lokale Drift/SQLite-Datenbank auf allen Plattformen einschließlich Web."
+        ],
+        "shortDescription": "KI-Angebotsassistent für Garten- und Landschaftsbauer auf Android, iOS und im Web: Chat und Sprache erstellen Angebote per Tool Calling, KI-Suche über alle Angebote und konfigurierbare Angebots-PDFs."
+      }
+    },
+    "showInCv": true,
+    "showInPortfolio": true
   }
 ]

@@ -10,6 +10,7 @@
     "skills": [
       {"key": "dart", "name": "Dart"},
       {"key": "flutter", "name": "Flutter"},
+      {"key": "riverpod", "name": "Riverpod"},
       {"key": "csharp", "name": "C#"},
       {"key": "cpp", "name": "C++"},
       {"key": "aspnet_core", "name": "ASP.NET Core"},
@@ -22,6 +23,7 @@
       {"key": "sql_server", "name": "SQL Server"},
       {"key": "firebase", "name": "Firebase"},
       {"key": "firestore", "name": "Firestore"},
+      {"key": "supabase", "name": "Supabase"},
       {"key": "isar_db", "name": "Isar DB"},
       {"key": "rest_apis", "name": "REST APIs"},
       {"key": "soap_apis", "name": "SOAP APIs"},
@@ -29,6 +31,7 @@
       {"key": "ble", "name": "BLE"},
       {"key": "openai_apis", "name": "OpenAI APIs"},
       {"key": "claude_apis", "name": "Claude APIs"},
+      {"key": "gemini_apis", "name": "Gemini APIs"},
       {"key": "git", "name": "Git"},
       {"key": "github_actions", "name": "GitHub Actions"},
       {"key": "ci_cd", "name": "CI/CD"},
