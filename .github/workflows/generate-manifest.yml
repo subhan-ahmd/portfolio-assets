@@ -41,7 +41,7 @@ jobs:
           # If this push also triggers the CV workflow, skip this run.
           # The CV workflow will chain into manifest via workflow_run,
           # ensuring the manifest includes the new CV filename.
-          CHANGED=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} -- data/ generate_cv.py requirements.txt 2>/dev/null || echo "")
+          CHANGED=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} -- data/ generate_cv.py requirements.txt 'profile.*' 2>/dev/null || echo "")
           if [ -n "$CHANGED" ]; then
             echo "skip=true" >> $GITHUB_OUTPUT
             echo "⏭️ CV workflow will also run — deferring to workflow_run trigger"
